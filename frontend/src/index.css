@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@variant dark (&:is(.dark *));
+
+@layer base {
+
+  /* โหมดสว่าง (ค่าเริ่มต้น) */
+  body {
+    @apply bg-slate-50 text-slate-800 transition-colors duration-300;
+  }
+
+  /* โหมดมืด */
+  .dark body {
+    @apply bg-[#060A13] text-[#E2E8F0];
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6,
+  .dark .font-bold,
+  .dark .text-3xl {
+    @apply text-[#F8FAFC];
+  }
+
+  /* ตกแต่ง Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-[#1E293B] rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    background-color: rgb(59 130 246);
+  }
+
+  /* Login input: override browser autofill white background */
+  .login-input {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    color: white !important;
+  }
+
+  .login-input:-webkit-autofill,
+  .login-input:-webkit-autofill:hover,
+  .login-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #0d1525 inset !important;
+    -webkit-text-fill-color: #e2e8f0 !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    caret-color: white;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
+  .login-input::placeholder {
+    color: #475569;
+  }
+
+  .login-input:focus {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    border-color: rgba(59, 130, 246, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    opacity: 0.75;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.2s ease-out forwards;
+  }
+
+  .glass-panel {
+    @apply bg-white/70 dark:bg-[#0B1121]/60 backdrop-blur-xl border border-white/20 dark:border-white/5;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .glass-panel {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-panel-hover {
+    @apply transition-all duration-200 ease-out hover:border-blue-500/30 hover:bg-white/90 dark:hover:bg-[#0B1121]/90;
+  }
+
+  .glass-panel-hover:hover {
+    box-shadow: 0 6px 24px -4px rgba(59, 130, 246, 0.15);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+  }
+
+  .text-glow-rose {
+    text-shadow: 0 0 12px rgba(244, 63, 94, 0.4);
+  }
+
+  .text-glow-emerald {
+    text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+  }
+
+  .mask-radial-gradient {
+    mask-image: radial-gradient(circle, black 0%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle, black 0%, transparent 70%);
+  }
+}

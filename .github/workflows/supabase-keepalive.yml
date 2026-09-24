@@ -1,0 +1,28 @@
+name: Supabase Keep-Alive Ping
+
+on:
+  schedule:
+    # รันอัตโนมัติทุกๆ 3 วัน เวลา 00:00 UTC (07:00 น. เวลาไทย)
+    - cron: '0 0 */3 * *'
+  workflow_dispatch: # ปุ่มกดรันเองได้ตลอดเวลาผ่านแท็บ Actions บน GitHub
+
+jobs:
+  ping-supabase:
+    name: Ping Supabase Database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send keep-alive ping to Supabase REST API
+        run: |
+          echo "Sending keep-alive request to Supabase..."
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "apikey: sb_publishable_0loAO_PKoZ0u1tvMMEmdHA_3oST-XxR" \
+            -H "Authorization: Bearer sb_publishable_0loAO_PKoZ0u1tvMMEmdHA_3oST-XxR" \
+            "https://trrcywwzljjtpzynejrk.supabase.co/rest/v1/categories?select=id&limit=1")
+          
+          echo "HTTP Response Status Code: $STATUS_CODE"
+          if [ "$STATUS_CODE" -ge 200 ] && [ "$STATUS_CODE" -lt 400 ]; then
+            echo "✅ Supabase is active and responsive! Keep-alive succeeded."
+          else
+            echo "❌ Keep-alive failed with status code $STATUS_CODE"
+            exit 1
+          fi
