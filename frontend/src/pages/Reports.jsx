@@ -278,7 +278,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
               </button>
               <div className="min-w-0 flex-1">
-                <h1 className="text-xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 tracking-tight drop-shadow-sm truncate">
+                <h1 className="text-xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 tracking-tight drop-shadow-sm truncate">
                   รายละเอียดประจำเดือน
                 </h1>
                 <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5 flex-wrap">
@@ -366,14 +366,14 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               onClick={() => setSelectedWeek('all')}
               className={`flex-1 min-w-[125px] sm:min-w-0 py-2 px-3 rounded-xl transition-all duration-200 flex flex-col items-center justify-center gap-0.5 text-center shrink-0 sm:shrink
                 ${selectedWeek === 'all'
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/20 scale-[1.01]'
+                  ? 'bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 text-white shadow-md shadow-pink-500/20 scale-[1.01]'
                   : 'bg-transparent text-gray-600 dark:text-gray-300 hover:bg-pink-50 dark:hover:bg-pink-50/5'}`}
             >
               <div className="flex items-center gap-1 font-black text-xs sm:text-sm whitespace-nowrap">
                 <CalendarDays size={13} className={selectedWeek === 'all' ? 'text-white' : 'text-pink-400'} />
                 <span>ทั้งเดือน</span>
               </div>
-              <span className={`text-[10px] font-bold ${selectedWeek === 'all' ? 'text-blue-100' : 'text-gray-400 dark:text-[#64748B]'}`}>
+              <span className={`text-[10px] font-bold ${selectedWeek === 'all' ? 'text-pink-100' : 'text-gray-400 dark:text-[#64748B]'}`}>
                 {allMonthTransactions.length} รายการ ({MONTHS_TH[selectedMonthDetail - 1]})
               </span>
             </button>
@@ -388,7 +388,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   onClick={() => setSelectedWeek(w.weekNum)}
                   className={`flex-1 min-w-[115px] sm:min-w-0 py-2 px-2.5 rounded-xl transition-all duration-200 flex flex-col items-center justify-center gap-0.5 text-center shrink-0 sm:shrink
                     ${isActive
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/20 scale-[1.01]'
+                      ? 'bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 text-white shadow-md shadow-pink-500/20 scale-[1.01]'
                       : 'bg-transparent text-gray-600 dark:text-gray-300 hover:bg-pink-50 dark:hover:bg-pink-50/5'}`}
                 >
                   <div className="flex items-center gap-1 font-black text-xs sm:text-sm whitespace-nowrap">
@@ -398,7 +398,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                     )}
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className={`text-[10px] font-bold ${isActive ? 'text-blue-100' : 'text-gray-400 dark:text-[#64748B]'}`}>
+                    <span className={`text-[10px] font-bold ${isActive ? 'text-pink-100' : 'text-gray-400 dark:text-[#64748B]'}`}>
                       {w.shortRangeWithDays || w.shortRange}
                     </span>
                     {hasTx && (
@@ -470,7 +470,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 <div className="w-2 h-2 rounded-full bg-pink-500 shrink-0 shadow-[0_0_8px_rgba(244,114,182,0.7)]"></div>
                 <span className="text-gray-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">จำนวนรายการ</span>
               </div>
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-pink-400/10 border border-blue-500/20 flex items-center justify-center text-pink-400 shrink-0">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-pink-400/10 border border-pink-500/20 flex items-center justify-center text-pink-400 shrink-0">
                 <Activity size={14} className="sm:w-4 sm:h-4" />
               </div>
             </div>
@@ -488,7 +488,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
           <div className="mb-6 animate-fade-in-up">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3.5">
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-4 bg-gradient-to-b from-blue-400 to-purple-600 rounded-full shrink-0"></div>
+                <div className="w-1.5 h-4 bg-gradient-to-b from-pink-400 to-rose-500 rounded-full shrink-0"></div>
                 <h3 className="text-xs sm:text-base font-black text-gray-800 dark:text-white">
                   เปรียบเทียบรายสัปดาห์ ({weeksData.length} สัปดาห์)
                 </h3>
@@ -503,7 +503,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   <div
                     key={w.weekNum}
                     onClick={() => setSelectedWeek(w.weekNum)}
-                    className="glass-panel p-3.5 sm:p-4 rounded-2xl cursor-pointer hover:border-blue-400/60 dark:hover:border-blue-500/50 hover:scale-[1.01] transition-all duration-200 group relative overflow-hidden flex flex-col justify-between"
+                    className="glass-panel p-3.5 sm:p-4 rounded-2xl cursor-pointer hover:border-pink-400/60 dark:hover:border-pink-500/50 hover:scale-[1.01] transition-all duration-200 group relative overflow-hidden flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
@@ -566,7 +566,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               <div className="px-4 sm:px-5 py-4 border-b border-pink-100 dark:border-white/10 flex flex-col gap-3 bg-[#FDF2F8]/50 dark:bg-[#0B1121]/50">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-1.5 h-5 bg-gradient-to-b from-blue-400 to-purple-600 rounded-full shrink-0"></div>
+                    <div className="w-1.5 h-5 bg-gradient-to-b from-pink-400 to-rose-500 rounded-full shrink-0"></div>
                     <h3 className="text-sm sm:text-base font-black text-gray-800 dark:text-white">
                       รายการธุรกรรม: {activeLabel}
                     </h3>
@@ -575,7 +575,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                     <span className="text-xs text-gray-500 dark:text-[#94A3B8] font-bold">
                       {activeDateRangeSubtitle}
                     </span>
-                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-pink-50 dark:bg-pink-400/10 text-pink-500 dark:text-pink-400 font-black border border-pink-200/50 dark:border-blue-500/20">
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-pink-50 dark:bg-pink-400/10 text-pink-500 dark:text-pink-400 font-black border border-pink-200/50 dark:border-pink-500/20">
                       {displayedTransactions.length} รายการ
                     </span>
                   </div>
@@ -602,7 +602,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                               ? 'bg-rose-500 text-white shadow-md shadow-rose-500/20'
                               : f.color === 'purple'
                               ? 'bg-purple-600 text-white shadow-md shadow-purple-500/20'
-                              : 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                              : 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-md shadow-pink-500/20'
                             : 'bg-white dark:bg-pink-50/60 text-gray-600 dark:text-gray-300 hover:bg-pink-50 dark:hover:bg-pink-50/80 border border-pink-100 dark:border-white/5'
                         }`}
                       >
@@ -1022,7 +1022,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 </div>
               </div>
 
-              <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-blue-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+              <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
             </div>
           );
         })}

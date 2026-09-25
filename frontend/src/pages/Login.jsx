@@ -41,28 +41,28 @@ export default function Login({ onLogin, onBack }) {
       {/* ── 🌸 Cute Sakura Flower Background Pattern ── */}
       <div className="absolute inset-0 cute-flower-pattern pointer-events-none" />
       {/* Edge glow – static, no animation */}
-      <div className="absolute top-0 left-0 w-full h-[30vh] bg-gradient-to-b from-blue-500/25 via-purple-500/8 dark:from-blue-500/18 to-transparent blur-[40px] pointer-events-none z-10 opacity-70" />
-      <div className="absolute bottom-0 left-0 w-full h-[30vh] bg-gradient-to-t from-purple-500/25 via-blue-500/8 dark:from-purple-500/18 to-transparent blur-[40px] pointer-events-none z-10 opacity-70" />
-      <div className="absolute top-0 left-0 w-[30vw] h-full bg-gradient-to-r from-blue-500/20 dark:from-blue-600/15 to-transparent blur-[50px] pointer-events-none z-10 opacity-60" />
-      <div className="absolute top-0 right-0 w-[30vw] h-full bg-gradient-to-l from-purple-500/20 dark:from-purple-600/15 to-transparent blur-[50px] pointer-events-none z-10 opacity-60" />
+      <div className="absolute top-0 left-0 w-full h-[30vh] bg-gradient-to-b from-pink-400/20 via-rose-300/10 dark:from-pink-500/15 to-transparent blur-[40px] pointer-events-none z-10 opacity-70" />
+      <div className="absolute bottom-0 left-0 w-full h-[30vh] bg-gradient-to-t from-rose-400/20 via-pink-300/10 dark:from-rose-500/15 to-transparent blur-[40px] pointer-events-none z-10 opacity-70" />
+      <div className="absolute top-0 left-0 w-[30vw] h-full bg-gradient-to-r from-pink-400/15 dark:from-pink-600/15 to-transparent blur-[50px] pointer-events-none z-10 opacity-60" />
+      <div className="absolute top-0 right-0 w-[30vw] h-full bg-gradient-to-l from-rose-400/15 dark:from-rose-600/15 to-transparent blur-[50px] pointer-events-none z-10 opacity-60" />
 
       {/* Corner orbs */}
-      <div className="absolute -top-[15%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-600/20 blur-[150px] pointer-events-none" />
-      <div className="absolute -bottom-[15%] right-[0%] w-[40%] h-[50%] rounded-full bg-indigo-600/20 blur-[150px] pointer-events-none" />
-      <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-purple-600/15 blur-[120px] pointer-events-none" />
+      <div className="absolute -top-[15%] -left-[10%] w-[50%] h-[50%] rounded-full bg-pink-400/20 blur-[150px] pointer-events-none" />
+      <div className="absolute -bottom-[15%] right-[0%] w-[40%] h-[50%] rounded-full bg-rose-400/20 blur-[150px] pointer-events-none" />
+      <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-pink-300/15 blur-[120px] pointer-events-none" />
 
       {/* ── Main HUD Container ── */}
-      <div className="w-full h-full max-w-[1400px] flex flex-col lg:flex-row rounded-[30px] lg:rounded-[40px] overflow-hidden z-10 animate-fade-in-up border border-pink-100 dark:border-white/5 bg-white/90 dark:bg-[#060A13]/40 backdrop-blur-3xl shadow-[0_0_50px_rgba(0,0,0,0.1)] dark:shadow-[0_0_80px_rgba(0,0,0,0.5)] relative">
+      <div className="w-full h-full max-w-[1400px] flex flex-col lg:flex-row rounded-[30px] lg:rounded-[40px] overflow-hidden z-10 animate-fade-in-up glass-panel border border-white/80 dark:border-white/10 shadow-[0_20px_60px_rgba(244,114,182,0.18)] relative">
 
         {/* Top / Bottom edge rail */}
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent z-20" />
-        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent z-20" />
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-pink-400/50 to-transparent z-20" />
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rose-400/50 to-transparent z-20" />
 
         {/* ═══════════════════════════════════════
             LEFT — Branding
         ═══════════════════════════════════════ */}
         <div className="hidden lg:flex w-1/2 p-8 xl:p-12 2xl:p-16 flex-col justify-between relative overflow-hidden border-r border-pink-100 dark:border-white/5 group">
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-100/50 to-rose-100/50 dark:from-blue-900/10 dark:to-purple-900/10 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-100/50 to-rose-100/50 dark:from-pink-950/20 dark:to-rose-950/20 z-0" />
 
           <div className="relative z-10 flex flex-col flex-1 justify-center items-center text-center">
 
@@ -90,7 +90,7 @@ export default function Login({ onLogin, onBack }) {
         {/* ═══════════════════════════════════════
             RIGHT — Login Form
         ═══════════════════════════════════════ */}
-        <div className="w-full h-full lg:w-1/2 p-8 sm:p-12 xl:p-14 flex flex-col justify-center relative bg-white dark:bg-[#0B1121]/40 overflow-y-auto">
+        <div className="w-full h-full lg:w-1/2 p-8 sm:p-12 xl:p-14 flex flex-col justify-center relative bg-white/40 dark:bg-[#0B1121]/40 backdrop-blur-md overflow-y-auto">
 
           {onBack && (
             <button
@@ -120,7 +120,7 @@ export default function Login({ onLogin, onBack }) {
 
             {/* Header */}
             <div className="text-center mb-10 xl:mb-14 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-pink-50 dark:bg-pink-400/10 border border-pink-200 dark:border-blue-500/20 mb-6 relative overflow-hidden group">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-pink-50 dark:bg-pink-400/10 border border-pink-200 dark:border-pink-500/20 mb-6 relative overflow-hidden group">
                 <div className="absolute inset-0 w-1/4 h-full bg-white/50 skew-x-[-20deg] translate-x-[-200%] group-hover:translate-x-[500%] transition-transform duration-1000" />
                 <div className="w-2 h-2 rounded-full bg-pink-500 mr-2 relative z-10" />
                 <span className="text-[10px] font-black text-pink-500 dark:text-pink-400 uppercase tracking-widest relative z-10">จำเป็นต้องเข้าสู่ระบบ</span>
@@ -147,14 +147,7 @@ export default function Login({ onLogin, onBack }) {
                     placeholder="กรอกอีเมลของคุณ..."
                     required
                     autoComplete="email"
-                    style={{
-                      WebkitBoxShadow: focused === 'email'
-                        ? '0 0 0 1000px #05091a inset'
-                        : '0 0 0 1000px #05091a inset',
-                      WebkitTextFillColor: '#e2e8f0',
-                      caretColor: '#e2e8f0',
-                    }}
-                    className="w-full pl-14 pr-6 py-4 xl:py-5 bg-white dark:bg-[#060A13]/80 backdrop-blur-xl border border-pink-200 dark:border-white/10 rounded-[18px] text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-pink-400/50 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-bold tracking-wide shadow-inner text-sm"
+                    className="w-full pl-14 pr-6 py-4 xl:py-5 bg-white/70 dark:bg-white/5 backdrop-blur-md border border-pink-200/80 dark:border-white/10 rounded-[18px] text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-pink-400/40 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-bold tracking-wide shadow-sm text-sm placeholder:text-gray-400"
                   />
                   <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 transition-colors group-focus-within:bg-pink-500 shadow-[0_0_8px_rgba(244,114,182,0.5)] opacity-0 group-focus-within:opacity-100" />
                 </div>
@@ -176,12 +169,7 @@ export default function Login({ onLogin, onBack }) {
                     placeholder="••••••••"
                     required
                     autoComplete="current-password"
-                    style={{
-                      WebkitBoxShadow: '0 0 0 1000px #05091a inset',
-                      WebkitTextFillColor: '#e2e8f0',
-                      caretColor: '#e2e8f0',
-                    }}
-                    className="w-full pl-14 pr-16 py-4 xl:py-5 bg-white dark:bg-[#060A13]/80 backdrop-blur-xl border border-pink-200 dark:border-white/10 rounded-[18px] text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-pink-400/50 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-black tracking-widest shadow-inner text-sm"
+                    className="w-full pl-14 pr-16 py-4 xl:py-5 bg-white/70 dark:bg-white/5 backdrop-blur-md border border-pink-200/80 dark:border-white/10 rounded-[18px] text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-pink-400/40 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-black tracking-widest shadow-sm text-sm placeholder:text-gray-400"
                   />
                   <button
                     type="button"
@@ -196,14 +184,14 @@ export default function Login({ onLogin, onBack }) {
               {/* Remember me */}
               <div className="flex items-center justify-between pt-1 pb-4 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
                 <label className="flex items-center space-x-3 cursor-pointer group">
-                  <div className="relative flex items-center justify-center w-5 h-5 rounded border border-pink-300 dark:border-slate-600 bg-white dark:bg-[#0B1121] transition-all group-hover:border-blue-500 shadow-inner overflow-hidden">
+                  <div className="relative flex items-center justify-center w-5 h-5 rounded border border-pink-300 dark:border-slate-600 bg-white dark:bg-[#0B1121] transition-all group-hover:border-pink-400 shadow-inner overflow-hidden">
                     <input
                       type="checkbox"
                       className="peer sr-only"
                       checked={rememberMe}
                       onChange={e => setRememberMe(e.target.checked)}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-indigo-500 scale-0 opacity-0 peer-checked:scale-100 peer-checked:opacity-100 transition-all duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-pink-500 via-rose-400 to-pink-500 scale-0 opacity-0 peer-checked:scale-100 peer-checked:opacity-100 transition-all duration-300" />
                     <svg className="w-3 h-3 text-white relative z-10 opacity-0 scale-50 peer-checked:opacity-100 peer-checked:scale-100 transition-all duration-300 delay-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
@@ -222,7 +210,7 @@ export default function Login({ onLogin, onBack }) {
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"
                     style={{ background: 'linear-gradient(45deg,transparent 25%,rgba(255,255,255,0.15) 50%,transparent 75%)' }}
                   />
-                  <div className="absolute inset-[-2px] rounded-[20px] bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500 z-0 pointer-events-none" />
+                  <div className="absolute inset-[-2px] rounded-[20px] bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 opacity-0 group-hover:opacity-50 blur-xl transition-opacity duration-500 z-0 pointer-events-none" />
                   {isLoading ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -231,7 +219,7 @@ export default function Login({ onLogin, onBack }) {
                   ) : (
                     <>
                       <span className="relative z-20 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">เข้าสู่ระบบ</span>
-                      <div className="relative z-20 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm shadow-[inset_0_0_10px_rgba(255,255,255,0.2)] flex items-center justify-center group-hover:bg-pink-50 group-hover:text-indigo-600 transition-all duration-500 group-hover:translate-x-3">
+                      <div className="relative z-20 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm shadow-[inset_0_0_10px_rgba(255,255,255,0.2)] flex items-center justify-center group-hover:bg-pink-50 group-hover:text-pink-500 transition-all duration-500 group-hover:translate-x-3">
                         <ArrowRight size={12} className="transition-transform duration-500" />
                       </div>
                     </>

@@ -77,14 +77,14 @@ export default function Categories({ categories = [], transactions = [], handleO
                 <div className="flex space-x-2 opacity-60 group-hover:opacity-100 transition-opacity duration-200">
                   <button
                     onClick={() => handleOpenEditCategory(c)}
-                    className="w-10 h-10 flex items-center justify-center bg-white dark:bg-[#1E293B] border border-pink-200 dark:border-[#334155] rounded-xl text-gray-400 dark:text-[#94A3B8] hover:text-white dark:hover:text-white hover:bg-pink-500 dark:hover:bg-pink-500 hover:border-blue-500 shadow-sm transition-colors duration-200"
+                    className="w-10 h-10 flex items-center justify-center bg-white/80 dark:bg-white/10 backdrop-blur-md border border-pink-200 dark:border-white/10 rounded-xl text-gray-400 dark:text-[#94A3B8] hover:text-white dark:hover:text-white hover:bg-pink-500 dark:hover:bg-pink-500 hover:border-pink-500 shadow-sm transition-colors duration-200"
                     title="แก้ไขหมวดหมู่"
                   >
                     <Edit2 size={16} />
                   </button>
                   <button
                     onClick={() => handleDeleteCategory(c.id)}
-                    className="w-10 h-10 flex items-center justify-center bg-white dark:bg-[#1E293B] border border-pink-200 dark:border-[#334155] rounded-xl text-gray-400 dark:text-[#94A3B8] hover:text-white dark:hover:text-white hover:bg-rose-500 dark:hover:bg-rose-500 hover:border-rose-500 shadow-sm transition-colors duration-200"
+                    className="w-10 h-10 flex items-center justify-center bg-white/80 dark:bg-white/10 backdrop-blur-md border border-pink-200 dark:border-white/10 rounded-xl text-gray-400 dark:text-[#94A3B8] hover:text-white dark:hover:text-white hover:bg-rose-500 dark:hover:bg-rose-500 hover:border-rose-500 shadow-sm transition-colors duration-200"
                     title="ลบหมวดหมู่"
                   >
                     <Trash2 size={16} />

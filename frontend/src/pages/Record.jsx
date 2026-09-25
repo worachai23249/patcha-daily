@@ -127,7 +127,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
           <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto mt-4 md:mt-0">
             <button
               onClick={handleExportCSV}
-              className="group relative flex items-center justify-center space-x-2 bg-white hover:bg-[#FDF2F8] border border-pink-200 dark:border-white/10 dark:bg-pink-50/80 dark:hover:bg-pink-50/20 text-gray-700 dark:text-white px-5 py-3.5 md:py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
+              className="group relative flex items-center justify-center space-x-2 glass-panel glass-panel-hover border border-white/80 dark:border-white/10 text-gray-700 dark:text-white px-5 py-3.5 md:py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
             >
               <Download size={16} className="text-pink-400 group-hover:translate-y-1 transition-transform duration-300" />
               <span>📥 ส่งออก CSV 🌸</span>
