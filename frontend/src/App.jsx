@@ -96,7 +96,7 @@ function App() {
         navigator.serviceWorker.ready.then(reg => {
           reg.showNotification(title, {
             body,
-            icon: '/logo.png?v=7',
+            icon: '/logo.png?v=8',
             badge: '/pwa-192x192.png',
             vibrate: [200, 100, 200],
             tag: 'patcha-daily-transaction',
@@ -104,10 +104,10 @@ function App() {
             data: { url: '/' }
           });
         }).catch(() => {
-          new Notification(title, { body, icon: '/logo.png?v=7' });
+          new Notification(title, { body, icon: '/logo.png?v=8' });
         });
       } else {
-        new Notification(title, { body, icon: '/logo.png?v=7', vibrate: [200, 100, 200] });
+        new Notification(title, { body, icon: '/logo.png?v=8', vibrate: [200, 100, 200] });
       }
     } catch(e) {}
   };
@@ -410,11 +410,11 @@ function App() {
       {/* Logo with smooth pulse */}
       <div className="relative flex items-center justify-center">
         <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 ${isDarkMode ? 'opacity-25' : 'opacity-20'} blur-[40px]`} />
-        <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 relative z-10 flex items-center justify-center rounded-full overflow-hidden p-2 glass-panel border-2 border-white/90 shadow-2xl">
+        <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 relative z-10 flex items-center justify-center rounded-full p-4 glass-panel border-2 border-white/90 shadow-2xl">
           <img
-            src="/logo.png?v=7"
+            src="/logo.png?v=8"
             alt="Logo"
-            className={`w-full h-full object-cover rounded-full ${isDarkMode ? 'drop-shadow-[0_0_25px_rgba(244,114,182,0.5)]' : 'drop-shadow-[0_10px_30px_rgba(244,114,182,0.25)]'} transition-transform duration-700 hover:scale-105`}
+            className={`w-full h-full object-contain ${isDarkMode ? 'drop-shadow-[0_0_25px_rgba(244,114,182,0.5)]' : 'drop-shadow-[0_10px_30px_rgba(244,114,182,0.25)]'} transition-transform duration-700 hover:scale-105`}
           />
         </div>
       </div>
@@ -465,8 +465,8 @@ function App() {
             {/* Cute Framed Logo */}
             <div className="relative mb-4 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-1">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 opacity-40 blur-[25px] group-hover:opacity-70 group-hover:blur-[35px] transition-all duration-700"></div>
-              <div className="w-28 h-28 xl:w-32 xl:h-32 relative z-10 rounded-full p-2.5 glass-panel shadow-[0_15px_35px_-5px_rgba(244,114,182,0.3)] border-2 border-white/90 flex items-center justify-center overflow-hidden">
-                <img src="/logo.png?v=7" alt="Logo" className="w-full h-full object-cover rounded-full transform group-hover:scale-105 transition-all duration-700" />
+              <div className="w-28 h-28 xl:w-32 xl:h-32 relative z-10 rounded-full p-2 glass-panel shadow-[0_15px_35px_-5px_rgba(244,114,182,0.3)] border-2 border-white/90 flex items-center justify-center">
+                <img src="/logo.png?v=8" alt="Logo" className="w-full h-full object-contain transform group-hover:scale-105 transition-all duration-700 drop-shadow-md" />
               </div>
             </div>
 
@@ -569,7 +569,7 @@ function App() {
           <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 dark:text-slate-300 hover:text-pink-500">
             <Menu size={22} />
           </button>
-          <img src="/logo.png?v=7" alt="Logo" className="w-8 h-8 rounded-full object-cover ml-2 shrink-0 border border-pink-300" />
+          <img src="/logo.png?v=8" alt="Logo" className="w-8 h-8 rounded-full object-contain ml-2 shrink-0 border border-pink-300 bg-white/50" />
           <span className="ml-2 text-xs uppercase font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 whitespace-nowrap">🌸 Patcha Daily ✨</span>
         </div>
         {isLoggedIn && (

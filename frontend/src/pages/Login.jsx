@@ -69,11 +69,11 @@ export default function Login({ onLogin, onBack }) {
             {/* Logo */}
             <div className="relative mb-6 xl:mb-8 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-1">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 opacity-40 blur-[30px] group-hover:opacity-70 group-hover:blur-[40px] transition-all duration-700"></div>
-              <div className="w-48 h-48 xl:w-56 xl:h-56 relative z-10 rounded-full p-3 glass-panel shadow-[0_15px_35px_-5px_rgba(244,114,182,0.3)] border-2 border-white/90 flex items-center justify-center overflow-hidden">
+              <div className="w-48 h-48 xl:w-56 xl:h-56 relative z-10 rounded-full p-4 glass-panel shadow-[0_15px_35px_-5px_rgba(244,114,182,0.3)] border-2 border-white/90 flex items-center justify-center">
                 <img
-                  src="/logo.png?v=7"
+                  src="/logo.png?v=8"
                   alt="Logo"
-                  className="w-full h-full object-cover rounded-full transform group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-full object-contain transform group-hover:scale-105 transition-all duration-700 drop-shadow-xl"
                 />
               </div>
             </div>
@@ -109,8 +109,8 @@ export default function Login({ onLogin, onBack }) {
             <div className="lg:hidden flex flex-col items-center justify-center mb-6 pt-2">
               <div className="relative mb-3 transition-transform duration-700 z-10 flex justify-center items-center group">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 opacity-50 blur-[20px]"></div>
-                <div className="w-36 h-36 sm:w-44 sm:h-44 relative z-10 rounded-full p-2.5 glass-panel border-2 border-white/90 flex items-center justify-center overflow-hidden">
-                  <img src="/logo.png?v=7" alt="Logo" className="w-full h-full object-cover rounded-full drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]" />
+                <div className="w-36 h-36 sm:w-44 sm:h-44 relative z-10 rounded-full p-3 glass-panel border-2 border-white/90 flex items-center justify-center">
+                  <img src="/logo.png?v=8" alt="Logo" className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]" />
                 </div>
               </div>
               <h1 className="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 uppercase tracking-tight drop-shadow-sm flex items-center justify-center gap-1.5">
