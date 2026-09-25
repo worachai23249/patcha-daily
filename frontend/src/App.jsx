@@ -457,7 +457,7 @@ function App() {
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
-      <aside className={`w-72 h-full border-r border-pink-200/80 dark:border-white/5 bg-gradient-to-b from-[#FFF5F8] via-[#FDF2F8] to-[#FCE7F3] dark:from-[#0B1121] dark:to-[#030610] backdrop-blur-2xl flex flex-col justify-between shrink-0 z-[100] shadow-[10px_0_35px_-5px_rgba(244,114,182,0.18)] fixed lg:relative transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} left-0 overflow-y-auto custom-scrollbar`}>
+      <aside className={`w-72 h-full border-r border-white/80 dark:border-white/5 bg-white/55 dark:bg-[#030610]/85 backdrop-blur-2xl flex flex-col justify-between shrink-0 z-[100] shadow-[10px_0_35px_-5px_rgba(244,114,182,0.12)] fixed lg:relative transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} left-0 overflow-y-auto custom-scrollbar`}>
         <div>
           <div className="p-7 border-b border-pink-200/70 dark:border-white/5 flex flex-col items-center relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-pink-300/25 to-transparent pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -509,12 +509,12 @@ function App() {
         </div>
 
         {/* Sidebar Footer Controls */}
-        <div className="p-5 space-y-3 border-t border-pink-200/70 dark:border-white/5 bg-white/40 dark:bg-[#060A13]/80 backdrop-blur-md">
+        <div className="p-5 space-y-3 border-t border-white/60 dark:border-white/5 bg-white/30 dark:bg-[#060A13]/80 backdrop-blur-md">
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
-            className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-[#0A101D]/80 border border-pink-200/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-pink-400/60 hover:shadow-[0_4px_16px_rgba(244,114,182,0.2)] hover:bg-white dark:hover:bg-[#0F172A]"
+            className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/55 dark:bg-[#0A101D]/80 border border-white/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-pink-300 hover:shadow-[0_4px_16px_rgba(244,114,182,0.2)] hover:bg-white/80 dark:hover:bg-[#0F172A]"
           >
-            <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-pink-50 dark:bg-pink-400/20 transition-all duration-300">
+            <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-pink-50/80 dark:bg-pink-400/20 transition-all duration-300">
               <div className={`transition-transform duration-700 ${isDarkMode ? 'rotate-[360deg]' : 'rotate-0'}`}>
                 {isDarkMode ? <Sun size={16} className="text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" /> : <Moon size={16} className="text-pink-500 drop-shadow-[0_0_8px_rgba(244,114,182,0.6)]" />}
               </div>
@@ -525,9 +525,9 @@ function App() {
           {isLoggedIn && (
             <button
               onClick={() => { setIsNotifModalOpen(true); setIsMobileMenuOpen(false); }}
-              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-[#0A101D]/80 border border-pink-200/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-emerald-400/60 hover:shadow-[0_4px_16px_rgba(16,185,129,0.2)] hover:bg-white dark:hover:bg-[#0F172A]"
+              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/55 dark:bg-[#0A101D]/80 border border-white/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-emerald-300 hover:shadow-[0_4px_16px_rgba(16,185,129,0.2)] hover:bg-white/80 dark:hover:bg-[#0F172A]"
             >
-              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-500/20 transition-all duration-300">
+              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-emerald-50/80 dark:bg-emerald-500/20 transition-all duration-300">
                 <Bell size={16} className="text-emerald-500 group-hover:scale-110 transition-transform duration-300" />
               </div>
               <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">💬 แจ้งเตือน LINE 🎀</span>
@@ -537,9 +537,9 @@ function App() {
           {!isLoggedIn ? (
             <button
               onClick={() => { setShowLoginScreen(true); setIsMobileMenuOpen(false); }}
-              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-[#0A101D]/80 border border-pink-200/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-pink-400/60 hover:shadow-[0_4px_16px_rgba(244,114,182,0.2)] hover:bg-white dark:hover:bg-[#0F172A]"
+              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/55 dark:bg-[#0A101D]/80 border border-white/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-pink-300 hover:shadow-[0_4px_16px_rgba(244,114,182,0.2)] hover:bg-white/80 dark:hover:bg-[#0F172A]"
             >
-              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-pink-50 dark:bg-pink-400/20 transition-all duration-300">
+              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-pink-50/80 dark:bg-pink-400/20 transition-all duration-300">
                 <Lock size={16} className="text-pink-500 dark:text-pink-400 group-hover:scale-110 transition-transform duration-300" />
               </div>
               <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">🔐 สำหรับเจ้าหน้าที่ ✨</span>
@@ -552,9 +552,9 @@ function App() {
                 setActiveMenu('overview'); 
                 setIsMobileMenuOpen(false); 
               }}
-              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-[#0A101D]/80 border border-pink-200/80 dark:border-white/5 text-rose-500 font-black overflow-hidden transition-all duration-300 hover:border-rose-400/60 hover:shadow-[0_4px_16px_rgba(244,63,94,0.2)] hover:bg-rose-50 dark:hover:bg-rose-950/20"
+              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/55 dark:bg-[#0A101D]/80 border border-white/80 dark:border-white/5 text-rose-500 font-black overflow-hidden transition-all duration-300 hover:border-rose-300 hover:shadow-[0_4px_16px_rgba(244,63,94,0.2)] hover:bg-rose-50/80 dark:hover:bg-rose-950/20"
             >
-              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-rose-50 dark:bg-rose-500/20 transition-all duration-300">
+              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-rose-50/80 dark:bg-rose-500/20 transition-all duration-300">
                 <LogOut size={16} className="text-rose-500 group-hover:scale-110 transition-transform duration-300" />
               </div>
               <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-rose-600 transition-colors">ออกจากระบบ</span>
@@ -563,8 +563,8 @@ function App() {
         </div>
       </aside>
 
-      {/* Mobile Top Header with Cute Gradient & Emojis */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-[#FFF5F8]/95 via-[#FDF2F8]/95 to-[#FCE7F3]/95 dark:bg-[#030610]/90 backdrop-blur-xl border-b border-pink-200/80 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-[0_4px_15px_rgba(244,114,182,0.12)]">
+      {/* Mobile Top Header with Cute iPhone Frosted Glass */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/60 dark:bg-[#030610]/85 backdrop-blur-2xl border-b border-white/80 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-[0_4px_20px_rgba(244,114,182,0.1)]">
         <div className="flex items-center">
           <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 dark:text-slate-300 hover:text-pink-500">
             <Menu size={22} />

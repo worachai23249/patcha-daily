@@ -37,7 +37,7 @@ export default function Categories({ categories = [], transactions = [], handleO
       </div>
 
       {/* Tabs แบบ Glassmorphism */}
-      <div className="flex bg-white dark:bg-[#0B1121]/60 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-[24px] p-1 md:p-2 mb-8 max-w-2xl shadow-sm animate-fade-in-up">
+      <div className="flex glass-panel border border-white/80 dark:border-white/5 rounded-[24px] p-1 md:p-2 mb-8 max-w-2xl shadow-sm animate-fade-in-up">
         <button
           onClick={() => setCategoryTab('INCOME')}
           className={`flex-1 py-3 md:py-3.5 rounded-[18px] text-[10px] md:text-xs font-black uppercase tracking-widest flex items-center justify-center gap-1.5 md:gap-3 transition-all duration-200 ${categoryTab === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-500/10'}`}>

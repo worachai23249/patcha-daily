@@ -145,23 +145,38 @@
     background-size: 64px 64px;
   }
 
-  /* 🌷 Card & Glass Panel with Pastel Pink Shadow */
+  /* 🪟 Apple iPhone Frosted Glass Panel (Liquid iOS Glassmorphism) */
   .glass-panel {
-    @apply bg-white/90 dark:bg-[#0B1121]/60 backdrop-blur-xl border border-pink-200/80 dark:border-white/5;
-    box-shadow: 0 10px 30px -4px rgba(244, 114, 182, 0.16), 0 3px 10px -2px rgba(244, 114, 182, 0.08);
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(28px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.75) !important;
+    box-shadow: 
+      0 14px 38px -4px rgba(244, 114, 182, 0.12),
+      0 4px 12px -2px rgba(244, 114, 182, 0.05),
+      inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.9) !important;
   }
 
   .dark .glass-panel {
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+    background: rgba(11, 17, 33, 0.65) !important;
+    backdrop-filter: blur(28px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.35) !important;
   }
 
   .glass-panel-hover {
-    @apply transition-all duration-300 ease-out hover:border-pink-300 hover:bg-white dark:hover:bg-[#0B1121]/90;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   .glass-panel-hover:hover {
-    box-shadow: 0 18px 40px -4px rgba(244, 114, 182, 0.28), 0 6px 16px -2px rgba(244, 114, 182, 0.14);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.62) !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 
+      0 20px 45px -4px rgba(244, 114, 182, 0.22),
+      0 6px 16px -2px rgba(244, 114, 182, 0.1),
+      inset 0 1px 1.5px 0 rgba(255, 255, 255, 1) !important;
+    transform: translateY(-3px) scale(1.008);
   }
 
   .text-glow {

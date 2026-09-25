@@ -145,7 +145,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex bg-white/90 dark:bg-[#0B1121]/60 backdrop-blur-md border border-pink-200/80 dark:border-white/5 rounded-2xl p-1.5 mb-6 max-w-xl shadow-sm animate-fade-in-up">
+      <div className="flex glass-panel border border-white/80 dark:border-white/5 rounded-2xl p-1.5 mb-6 max-w-xl shadow-sm animate-fade-in-up">
         <button onClick={() => setFilterType('ALL')} className={`group flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'ALL' ? 'bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-pink-500 dark:hover:text-white'}`}>
           <Filter size={12} className={filterType === 'ALL' ? 'text-white' : 'text-gray-400 group-hover:text-pink-400'} />
           🌸 ทั้งหมด
