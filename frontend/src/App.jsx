@@ -465,7 +465,7 @@ function App() {
             {/* Cute Framed Logo */}
             <div className="relative mb-4 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-1">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 opacity-40 blur-[25px] group-hover:opacity-70 group-hover:blur-[35px] transition-all duration-700"></div>
-              <div className="w-28 h-28 xl:w-32 xl:h-32 relative z-10 rounded-full p-2 bg-white/90 dark:bg-white/10 shadow-[0_10px_25px_-5px_rgba(244,114,182,0.35)] border-2 border-pink-300/80 flex items-center justify-center">
+              <div className="w-28 h-28 xl:w-32 xl:h-32 relative z-10 rounded-full p-2.5 glass-panel shadow-[0_15px_35px_-5px_rgba(244,114,182,0.3)] border-2 border-white/90 flex items-center justify-center">
                 <img src="/logo.png?v=6" alt="Logo" className="w-full h-full object-contain rounded-full transform group-hover:scale-105 transition-all duration-700" />
               </div>
             </div>

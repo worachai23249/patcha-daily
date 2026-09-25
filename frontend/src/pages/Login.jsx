@@ -69,7 +69,7 @@ export default function Login({ onLogin, onBack }) {
             {/* Logo */}
             <div className="relative mb-6 xl:mb-8 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-1">
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 opacity-40 blur-[30px] group-hover:opacity-70 group-hover:blur-[40px] transition-all duration-700"></div>
-              <div className="w-48 h-48 xl:w-56 xl:h-56 relative z-10 rounded-full p-3 bg-white/90 dark:bg-white/10 shadow-[0_12px_35px_-5px_rgba(244,114,182,0.35)] border-2 border-pink-300/80 flex items-center justify-center">
+              <div className="w-48 h-48 xl:w-56 xl:h-56 relative z-10 rounded-full p-3 glass-panel shadow-[0_15px_35px_-5px_rgba(244,114,182,0.3)] border-2 border-white/90 flex items-center justify-center">
                 <img
                   src="/logo.png?v=6"
                   alt="Logo"
