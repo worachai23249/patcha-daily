@@ -457,7 +457,7 @@ function App() {
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
-      <aside className={`w-72 h-full border-r border-white/80 dark:border-white/5 bg-white/55 dark:bg-[#030610]/85 backdrop-blur-2xl flex flex-col justify-between shrink-0 z-[100] shadow-[10px_0_35px_-5px_rgba(244,114,182,0.12)] fixed lg:relative transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} left-0 overflow-y-auto custom-scrollbar`}>
+      <aside className={`w-72 h-full border-r border-white/90 dark:border-white/5 bg-white/80 dark:bg-[#030610]/85 backdrop-blur-2xl flex flex-col justify-between shrink-0 z-[100] shadow-[10px_0_35px_-5px_rgba(244,114,182,0.12)] fixed lg:relative transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} left-0 overflow-y-auto custom-scrollbar`}>
         <div>
           <div className="p-7 border-b border-pink-200/70 dark:border-white/5 flex flex-col items-center relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-pink-300/25 to-transparent pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700"></div>
@@ -564,7 +564,7 @@ function App() {
       </aside>
 
       {/* Mobile Top Header with Cute iPhone Frosted Glass */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/60 dark:bg-[#030610]/85 backdrop-blur-2xl border-b border-white/80 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-[0_4px_20px_rgba(244,114,182,0.1)]">
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/80 dark:bg-[#030610]/85 backdrop-blur-2xl border-b border-white/90 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-[0_4px_20px_rgba(244,114,182,0.1)]">
         <div className="flex items-center">
           <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 dark:text-slate-300 hover:text-pink-500">
             <Menu size={22} />
