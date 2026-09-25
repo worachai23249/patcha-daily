@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,8 +11,11 @@
     <script>
       (function() {
         try {
-          var saved = localStorage.getItem('theme');
-          var isDark = saved ? saved === 'dark' : false;
+          if (localStorage.getItem('theme') === 'dark') {
+            localStorage.removeItem('theme');
+          }
+          var saved = localStorage.getItem('patcha_daily_theme');
+          var isDark = saved === 'dark';
           if (isDark) {
             document.documentElement.classList.add('dark');
             var meta = document.getElementById('theme-color-meta');
@@ -20,7 +23,7 @@
           } else {
             document.documentElement.classList.remove('dark');
             var meta = document.getElementById('theme-color-meta');
-            if (meta) meta.setAttribute('content', '#F8FAFC');
+            if (meta) meta.setAttribute('content', '#FDF2F8');
           }
         } catch(e) {}
       })();

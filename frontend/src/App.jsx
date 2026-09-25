@@ -34,8 +34,11 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => sessionStorage.getItem('isLoggedIn') === 'true');
   const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme === 'dark' : false;
+    if (localStorage.getItem('theme') === 'dark') {
+      localStorage.removeItem('theme');
+    }
+    const savedTheme = localStorage.getItem('patcha_daily_theme');
+    return savedTheme === 'dark';
   });
   const [transactions, setTransactions] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -139,9 +142,9 @@ function App() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDarkMode);
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('patcha_daily_theme', isDarkMode ? 'dark' : 'light');
     const meta = document.getElementById('theme-color-meta');
-    if (meta) meta.setAttribute('content', isDarkMode ? '#060A13' : '#F8FAFC');
+    if (meta) meta.setAttribute('content', isDarkMode ? '#060A13' : '#FDF2F8');
   }, [isDarkMode]);
 
   const fetchTransactions = () => {
