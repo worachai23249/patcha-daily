@@ -38,8 +38,8 @@ export default function Login({ onLogin, onBack }) {
   return (
     <div className="h-screen w-full flex items-center justify-center bg-[#FDF2F8] dark:bg-[#030610] transition-colors duration-500 overflow-hidden font-sans relative p-4 sm:p-6 lg:p-12">
 
-      {/* ── Static Ambient Background (ไม่กระพริบ) ── */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800A_1px,transparent_1px),linear-gradient(to_bottom,#8080800A_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
+      {/* ── 🌸 Cute Sakura Flower Background Pattern ── */}
+      <div className="absolute inset-0 cute-flower-pattern pointer-events-none" />
       {/* Edge glow – static, no animation */}
       <div className="absolute top-0 left-0 w-full h-[30vh] bg-gradient-to-b from-blue-500/25 via-purple-500/8 dark:from-blue-500/18 to-transparent blur-[40px] pointer-events-none z-10 opacity-70" />
       <div className="absolute bottom-0 left-0 w-full h-[30vh] bg-gradient-to-t from-purple-500/25 via-blue-500/8 dark:from-purple-500/18 to-transparent blur-[40px] pointer-events-none z-10 opacity-70" />
