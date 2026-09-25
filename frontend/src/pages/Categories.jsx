@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Plus, Edit2, Trash2, Box, Layers } from 'lucide-react';
 
 export default function Categories({ categories = [], transactions = [], handleOpenAddCategory, handleOpenEditCategory, handleDeleteCategory }) {
@@ -17,19 +17,21 @@ export default function Categories({ categories = [], transactions = [], handleO
         <div className="absolute top-0 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
         <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-2 pb-2 tracking-tighter drop-shadow-sm">System Categories</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 mb-2 pb-2 tracking-tighter drop-shadow-sm flex items-center gap-2">
+              🏷️ System Categories 🌸
+            </h1>
             <p className="text-gray-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
               <Layers size={14} className="text-pink-400" />
-              จัดการหมวดหมู่รายรับรายจ่าย
+              จัดการหมวดหมู่รายรับรายจ่าย ✨
             </p>
           </div>
           <button
             onClick={handleOpenAddCategory}
-            className="group relative flex items-center justify-center space-x-3 bg-gradient-to-r from-[#60A5FA] to-[#A855F7] hover:from-[#3B82F6] hover:to-[#9333EA] text-white px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:-translate-y-1 active:scale-95 overflow-hidden w-full md:w-auto mt-4 md:mt-0 mt-3 md:mt-0"
+            className="group relative flex items-center justify-center space-x-3 bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 hover:from-pink-600 hover:to-rose-500 text-white px-8 py-4 rounded-full font-black text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_8px_25px_-5px_rgba(244,114,182,0.45)] hover:shadow-[0_12px_30px_-5px_rgba(244,114,182,0.6)] hover:-translate-y-0.5 active:scale-95 overflow-hidden w-full md:w-auto mt-4 md:mt-0"
           >
             <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
             <Plus size={18} className="group-hover:rotate-90 transition-transform duration-300 relative z-10" />
-            <span className="relative z-10">เพิ่มหมวดหมู่ใหม่</span>
+            <span className="relative z-10">➕ เพิ่มหมวดหมู่ใหม่ ✨</span>
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { login } from '../supabase';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, ShieldCheck, X } from 'lucide-react';
 
@@ -67,21 +67,21 @@ export default function Login({ onLogin, onBack }) {
           <div className="relative z-10 flex flex-col flex-1 justify-center items-center text-center">
 
             {/* Logo */}
-            <div className="relative mb-6 xl:mb-8 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-2">
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 opacity-50 blur-[30px] group-hover:opacity-80 group-hover:blur-[45px] transition-all duration-700"></div>
-              <div className="w-56 h-56 xl:w-64 xl:h-64 2xl:w-72 2xl:h-72 relative z-10">
+            <div className="relative mb-6 xl:mb-8 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-1">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 opacity-40 blur-[30px] group-hover:opacity-70 group-hover:blur-[40px] transition-all duration-700"></div>
+              <div className="w-48 h-48 xl:w-56 xl:h-56 relative z-10 rounded-full p-3 bg-white/90 dark:bg-white/10 shadow-[0_12px_35px_-5px_rgba(244,114,182,0.35)] border-2 border-pink-300/80 flex items-center justify-center">
                 <img
                   src="/logo.png?v=6"
                   alt="Logo"
-                  className="w-full h-full object-contain scale-[1.35] drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-700"
+                  className="w-full h-full object-contain rounded-full transform group-hover:scale-105 transition-all duration-700"
                 />
               </div>
             </div>
 
             {/* Title */}
             <div className="space-y-4">
-              <h1 className="text-3xl xl:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 uppercase tracking-tighter drop-shadow-sm filter flex flex-col items-center">
-                <span>Patcha Daily</span>
+              <h1 className="text-3xl xl:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 uppercase tracking-tight drop-shadow-sm flex items-center justify-center gap-2">
+                <span>🌸 Patcha Daily ✨</span>
               </h1>
             </div>
           </div>
@@ -113,8 +113,8 @@ export default function Login({ onLogin, onBack }) {
                   <img src="/logo.png?v=6" alt="Logo" className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]" />
                 </div>
               </div>
-              <h1 className="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 uppercase tracking-tighter drop-shadow-sm flex flex-col items-center">
-                <span>Patcha Daily</span>
+              <h1 className="text-xl sm:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 uppercase tracking-tight drop-shadow-sm flex items-center justify-center gap-1.5">
+                <span>🌸 Patcha Daily ✨</span>
               </h1>
             </div>
 

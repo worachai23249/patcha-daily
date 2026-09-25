@@ -1,4 +1,4 @@
-﻿import { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { addTransaction } from '../supabase';
 import { isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
 import { Plus, Edit, Trash2, Image as ImageIcon, Database, Filter, Download, Upload, FileSpreadsheet, Gift } from 'lucide-react';
@@ -116,10 +116,12 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
         <div className="absolute -left-6 -top-6 w-24 h-24 bg-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
         <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-2 pb-1 tracking-tighter drop-shadow-sm">Transaction Logs</h1>
+            <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 mb-2 pb-1 tracking-tighter drop-shadow-sm flex items-center gap-2">
+              📝 Transaction Records ✨
+            </h1>
             <p className="text-gray-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
               <Database size={14} className="text-pink-400" />
-              บันทึกการเงินและรายการทั้งหมด
+              บันทึกการเงินและรายการทั้งหมด 🌸
             </p>
           </div>
           <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto mt-4 md:mt-0">
@@ -128,35 +130,35 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
               className="group relative flex items-center justify-center space-x-2 bg-white hover:bg-[#FDF2F8] border border-pink-200 dark:border-white/10 dark:bg-pink-50/80 dark:hover:bg-pink-50/20 text-gray-700 dark:text-white px-5 py-3.5 md:py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
             >
               <Download size={16} className="text-pink-400 group-hover:translate-y-1 transition-transform duration-300" />
-              <span>ส่งออก</span>
+              <span>📥 ส่งออก CSV 🌸</span>
             </button>
             <button
               onClick={handleOpenAddTransaction}
-              className="group relative flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-6 py-3.5 md:py-3 rounded-full font-black text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_0_20px_rgba(236,72,153,0.4)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] hover:-translate-y-1 active:scale-95 overflow-hidden w-full md:w-auto"
+              className="group relative flex items-center justify-center space-x-2 bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 hover:from-pink-600 hover:to-rose-500 text-white px-6 py-3.5 md:py-3 rounded-full font-black text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_8px_25px_-5px_rgba(244,114,182,0.45)] hover:shadow-[0_12px_30px_-5px_rgba(244,114,182,0.6)] hover:-translate-y-0.5 active:scale-95 overflow-hidden w-full md:w-auto"
             >
               <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
               <Plus size={18} className="group-hover:rotate-90 transition-transform duration-300 relative z-10" />
-              <span className="relative z-10">บันทึกรายการ</span>
+              <span className="relative z-10">➕ บันทึกรายการ ✨</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex bg-white dark:bg-[#0B1121]/60 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-[20px] p-1 mb-6 max-w-xl shadow-sm animate-fade-in-up">
-        <button onClick={() => setFilterType('ALL')} className={`group flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'ALL' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-gray-800 dark:hover:text-white'}`}>
+      <div className="flex bg-white/90 dark:bg-[#0B1121]/60 backdrop-blur-md border border-pink-200/80 dark:border-white/5 rounded-2xl p-1.5 mb-6 max-w-xl shadow-sm animate-fade-in-up">
+        <button onClick={() => setFilterType('ALL')} className={`group flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'ALL' ? 'bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-pink-500 dark:hover:text-white'}`}>
           <Filter size={12} className={filterType === 'ALL' ? 'text-white' : 'text-gray-400 group-hover:text-pink-400'} />
-          ทั้งหมด
+          🌸 ทั้งหมด
         </button>
-        <button onClick={() => setFilterType('INCOME')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-emerald-500'}`}>
+        <button onClick={() => setFilterType('INCOME')} className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-emerald-500'}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'INCOME' ? 'bg-white' : 'bg-emerald-500'}`}></span>
           รายรับ
         </button>
-        <button onClick={() => setFilterType('EXPENSE')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-rose-500'}`}>
+        <button onClick={() => setFilterType('EXPENSE')} className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-rose-500'}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'EXPENSE' ? 'bg-white' : 'bg-rose-500'}`}></span>
           รายจ่าย
         </button>
-        <button onClick={() => setFilterType('IN_KIND')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm shadow-purple-500/20' : 'text-gray-500 dark:text-[#94A3B8] hover:text-purple-500'}`}>
+        <button onClick={() => setFilterType('IN_KIND')} className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm shadow-purple-500/20' : 'text-gray-500 dark:text-[#94A3B8] hover:text-purple-500'}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'IN_KIND' ? 'bg-white' : 'bg-purple-500'}`}></span>
           🎁 สิ่งของ
         </button>

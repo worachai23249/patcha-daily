@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   getTransactions,
   getCategories,
@@ -442,43 +442,46 @@ function App() {
   return (
     <div className="h-screen bg-[#FDF2F8] dark:bg-[#060A13] text-gray-800 dark:text-white font-sans flex overflow-hidden relative">
 
-      {/* Background & Aura Effects */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none"></div>
-      <div className="fixed top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-pink-400/5 dark:bg-pink-500/10 blur-[180px] pointer-events-none"></div>
-      <div className="fixed bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-pink-400/5 dark:bg-pink-500/10 blur-[180px] pointer-events-none"></div>
+      {/* 🌸 Cute Pastel Flower Background Pattern & Aura Effects */}
+      <div className="absolute inset-0 cute-flower-pattern pointer-events-none"></div>
+      <div className="fixed top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-pink-400/10 dark:bg-pink-500/10 blur-[180px] pointer-events-none"></div>
+      <div className="fixed bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-rose-300/15 dark:bg-pink-500/10 blur-[180px] pointer-events-none"></div>
 
-      {/* Sidebar ล็อกติดหน้าจอ (Hi-Tech Version) & Mobile Drawer */}
+      {/* 🎀 Sidebar with Soft Pink Gradient & Bubbly Rounded Cards */}
       {isMobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-slate-900/40 dark:bg-black/40 backdrop-blur-sm z-[90] animate-fade-in"
+          className="lg:hidden fixed inset-0 bg-slate-900/30 dark:bg-black/40 backdrop-blur-sm z-[90] animate-fade-in"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
-      <aside className={`w-72 h-full border-r border-pink-100 dark:border-white/5 bg-[#FFF0F5]/95 dark:bg-[#030610]/95 backdrop-blur-2xl flex flex-col justify-between shrink-0 z-[100] shadow-[10px_0_30px_-10px_rgba(0,0,0,0.1)] fixed lg:relative transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} left-0 overflow-y-auto custom-scrollbar`}>
+      <aside className={`w-72 h-full border-r border-pink-200/80 dark:border-white/5 bg-gradient-to-b from-[#FFF5F8] via-[#FDF2F8] to-[#FCE7F3] dark:from-[#0B1121] dark:to-[#030610] backdrop-blur-2xl flex flex-col justify-between shrink-0 z-[100] shadow-[10px_0_35px_-5px_rgba(244,114,182,0.18)] fixed lg:relative transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} left-0 overflow-y-auto custom-scrollbar`}>
         <div>
-          <div className="p-8 border-b border-pink-100 dark:border-white/5 flex flex-col items-center relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-500/10 dark:from-blue-600/10 to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div className="p-7 border-b border-pink-200/70 dark:border-white/5 flex flex-col items-center relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-pink-300/25 to-transparent pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700"></div>
 
-            <div className="relative mb-6 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-2">
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 opacity-50 blur-[30px] group-hover:opacity-80 group-hover:blur-[40px] transition-all duration-700"></div>
-              <div className="w-56 h-56 xl:w-64 xl:h-64 relative z-10">
-                <img src="/logo.png?v=6" alt="Logo" className="w-full h-full object-contain scale-[1.35] drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-700" />
+            {/* Cute Framed Logo */}
+            <div className="relative mb-4 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-1">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 opacity-40 blur-[25px] group-hover:opacity-70 group-hover:blur-[35px] transition-all duration-700"></div>
+              <div className="w-28 h-28 xl:w-32 xl:h-32 relative z-10 rounded-full p-2 bg-white/90 dark:bg-white/10 shadow-[0_10px_25px_-5px_rgba(244,114,182,0.35)] border-2 border-pink-300/80 flex items-center justify-center">
+                <img src="/logo.png?v=6" alt="Logo" className="w-full h-full object-contain rounded-full transform group-hover:scale-105 transition-all duration-700" />
               </div>
             </div>
 
-            <h1 className="text-center font-black uppercase relative z-10 w-full px-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 drop-shadow-sm flex flex-col items-center group-hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.4)] transition-all duration-500">
-              <span className="text-[14px] leading-[1.2em] tracking-[0.15em] mt-0.5">Patcha Daily</span>
+            {/* Title with Emoji */}
+            <h1 className="text-center font-black uppercase relative z-10 w-full px-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 drop-shadow-sm flex items-center justify-center gap-1.5 transition-all duration-500">
+              <span className="text-[15px] leading-[1.2em] tracking-[0.15em]">🌸 Patcha Daily ✨</span>
             </h1>
           </div>
 
-          <div className="p-5 space-y-3">
+          {/* Navigation Menu with Emojis & Soft Pastel Active Pill */}
+          <div className="p-4 space-y-2.5">
             {[
-              { id: 'overview', icon: LayoutDashboard, label: 'ภาพรวม' },
+              { id: 'overview', icon: LayoutDashboard, label: '🌸 ภาพรวม' },
               ...(isLoggedIn ? [
-                { id: 'record', icon: ArrowLeftRight, label: 'บันทึกการเงิน' },
-                { id: 'categories', icon: Tags, label: 'ประเภทรายการ' }
+                { id: 'record', icon: ArrowLeftRight, label: '📝 บันทึกการเงิน' },
+                { id: 'categories', icon: Tags, label: '🏷️ ประเภทรายการ' }
               ] : []),
-              { id: 'reports', icon: PieChartIcon, label: 'รายงานการเงิน' }
+              { id: 'reports', icon: PieChartIcon, label: '📊 รายงานการเงิน' }
             ].map(menu => {
               const isActive = activeMenu === menu.id;
               const Icon = menu.icon;
@@ -486,71 +489,57 @@ function App() {
                 <button
                   key={menu.id}
                   onClick={() => { setActiveMenu(menu.id); setIsMobileMenuOpen(false); }}
-                  className={`group relative w-full flex items-center space-x-4 px-5 py-3.5 rounded-[18px] transition-all duration-500 overflow-hidden font-black tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-pink-500 dark:text-white border border-pink-400/40 dark:border-pink-400/30 shadow-[0_5px_20px_-5px_rgba(244,114,182,0.2)] bg-pink-50/80 dark:bg-pink-900/10' : 'text-gray-500 dark:text-[#64748B] hover:text-gray-800 dark:hover:text-white border border-transparent hover:border-pink-100 dark:hover:border-white/10 hover:bg-pink-50/50 dark:hover:bg-white/[0.03]'}`}
+                  className={`group relative w-full flex items-center space-x-3.5 px-4 py-3 rounded-2xl transition-all duration-300 overflow-hidden font-black tracking-wider text-xs uppercase ${
+                    isActive 
+                      ? 'text-white bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 shadow-[0_8px_20px_-4px_rgba(244,114,182,0.45)]' 
+                      : 'text-gray-600 dark:text-[#94A3B8] hover:text-pink-600 dark:hover:text-white border border-transparent hover:border-pink-200/70 hover:bg-white/80 dark:hover:bg-white/[0.04]'
+                  }`}
                 >
-                  {/* Indicator Edge Rail */}
-                  {isActive && (
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-3/4 bg-pink-500 dark:bg-blue-400 shadow-[0_0_15px_rgba(244,114,182,0.8)] rounded-r-full z-10 transition-all duration-500"></div>
-                  )}
-
-                  {/* Glass Background Slide */}
-                  {!isActive && (
-                    <div className="absolute inset-0 bg-white/50 dark:bg-white/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] z-0"></div>
-                  )}
-
-                  {/* Icon Container Plate */}
-                  <div className={`relative z-10 flex items-center justify-center p-2.5 rounded-[12px] transition-all duration-500 ${isActive ? 'bg-pink-100 dark:bg-pink-400/20 shadow-inner' : 'bg-transparent group-hover:bg-slate-200/60 dark:group-hover:bg-white/10'}`}>
-                    <Icon size={18} className={`transition-all duration-500 ${isActive ? 'text-pink-500 dark:text-pink-400 drop-shadow-[0_0_8px_rgba(244,114,182,0.4)] scale-110' : 'group-hover:scale-110 group-hover:rotate-[8deg] group-hover:text-pink-500 dark:group-hover:text-pink-400'}`} />
+                  <div className={`relative z-10 flex items-center justify-center p-2 rounded-xl transition-all duration-300 ${isActive ? 'bg-white/20' : 'bg-pink-100/60 dark:bg-white/5 group-hover:bg-pink-100'}`}>
+                    <Icon size={16} className={`transition-all duration-300 ${isActive ? 'text-white' : 'text-pink-500 dark:text-pink-400 group-hover:scale-110'}`} />
                   </div>
-
-                  <span className={`relative z-10 translate-y-[1px] transition-colors duration-500 ${isActive ? 'text-pink-600 dark:text-white' : ''}`}>{menu.label}</span>
+                  <span className="relative z-10 font-bold">{menu.label}</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        <div className="p-6 space-y-4 border-t border-pink-100 dark:border-white/5 bg-gradient-to-b from-transparent to-slate-100/50 dark:to-[#060A13]/80 backdrop-blur-md">
+        {/* Sidebar Footer Controls */}
+        <div className="p-5 space-y-3 border-t border-pink-200/70 dark:border-white/5 bg-white/40 dark:bg-[#060A13]/80 backdrop-blur-md">
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
-            className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-[#FFF0F5]/80 dark:bg-[#0A101D]/80 border border-pink-200 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-pink-400/50 dark:hover:border-pink-400/30 hover:shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
+            className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-[#0A101D]/80 border border-pink-200/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-pink-400/60 hover:shadow-[0_4px_16px_rgba(244,114,182,0.2)] hover:bg-white dark:hover:bg-[#0F172A]"
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-pink-400/0 to-pink-400/5 dark:to-pink-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="relative z-10 flex items-center justify-center p-2 rounded-[12px] bg-transparent group-hover:bg-pink-50 dark:group-hover:bg-pink-400/20 transition-all duration-500">
+            <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-pink-50 dark:bg-pink-400/20 transition-all duration-300">
               <div className={`transition-transform duration-700 ${isDarkMode ? 'rotate-[360deg]' : 'rotate-0'}`}>
-                {isDarkMode ? <Sun size={18} className="text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" /> : <Moon size={18} className="text-pink-500 drop-shadow-[0_0_8px_rgba(244,114,182,0.6)]" />}
+                {isDarkMode ? <Sun size={16} className="text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" /> : <Moon size={16} className="text-pink-500 drop-shadow-[0_0_8px_rgba(244,114,182,0.6)]" />}
               </div>
             </div>
-            <span className="relative z-10 text-[10px] uppercase tracking-[0.2em] group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors translate-y-[1px]">{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
+            <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">{isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}</span>
           </button>
-
-
-
-
 
           {isLoggedIn && (
             <button
               onClick={() => { setIsNotifModalOpen(true); setIsMobileMenuOpen(false); }}
-              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-[#FFF0F5]/80 dark:bg-[#0A101D]/80 border border-pink-200 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-emerald-400/50 dark:hover:border-emerald-500/30 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
+              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-[#0A101D]/80 border border-pink-200/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-emerald-400/60 hover:shadow-[0_4px_16px_rgba(16,185,129,0.2)] hover:bg-white dark:hover:bg-[#0F172A]"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/0 to-emerald-500/5 dark:to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10 flex items-center justify-center p-2 rounded-[12px] bg-transparent group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/20 transition-all duration-500">
-                <Bell size={18} className="text-emerald-500 group-hover:scale-110 transition-transform duration-500" />
+              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-500/20 transition-all duration-300">
+                <Bell size={16} className="text-emerald-500 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="relative z-10 text-[10px] uppercase tracking-[0.2em] group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors translate-y-[1px]">แจ้งเตือน LINE</span>
+              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">💬 แจ้งเตือน LINE 🎀</span>
             </button>
           )}
 
           {!isLoggedIn ? (
             <button
               onClick={() => { setShowLoginScreen(true); setIsMobileMenuOpen(false); }}
-              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-[#FFF0F5]/80 dark:bg-[#0A101D]/80 border border-pink-200 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-pink-400/50 dark:hover:border-pink-400/30 hover:shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
+              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-[#0A101D]/80 border border-pink-200/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-pink-400/60 hover:shadow-[0_4px_16px_rgba(244,114,182,0.2)] hover:bg-white dark:hover:bg-[#0F172A]"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-pink-400/0 to-pink-400/5 dark:to-pink-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10 flex items-center justify-center p-2 rounded-[12px] bg-transparent group-hover:bg-pink-50 dark:group-hover:bg-pink-400/20 transition-all duration-500">
-                <Lock size={18} className="group-hover:-translate-y-1 group-hover:scale-110 transition-transform duration-500" />
+              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-pink-50 dark:bg-pink-400/20 transition-all duration-300">
+                <Lock size={16} className="text-pink-500 dark:text-pink-400 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="relative z-10 text-[10px] uppercase tracking-[0.2em] group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors translate-y-[1px]">สำหรับเจ้าหน้าที่</span>
+              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">🔐 สำหรับเจ้าหน้าที่ ✨</span>
             </button>
           ) : (
             <button
@@ -560,26 +549,25 @@ function App() {
                 setActiveMenu('overview'); 
                 setIsMobileMenuOpen(false); 
               }}
-              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-[#FFF0F5]/80 dark:bg-[#0A101D]/80 border border-pink-200 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-rose-400/50 dark:hover:border-rose-500/30 hover:shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
+              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/80 dark:bg-[#0A101D]/80 border border-pink-200/80 dark:border-white/5 text-rose-500 font-black overflow-hidden transition-all duration-300 hover:border-rose-400/60 hover:shadow-[0_4px_16px_rgba(244,63,94,0.2)] hover:bg-rose-50 dark:hover:bg-rose-950/20"
             >
-              <div className="absolute inset-0 bg-gradient-to-b from-rose-500/0 to-rose-500/5 dark:to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative z-10 flex items-center justify-center p-2 rounded-[12px] bg-transparent group-hover:bg-rose-50 dark:group-hover:bg-rose-500/20 transition-all duration-500">
-                <LogOut size={18} className="group-hover:-translate-x-1 group-hover:scale-110 transition-transform duration-500" />
+              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-rose-50 dark:bg-rose-500/20 transition-all duration-300">
+                <LogOut size={16} className="text-rose-500 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="relative z-10 text-[10px] uppercase tracking-[0.2em] group-hover:text-rose-600 dark:group-hover:text-rose-400 transition-colors translate-y-[1px]">ออกจากระบบ</span>
+              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-rose-600 transition-colors">ออกจากระบบ</span>
             </button>
           )}
         </div>
       </aside>
 
-      {/* Mobile Top Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#FFF0F5]/90 dark:bg-[#030610]/90 backdrop-blur-xl border-b border-pink-100 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-sm">
+      {/* Mobile Top Header with Cute Gradient & Emojis */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-gradient-to-r from-[#FFF5F8]/95 via-[#FDF2F8]/95 to-[#FCE7F3]/95 dark:bg-[#030610]/90 backdrop-blur-xl border-b border-pink-200/80 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-[0_4px_15px_rgba(244,114,182,0.12)]">
         <div className="flex items-center">
-          <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 dark:text-slate-300 hover:text-pink-400">
-            <Menu size={24} />
+          <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 dark:text-slate-300 hover:text-pink-500">
+            <Menu size={22} />
           </button>
-          <img src="/logo.png?v=6" alt="Logo" className="w-8 h-8 object-contain ml-2 shrink-0 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" />
-          <span className="ml-2 text-[10px] sm:text-[11px] uppercase font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 whitespace-nowrap">Patcha Daily</span>
+          <img src="/logo.png?v=6" alt="Logo" className="w-8 h-8 rounded-full object-contain ml-2 shrink-0 border border-pink-300" />
+          <span className="ml-2 text-xs uppercase font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 whitespace-nowrap">🌸 Patcha Daily ✨</span>
         </div>
         {isLoggedIn && (
           <button onClick={() => setIsNotifModalOpen(true)} className="p-2 text-emerald-500 hover:scale-110 transition-transform">

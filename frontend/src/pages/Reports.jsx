@@ -1,4 +1,4 @@
-﻿import { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { addTransaction } from '../supabase';
 import { sendMonthlySummaryNotification, isCashTransaction, isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
 
@@ -730,10 +730,12 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
           <div>
-            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-2 pb-2 tracking-tighter drop-shadow-sm">Financial Analytics</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 mb-2 pb-2 tracking-tighter drop-shadow-sm flex items-center gap-2">
+              📊 Financial Analytics ✨
+            </h1>
             <p className="text-gray-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
               <PieIcon size={14} className="text-pink-400" />
-              รายงานสรุปการเงินคริสตจักร ประจำปี
+              สรุปรายงานการเงินประจำปี 🌸
             </p>
           </div>
 
@@ -741,22 +743,22 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
           <div className="flex flex-col md:flex-row items-center gap-4 mt-4 md:mt-0">
             <div className="flex gap-3 w-full md:w-auto">
               <button
-                onClick={() => handleExportCSV(reportTransactions, `worship_data_yearly_${selectedYear}`)}
+                onClick={() => handleExportCSV(reportTransactions, `patcha_data_yearly_${selectedYear}`)}
                 className="group relative flex flex-1 md:flex-none items-center justify-center space-x-2 bg-white hover:bg-[#FDF2F8] border border-pink-200 dark:border-white/10 dark:bg-pink-50/80 dark:hover:bg-pink-50/20 text-gray-700 dark:text-white px-4 py-3 md:py-2.5 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
               >
                 <Download size={14} className="text-pink-400 group-hover:translate-y-1 transition-transform duration-300" />
-                <span className="whitespace-nowrap">ส่งออกรายปี</span>
+                <span className="whitespace-nowrap">📥 ส่งออกรายปี 🌸</span>
               </button>
             </div>
 
-            <div className="glass-panel p-1 rounded-2xl flex items-center justify-between md:justify-start w-full md:w-auto shadow-lg shadow-blue-500/5">
+            <div className="glass-panel p-1 rounded-2xl flex items-center justify-between md:justify-start w-full md:w-auto shadow-md shadow-pink-400/10 border border-pink-200">
               <button
                 onClick={() => setSelectedYear(y => y - 1)}
                 className="p-4 md:p-3 text-gray-400 dark:text-[#64748B] hover:text-pink-400 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-pink-50/60 rounded-xl transition-all duration-300"
               >
                 <ChevronLeft size={24} className="md:w-5 md:h-5" />
               </button>
-              <div className="px-4 md:px-8 font-black text-2xl md:text-2xl text-gray-800 dark:text-white tracking-widest text-glow-emerald">
+              <div className="px-4 md:px-8 font-black text-2xl md:text-2xl text-gray-800 dark:text-white tracking-widest text-glow">
                 {selectedYear}
               </div>
               <button
@@ -770,65 +772,65 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
         </div>
       </div>
 
-      {/* Yearly Summary Cards */}
+      {/* Yearly Summary Cards with Cute Rounded Corners and Pastel Styling */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 mb-8">
 
-        <div className="glass-panel glass-panel-hover p-6 rounded-[24px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
+        <div className="glass-panel glass-panel-hover p-6 rounded-[28px] md:rounded-[32px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all duration-700"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">รายรับรวมทั้งปี</div>
+              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">🌸 รายรับรวมทั้งปี</div>
             </div>
             <div className="text-3xl lg:text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500">฿{fmt(reportYearlyIncome)}</div>
           </div>
-          <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400/20 to-emerald-600/5 border border-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500  shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+          <div className="relative z-10 w-14 h-14 rounded-2xl md:rounded-3xl bg-gradient-to-br from-emerald-400/20 to-emerald-600/5 border border-emerald-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm">
             <TrendingUp size={24} className="text-emerald-500" />
           </div>
         </div>
 
-        <div className="glass-panel glass-panel-hover p-6 rounded-[24px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
+        <div className="glass-panel glass-panel-hover p-6 rounded-[28px] md:rounded-[32px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-rose-500/10 rounded-full blur-3xl group-hover:bg-rose-500/20 transition-all duration-700"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
-              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">รายจ่ายรวมทั้งปี</div>
+              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">🌷 รายจ่ายรวมทั้งปี</div>
             </div>
             <div className="text-3xl lg:text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-rose-700 dark:from-rose-400 dark:to-rose-500">฿{fmt(reportYearlyExpense)}</div>
           </div>
-          <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-400/20 to-rose-600/5 border border-rose-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(244,63,94,0.1)]">
+          <div className="relative z-10 w-14 h-14 rounded-2xl md:rounded-3xl bg-gradient-to-br from-rose-400/20 to-rose-600/5 border border-rose-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm">
             <TrendingDown size={24} className="text-rose-500" />
           </div>
         </div>
 
-        <div className="glass-panel glass-panel-hover p-6 rounded-[24px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
-          <div className="absolute -right-10 -top-10 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-all duration-700"></div>
+        <div className="glass-panel glass-panel-hover p-6 rounded-[28px] md:rounded-[32px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
+          <div className="absolute -right-10 -top-10 w-40 h-40 bg-pink-400/10 rounded-full blur-3xl group-hover:bg-pink-400/20 transition-all duration-700"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
-              <div className={`w-1.5 h-1.5 rounded-full ${reportYearlyBalance >= 0 ? 'bg-violet-500' : 'bg-rose-500'}`}></div>
-              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">ยอดคงเหลือสุทธิปีนี้</div>
+              <div className={`w-1.5 h-1.5 rounded-full ${reportYearlyBalance >= 0 ? 'bg-pink-500' : 'bg-rose-500'}`}></div>
+              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">👛 ยอดคงเหลือสุทธิปีนี้</div>
             </div>
-            <div className={`text-3xl lg:text-4xl font-black tracking-tight ${reportYearlyBalance >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500' : 'text-rose-500'}`}>฿{fmt(reportYearlyBalance)}</div>
+            <div className={`text-3xl lg:text-4xl font-black tracking-tight ${reportYearlyBalance >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-600' : 'text-rose-500'}`}>฿{fmt(reportYearlyBalance)}</div>
           </div>
-          <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-400/20 to-violet-600/5 border border-violet-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(139,92,246,0.1)]">
-            <Wallet size={24} className="text-violet-500 dark:text-[#A78BFA]" />
+          <div className="relative z-10 w-14 h-14 rounded-2xl md:rounded-3xl bg-gradient-to-br from-pink-400/20 to-rose-400/10 border border-pink-300/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm">
+            <Wallet size={24} className="text-pink-500 dark:text-pink-400" />
           </div>
         </div>
 
-        <div className="glass-panel glass-panel-hover p-6 rounded-[24px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
+        <div className="glass-panel glass-panel-hover p-6 rounded-[28px] md:rounded-[32px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-pink-400/10 rounded-full blur-3xl group-hover:bg-pink-400/20 transition-all duration-700"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse"></div>
-              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">อัตราการออมสุทธิ</div>
+              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">📈 อัตราการออมสุทธิ ✨</div>
             </div>
             <div className="flex items-baseline gap-1">
-              <div className={`text-3xl lg:text-4xl font-black tracking-tight ${reportSavingsRate >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400' : 'text-rose-500'}`}>{reportSavingsRate > 0 ? '+' : ''}{reportSavingsRate}</div>
+              <div className={`text-3xl lg:text-4xl font-black tracking-tight ${reportSavingsRate >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-400' : 'text-rose-500'}`}>{reportSavingsRate > 0 ? '+' : ''}{reportSavingsRate}</div>
               <span className="text-lg font-bold text-gray-500">%</span>
             </div>
           </div>
-          <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400/20 to-blue-600/5 border border-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(244,114,182,0.1)]">
-            <Activity size={24} className="text-pink-400 dark:text-[#60A5FA]" />
+          <div className="relative z-10 w-14 h-14 rounded-2xl md:rounded-3xl bg-gradient-to-br from-pink-400/20 to-rose-400/10 border border-pink-300/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-sm">
+            <Activity size={24} className="text-pink-500 dark:text-pink-400" />
           </div>
         </div>
 
@@ -838,12 +840,12 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-10">
 
         {/* Area Chart: Income vs Expense Trend */}
-        <div className="glass-panel p-5 md:p-8 rounded-[24px] md:rounded-[32px] h-[340px] md:h-[450px] flex flex-col relative animate-fade-in-up">
-          <div className="absolute top-0 right-0 w-[80%] h-full bg-gradient-to-l from-blue-500/5 to-transparent pointer-events-none rounded-r-[32px]"></div>
+        <div className="glass-panel p-6 md:p-8 rounded-[28px] md:rounded-[36px] h-[340px] md:h-[450px] flex flex-col relative animate-fade-in-up">
+          <div className="absolute top-0 right-0 w-[80%] h-full bg-gradient-to-l from-pink-400/5 to-transparent pointer-events-none rounded-r-[36px]"></div>
           <div className="mb-8 relative z-10">
             <h3 className="text-xl font-black text-gray-800 dark:text-white tracking-tight flex items-center gap-3">
-              <span className="w-2 h-6 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></span>
-              แนวโน้มรายรับ-รายจ่าย (12 เดือน)
+              <span className="w-2 h-6 bg-gradient-to-b from-pink-400 to-rose-500 rounded-full"></span>
+              📈 แนวโน้มรายรับ-รายจ่าย (12 เดือน) ✨
             </h3>
             <p className="text-xs text-gray-500 ml-5 mt-1 font-bold uppercase tracking-widest">Yearly Trend Analysis</p>
           </div>
@@ -964,10 +966,10 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
         </div>
       </div>
 
-      {/* Monthly Summary Grids (12 Cards) */}
+      {/* Monthly Summary Grids (12 Cards) with Cute Rounded Corners */}
       <div className="mb-6 mt-8 md:mt-0 relative animate-fade-in-up">
         <h3 className="text-xl md:text-2xl font-black text-gray-800 dark:text-white tracking-tight flex items-center gap-3">
-          <LineChart className="text-pink-400 md:w-6 md:h-6" size={20} /> สรุปละเอียดรายเดือน
+          <LineChart className="text-pink-400 md:w-6 md:h-6" size={20} /> 🌸 สรุปละเอียดรายเดือน 🎀
         </h3>
         <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest mt-1 ml-8 md:ml-9">Monthly Breakdown Panel (คลิกเพื่อดูรายละเอียด)</p>
       </div>
@@ -981,13 +983,13 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div
               key={index}
               onClick={() => { setSelectedMonthDetail(index + 1); setSelectedWeek('all'); }}
-              className={`glass-panel p-5 rounded-[24px] relative overflow-hidden transition-all duration-300 group
-                cursor-pointer hover:border-pink-400/50 dark:hover:border-blue-500/50
-                ${!hasData ? 'opacity-70 grayscale-[50%] hover:opacity-100 hover:grayscale-0' : ''} 
-                ${isCurrentMonth ? 'border-pink-400/50 dark:border-blue-500/50 shadow-[0_0_20px_rgba(244,114,182,0.15)] ring-1 ring-blue-500/20 shadow-inner' : ''}`}
+              className={`glass-panel p-5 rounded-[28px] relative overflow-hidden transition-all duration-300 group
+                cursor-pointer hover:border-pink-400/70 hover:shadow-[0_12px_32px_rgba(244,114,182,0.22)]
+                ${!hasData ? 'opacity-70 grayscale-[30%] hover:opacity-100 hover:grayscale-0' : ''} 
+                ${isCurrentMonth ? 'border-pink-400/80 shadow-[0_6px_25px_rgba(244,114,182,0.3)] ring-2 ring-pink-300/60' : ''}`}
             >
               {isCurrentMonth && (
-                <div className="absolute top-0 right-0 w-20 h-20 bg-pink-400/10 rounded-bl-full blur-xl pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-pink-400/15 rounded-bl-full blur-xl pointer-events-none"></div>
               )}
 
               <div className="flex justify-between items-center mb-5 relative z-10">
