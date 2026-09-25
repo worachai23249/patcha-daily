@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+﻿import { useState, useRef } from 'react';
 import { addTransaction } from '../supabase';
 import { sendMonthlySummaryNotification, isCashTransaction, isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
 
@@ -272,7 +272,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="flex items-center gap-3">
               <button 
                 onClick={() => { setSelectedMonthDetail(null); setSelectedWeek('all'); }} 
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-white/80 dark:bg-[#0B1121]/70 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center text-slate-600 dark:text-[#94A3B8] hover:text-blue-500 dark:hover:text-blue-400 hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm shrink-0"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-white/80 dark:bg-[#0B1121]/70 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center text-slate-600 dark:text-[#94A3B8] hover:text-pink-400 dark:hover:text-pink-400 hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm shrink-0"
                 title="กลับไปหน้ารวม 12 เดือน"
               >
                 <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
@@ -282,8 +282,8 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   รายละเอียดประจำเดือน
                 </h1>
                 <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5 flex-wrap">
-                  <span className="text-blue-600 dark:text-blue-400 text-xs sm:text-sm font-black tracking-wide flex items-center gap-1">
-                    <Calendar size={12} className="text-blue-500 shrink-0" />
+                  <span className="text-pink-500 dark:text-pink-400 text-xs sm:text-sm font-black tracking-wide flex items-center gap-1">
+                    <Calendar size={12} className="text-pink-400 shrink-0" />
                     {detailMonthName} {selectedYear}
                   </span>
                   <span className="text-slate-400 dark:text-white/30 text-xs">•</span>
@@ -302,7 +302,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 <button
                   disabled={selectedMonthDetail <= 1}
                   onClick={() => { setSelectedMonthDetail(m => m - 1); setSelectedWeek('all'); }}
-                  className={`p-2 rounded-xl transition-all ${selectedMonthDetail <= 1 ? 'opacity-30 cursor-not-allowed text-slate-400' : 'text-slate-600 dark:text-slate-300 hover:text-blue-500 hover:bg-slate-100 dark:hover:bg-white/5'}`}
+                  className={`p-2 rounded-xl transition-all ${selectedMonthDetail <= 1 ? 'opacity-30 cursor-not-allowed text-slate-400' : 'text-slate-600 dark:text-slate-300 hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}
                   title="เดือนก่อนหน้า"
                 >
                   <ChevronLeft size={18} />
@@ -313,7 +313,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 <button
                   disabled={selectedMonthDetail >= 12}
                   onClick={() => { setSelectedMonthDetail(m => m + 1); setSelectedWeek('all'); }}
-                  className={`p-2 rounded-xl transition-all ${selectedMonthDetail >= 12 ? 'opacity-30 cursor-not-allowed text-slate-400' : 'text-slate-600 dark:text-slate-300 hover:text-blue-500 hover:bg-slate-100 dark:hover:bg-white/5'}`}
+                  className={`p-2 rounded-xl transition-all ${selectedMonthDetail >= 12 ? 'opacity-30 cursor-not-allowed text-slate-400' : 'text-slate-600 dark:text-slate-300 hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}
                   title="เดือนถัดไป"
                 >
                   <ChevronRight size={18} />
@@ -328,7 +328,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   className="flex items-center justify-center space-x-1.5 bg-white hover:bg-slate-50 border border-slate-200 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-white px-3 py-2.5 rounded-2xl font-black text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-sm"
                   title="ดาวน์โหลดไฟล์ CSV"
                 >
-                  <Download size={14} className="text-blue-400 shrink-0" />
+                  <Download size={14} className="text-pink-400 shrink-0" />
                   <span className="whitespace-nowrap">ส่งออก CSV</span>
                 </button>
 
@@ -370,7 +370,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   : 'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'}`}
             >
               <div className="flex items-center gap-1 font-black text-xs sm:text-sm whitespace-nowrap">
-                <CalendarDays size={13} className={selectedWeek === 'all' ? 'text-white' : 'text-blue-500'} />
+                <CalendarDays size={13} className={selectedWeek === 'all' ? 'text-white' : 'text-pink-400'} />
                 <span>ทั้งเดือน</span>
               </div>
               <span className={`text-[10px] font-bold ${selectedWeek === 'all' ? 'text-blue-100' : 'text-slate-400 dark:text-[#64748B]'}`}>
@@ -467,10 +467,10 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
           <div className="glass-panel p-3.5 sm:p-5 rounded-2xl flex flex-col justify-between relative overflow-hidden group">
             <div className="flex items-center justify-between mb-1.5 relative z-10">
               <div className="flex items-center gap-1.5 min-w-0">
-                <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.7)]"></div>
+                <div className="w-2 h-2 rounded-full bg-pink-500 shrink-0 shadow-[0_0_8px_rgba(244,114,182,0.7)]"></div>
                 <span className="text-slate-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">จำนวนรายการ</span>
               </div>
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500 shrink-0">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-pink-400/10 border border-blue-500/20 flex items-center justify-center text-pink-400 shrink-0">
                 <Activity size={14} className="sm:w-4 sm:h-4" />
               </div>
             </div>
@@ -507,7 +507,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="font-black text-xs sm:text-sm text-slate-800 dark:text-white group-hover:text-blue-500 transition-colors">
+                        <span className="font-black text-xs sm:text-sm text-slate-800 dark:text-white group-hover:text-pink-400 transition-colors">
                           {w.title}
                         </span>
                         <span className={`text-[9px] sm:text-[10px] px-2 py-0.5 rounded-lg font-black border ${w.balance >= 0 ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200/50 dark:border-emerald-500/20' : 'bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200/50 dark:border-rose-500/20'}`}>
@@ -535,7 +535,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                       </div>
                     </div>
 
-                    <div className="mt-2.5 pt-2 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[10px] sm:text-[11px] font-black text-blue-500 group-hover:text-blue-600">
+                    <div className="mt-2.5 pt-2 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[10px] sm:text-[11px] font-black text-pink-400 group-hover:text-pink-500">
                       <span>{w.count} รายการ</span>
                       <span className="flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
                         ดูรายการ <ArrowRight size={12} />
@@ -575,7 +575,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                     <span className="text-xs text-slate-500 dark:text-[#94A3B8] font-bold">
                       {activeDateRangeSubtitle}
                     </span>
-                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 font-black border border-blue-200/50 dark:border-blue-500/20">
+                    <span className="text-xs px-2.5 py-0.5 rounded-full bg-pink-50 dark:bg-pink-400/10 text-pink-500 dark:text-pink-400 font-black border border-pink-200/50 dark:border-blue-500/20">
                       {displayedTransactions.length} รายการ
                     </span>
                   </div>
@@ -702,7 +702,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                           </div>
                           {isLoggedIn && (
                             <div className="flex items-center gap-2 shrink-0">
-                              <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-blue-500 hover:border-blue-400/50 active:scale-95 transition-all"><Edit size={13} /></button>
+                              <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-pink-400 hover:border-pink-400/50 active:scale-95 transition-all"><Edit size={13} /></button>
                               <button onClick={(e) => { e.stopPropagation(); handleDeleteTransaction(t.id); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-rose-500 hover:border-rose-400/50 active:scale-95 transition-all"><Trash2 size={13} /></button>
                             </div>
                           )}
@@ -725,14 +725,14 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
 
       {/* Header section with Year Selector */}
       <div className="mb-10 relative">
-        <div className="absolute -left-6 -top-6 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl animate-pulse-glow"></div>
+        <div className="absolute -left-6 -top-6 w-24 h-24 bg-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
         <div className="absolute top-0 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
 
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
           <div>
             <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-2 pb-2 tracking-tighter drop-shadow-sm">Financial Analytics</h1>
             <p className="text-slate-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
-              <PieIcon size={14} className="text-blue-500" />
+              <PieIcon size={14} className="text-pink-400" />
               รายงานสรุปการเงินคริสตจักร ประจำปี
             </p>
           </div>
@@ -744,7 +744,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 onClick={() => handleExportCSV(reportTransactions, `worship_data_yearly_${selectedYear}`)}
                 className="group relative flex flex-1 md:flex-none items-center justify-center space-x-2 bg-white hover:bg-slate-50 border border-slate-200 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-white px-4 py-3 md:py-2.5 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
               >
-                <Download size={14} className="text-blue-400 group-hover:translate-y-1 transition-transform duration-300" />
+                <Download size={14} className="text-pink-400 group-hover:translate-y-1 transition-transform duration-300" />
                 <span className="whitespace-nowrap">ส่งออกรายปี</span>
               </button>
             </div>
@@ -752,7 +752,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="glass-panel p-1 rounded-2xl flex items-center justify-between md:justify-start w-full md:w-auto shadow-lg shadow-blue-500/5">
               <button
                 onClick={() => setSelectedYear(y => y - 1)}
-                className="p-4 md:p-3 text-slate-400 dark:text-[#64748B] hover:text-blue-500 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all duration-300"
+                className="p-4 md:p-3 text-slate-400 dark:text-[#64748B] hover:text-pink-400 dark:hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all duration-300"
               >
                 <ChevronLeft size={24} className="md:w-5 md:h-5" />
               </button>
@@ -761,7 +761,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               </div>
               <button
                 onClick={() => setSelectedYear(y => y + 1)}
-                className="p-4 md:p-3 text-slate-400 dark:text-[#64748B] hover:text-blue-500 dark:hover:text-blue-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all duration-300"
+                className="p-4 md:p-3 text-slate-400 dark:text-[#64748B] hover:text-pink-400 dark:hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all duration-300"
               >
                 <ChevronRight size={24} className="md:w-5 md:h-5" />
               </button>
@@ -816,10 +816,10 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
         </div>
 
         <div className="glass-panel glass-panel-hover p-6 rounded-[24px] flex justify-between items-start group relative overflow-hidden animate-fade-in-up">
-          <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700"></div>
+          <div className="absolute -right-10 -top-10 w-40 h-40 bg-pink-400/10 rounded-full blur-3xl group-hover:bg-pink-400/20 transition-all duration-700"></div>
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse"></div>
               <div className="text-slate-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">อัตราการออมสุทธิ</div>
             </div>
             <div className="flex items-baseline gap-1">
@@ -827,8 +827,8 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               <span className="text-lg font-bold text-slate-500">%</span>
             </div>
           </div>
-          <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400/20 to-blue-600/5 border border-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-            <Activity size={24} className="text-blue-500 dark:text-[#60A5FA]" />
+          <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400/20 to-blue-600/5 border border-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(244,114,182,0.1)]">
+            <Activity size={24} className="text-pink-400 dark:text-[#60A5FA]" />
           </div>
         </div>
 
@@ -967,7 +967,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
       {/* Monthly Summary Grids (12 Cards) */}
       <div className="mb-6 mt-8 md:mt-0 relative animate-fade-in-up">
         <h3 className="text-xl md:text-2xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-3">
-          <LineChart className="text-blue-500 md:w-6 md:h-6" size={20} /> สรุปละเอียดรายเดือน
+          <LineChart className="text-pink-400 md:w-6 md:h-6" size={20} /> สรุปละเอียดรายเดือน
         </h3>
         <p className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest mt-1 ml-8 md:ml-9">Monthly Breakdown Panel (คลิกเพื่อดูรายละเอียด)</p>
       </div>
@@ -982,16 +982,16 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               key={index}
               onClick={() => { setSelectedMonthDetail(index + 1); setSelectedWeek('all'); }}
               className={`glass-panel p-5 rounded-[24px] relative overflow-hidden transition-all duration-300 group
-                cursor-pointer hover:border-blue-400/50 dark:hover:border-blue-500/50
+                cursor-pointer hover:border-pink-400/50 dark:hover:border-blue-500/50
                 ${!hasData ? 'opacity-70 grayscale-[50%] hover:opacity-100 hover:grayscale-0' : ''} 
-                ${isCurrentMonth ? 'border-blue-400/50 dark:border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.15)] ring-1 ring-blue-500/20 shadow-inner' : ''}`}
+                ${isCurrentMonth ? 'border-pink-400/50 dark:border-blue-500/50 shadow-[0_0_20px_rgba(244,114,182,0.15)] ring-1 ring-blue-500/20 shadow-inner' : ''}`}
             >
               {isCurrentMonth && (
-                <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-bl-full blur-xl pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-20 h-20 bg-pink-400/10 rounded-bl-full blur-xl pointer-events-none"></div>
               )}
 
               <div className="flex justify-between items-center mb-5 relative z-10">
-                <h4 className={`font-black text-lg tracking-wide transition-colors group-hover:text-blue-500 dark:group-hover:text-blue-400 ${isCurrentMonth ? 'text-blue-600 dark:text-blue-400' : 'text-slate-800 dark:text-white'}`}>
+                <h4 className={`font-black text-lg tracking-wide transition-colors group-hover:text-pink-400 dark:group-hover:text-pink-400 ${isCurrentMonth ? 'text-pink-500 dark:text-pink-400' : 'text-slate-800 dark:text-white'}`}>
                   {month.name}
                 </h4>
                 <div className={`px-2.5 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider border ${month.balance >= 0 ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200/50 dark:border-emerald-500/20' : 'bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200/50 dark:border-rose-500/20'}`}>
@@ -1014,7 +1014,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
 
                 <div className="flex justify-between items-end px-1">
                   <span className="text-slate-400 dark:text-[#64748B] text-[10px] font-bold uppercase tracking-widest">ยอดสุทธิ</span>
-                  <span className={`font-black tracking-tight ${month.balance >= 0 ? 'text-slate-800 dark:text-white group-hover:text-blue-500 transition-colors' : 'text-rose-500'}`}>
+                  <span className={`font-black tracking-tight ${month.balance >= 0 ? 'text-slate-800 dark:text-white group-hover:text-pink-400 transition-colors' : 'text-rose-500'}`}>
                     ฿{fmt(month.balance)}
                   </span>
                 </div>

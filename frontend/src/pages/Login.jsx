@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { login } from '../supabase';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, ShieldCheck, X } from 'lucide-react';
 
@@ -68,7 +68,7 @@ export default function Login({ onLogin, onBack }) {
 
             {/* Logo */}
             <div className="relative mb-6 xl:mb-8 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-2">
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 opacity-50 blur-[30px] group-hover:opacity-80 group-hover:blur-[45px] transition-all duration-700"></div>
+              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 opacity-50 blur-[30px] group-hover:opacity-80 group-hover:blur-[45px] transition-all duration-700"></div>
               <div className="w-56 h-56 xl:w-64 xl:h-64 2xl:w-72 2xl:h-72 relative z-10">
                 <img
                   src="/logo.png?v=6"
@@ -108,7 +108,7 @@ export default function Login({ onLogin, onBack }) {
             {/* Mobile logo */}
             <div className="lg:hidden flex flex-col items-center justify-center mb-6 pt-2">
               <div className="relative mb-3 transition-transform duration-700 z-10 flex justify-center items-center group">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 opacity-50 blur-[20px]"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 opacity-50 blur-[20px]"></div>
                 <div className="w-40 h-40 sm:w-48 sm:h-48 relative z-10 flex items-center justify-center">
                   <img src="/logo.png?v=6" alt="Logo" className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.15)]" />
                 </div>
@@ -120,10 +120,10 @@ export default function Login({ onLogin, onBack }) {
 
             {/* Header */}
             <div className="text-center mb-10 xl:mb-14 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 mb-6 relative overflow-hidden group">
+              <div className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-pink-50 dark:bg-pink-400/10 border border-pink-200 dark:border-blue-500/20 mb-6 relative overflow-hidden group">
                 <div className="absolute inset-0 w-1/4 h-full bg-white/50 skew-x-[-20deg] translate-x-[-200%] group-hover:translate-x-[500%] transition-transform duration-1000" />
-                <div className="w-2 h-2 rounded-full bg-blue-500 mr-2 relative z-10" />
-                <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest relative z-10">จำเป็นต้องเข้าสู่ระบบ</span>
+                <div className="w-2 h-2 rounded-full bg-pink-500 mr-2 relative z-10" />
+                <span className="text-[10px] font-black text-pink-500 dark:text-pink-400 uppercase tracking-widest relative z-10">จำเป็นต้องเข้าสู่ระบบ</span>
               </div>
               <h2 className="text-3xl xl:text-4xl font-black text-slate-800 dark:text-white mb-3 tracking-tight">เข้าสู่ระบบ</h2>
               <p className="text-slate-500 dark:text-[#94A3B8] font-bold text-sm tracking-wide">กรุณายืนยันตัวตนเพื่อเข้าใช้งาน</p>
@@ -136,7 +136,7 @@ export default function Login({ onLogin, onBack }) {
                 <label className="text-[10px] font-black text-slate-500 dark:text-[#94A3B8] ml-2 uppercase tracking-[0.2em]">อีเมลผู้ใช้งาน</label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                    <Mail className="text-slate-400 dark:text-slate-500 group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400 transition-colors" size={18} />
+                    <Mail className="text-slate-400 dark:text-slate-500 group-focus-within:text-pink-500 dark:group-focus-within:text-pink-400 transition-colors" size={18} />
                   </div>
                   <input
                     type="email"
@@ -154,9 +154,9 @@ export default function Login({ onLogin, onBack }) {
                       WebkitTextFillColor: '#e2e8f0',
                       caretColor: '#e2e8f0',
                     }}
-                    className="w-full pl-14 pr-6 py-4 xl:py-5 bg-white/80 dark:bg-[#060A13]/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-[18px] text-slate-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500 dark:focus:border-blue-400 transition-all font-bold tracking-wide shadow-inner text-sm"
+                    className="w-full pl-14 pr-6 py-4 xl:py-5 bg-white/80 dark:bg-[#060A13]/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-[18px] text-slate-800 dark:text-white outline-none focus:ring-1 focus:ring-pink-400/50 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-bold tracking-wide shadow-inner text-sm"
                   />
-                  <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 transition-colors group-focus-within:bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)] opacity-0 group-focus-within:opacity-100" />
+                  <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 transition-colors group-focus-within:bg-pink-500 shadow-[0_0_8px_rgba(244,114,182,0.5)] opacity-0 group-focus-within:opacity-100" />
                 </div>
               </div>
 
@@ -165,7 +165,7 @@ export default function Login({ onLogin, onBack }) {
                 <label className="text-[10px] font-black text-slate-500 dark:text-[#94A3B8] ml-2 uppercase tracking-[0.2em]">รหัสผ่าน</label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                    <Lock className="text-slate-400 dark:text-slate-500 group-focus-within:text-blue-600 dark:group-focus-within:text-blue-400 transition-colors" size={18} />
+                    <Lock className="text-slate-400 dark:text-slate-500 group-focus-within:text-pink-500 dark:group-focus-within:text-pink-400 transition-colors" size={18} />
                   </div>
                   <input
                     type={showPassword ? 'text' : 'password'}
@@ -181,12 +181,12 @@ export default function Login({ onLogin, onBack }) {
                       WebkitTextFillColor: '#e2e8f0',
                       caretColor: '#e2e8f0',
                     }}
-                    className="w-full pl-14 pr-16 py-4 xl:py-5 bg-white/80 dark:bg-[#060A13]/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-[18px] text-slate-800 dark:text-white outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500 dark:focus:border-blue-400 transition-all font-black tracking-widest shadow-inner text-sm"
+                    className="w-full pl-14 pr-16 py-4 xl:py-5 bg-white/80 dark:bg-[#060A13]/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-[18px] text-slate-800 dark:text-white outline-none focus:ring-1 focus:ring-pink-400/50 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-black tracking-widest shadow-inner text-sm"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-5 flex items-center text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none"
+                    className="absolute inset-y-0 right-0 pr-5 flex items-center text-slate-400 dark:text-slate-500 hover:text-pink-500 dark:hover:text-pink-400 transition-colors focus:outline-none"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -208,7 +208,7 @@ export default function Login({ onLogin, onBack }) {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-[10px] font-black text-slate-500 dark:text-[#94A3B8] tracking-[0.1em] uppercase transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">จดจำการเข้าสู่ระบบ</span>
+                  <span className="text-[10px] font-black text-slate-500 dark:text-[#94A3B8] tracking-[0.1em] uppercase transition-colors group-hover:text-pink-500 dark:group-hover:text-pink-400">จดจำการเข้าสู่ระบบ</span>
                 </label>
               </div>
 
@@ -217,7 +217,7 @@ export default function Login({ onLogin, onBack }) {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="group relative w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-4 xl:py-5 rounded-[18px] font-black text-xs uppercase tracking-[0.3em] shadow-[0_10px_40px_-10px_rgba(79,70,229,0.5)] hover:shadow-[0_10px_40px_0_rgba(79,70,229,0.7)] hover:-translate-y-1 active:scale-95 transition-all duration-500 overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="group relative w-full flex items-center justify-center space-x-3 bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 text-white py-4 xl:py-5 rounded-[18px] font-black text-xs uppercase tracking-[0.3em] shadow-[0_10px_40px_-10px_rgba(236,72,153,0.5)] hover:shadow-[0_10px_40px_0_rgba(236,72,153,0.7)] hover:-translate-y-1 active:scale-95 transition-all duration-500 overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none"
                     style={{ background: 'linear-gradient(45deg,transparent 25%,rgba(255,255,255,0.15) 50%,transparent 75%)' }}

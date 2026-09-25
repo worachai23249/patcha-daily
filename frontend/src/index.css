@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @variant dark (&:is(.dark *));
 
 @layer base {
@@ -140,7 +140,7 @@
   }
 
   .glass-panel-hover {
-    @apply transition-all duration-200 ease-out hover:border-blue-500/30 hover:bg-white/90 dark:hover:bg-[#0B1121]/90;
+    @apply transition-all duration-200 ease-out hover:border-pink-400/30 hover:bg-white/90 dark:hover:bg-[#0B1121]/90;
   }
 
   .glass-panel-hover:hover {

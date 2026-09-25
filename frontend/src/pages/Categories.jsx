@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Plus, Edit2, Trash2, Box, Layers } from 'lucide-react';
 
 export default function Categories({ categories = [], transactions = [], handleOpenAddCategory, handleOpenEditCategory, handleDeleteCategory }) {
@@ -13,13 +13,13 @@ export default function Categories({ categories = [], transactions = [], handleO
 
       {/* Header section */}
       <div className="mb-10 relative animate-fade-in-up">
-        <div className="absolute -left-6 -top-6 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl animate-pulse-glow"></div>
+        <div className="absolute -left-6 -top-6 w-24 h-24 bg-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
         <div className="absolute top-0 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl animate-float"></div>
         <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-2 pb-2 tracking-tighter drop-shadow-sm">System Categories</h1>
             <p className="text-slate-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
-              <Layers size={14} className="text-blue-500" />
+              <Layers size={14} className="text-pink-400" />
               จัดการหมวดหมู่รายรับรายจ่าย
             </p>
           </div>
@@ -75,7 +75,7 @@ export default function Categories({ categories = [], transactions = [], handleO
                 <div className="flex space-x-2 opacity-60 group-hover:opacity-100 transition-opacity duration-200">
                   <button
                     onClick={() => handleOpenEditCategory(c)}
-                    className="w-10 h-10 flex items-center justify-center bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-[#334155] rounded-xl text-slate-400 dark:text-[#94A3B8] hover:text-white dark:hover:text-white hover:bg-blue-500 dark:hover:bg-blue-500 hover:border-blue-500 shadow-sm transition-colors duration-200"
+                    className="w-10 h-10 flex items-center justify-center bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-[#334155] rounded-xl text-slate-400 dark:text-[#94A3B8] hover:text-white dark:hover:text-white hover:bg-pink-500 dark:hover:bg-pink-500 hover:border-blue-500 shadow-sm transition-colors duration-200"
                     title="แก้ไขหมวดหมู่"
                   >
                     <Edit2 size={16} />

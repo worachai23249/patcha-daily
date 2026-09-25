@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+﻿import { useState, useRef } from 'react';
 import { addTransaction } from '../supabase';
 import { isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
 import { Plus, Edit, Trash2, Image as ImageIcon, Database, Filter, Download, Upload, FileSpreadsheet, Gift } from 'lucide-react';
@@ -113,12 +113,12 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
     <div className="max-w-7xl mx-auto pb-20 mt-4 xl:mt-0">
       {/* Header */}
       <div className="mb-8 relative animate-fade-in-up">
-        <div className="absolute -left-6 -top-6 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl animate-pulse-glow"></div>
+        <div className="absolute -left-6 -top-6 w-24 h-24 bg-pink-400/20 rounded-full blur-2xl animate-pulse-glow"></div>
         <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-2 pb-1 tracking-tighter drop-shadow-sm">Transaction Logs</h1>
             <p className="text-slate-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
-              <Database size={14} className="text-blue-500" />
+              <Database size={14} className="text-pink-400" />
               บันทึกการเงินและรายการทั้งหมด
             </p>
           </div>
@@ -127,12 +127,12 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
               onClick={handleExportCSV}
               className="group relative flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 border border-slate-200 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-white px-5 py-3.5 md:py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
             >
-              <Download size={16} className="text-blue-400 group-hover:translate-y-1 transition-transform duration-300" />
+              <Download size={16} className="text-pink-400 group-hover:translate-y-1 transition-transform duration-300" />
               <span>ส่งออก</span>
             </button>
             <button
               onClick={handleOpenAddTransaction}
-              className="group relative flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-6 py-3.5 md:py-3 rounded-full font-black text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:shadow-[0_0_30px_rgba(79,70,229,0.6)] hover:-translate-y-1 active:scale-95 overflow-hidden w-full md:w-auto"
+              className="group relative flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-6 py-3.5 md:py-3 rounded-full font-black text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_0_20px_rgba(236,72,153,0.4)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] hover:-translate-y-1 active:scale-95 overflow-hidden w-full md:w-auto"
             >
               <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
               <Plus size={18} className="group-hover:rotate-90 transition-transform duration-300 relative z-10" />
@@ -145,7 +145,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
       {/* Filter Tabs */}
       <div className="flex bg-white/70 dark:bg-[#0B1121]/60 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-[20px] p-1 mb-6 max-w-xl shadow-sm animate-fade-in-up">
         <button onClick={() => setFilterType('ALL')} className={`group flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'ALL' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm' : 'text-slate-500 dark:text-[#94A3B8] hover:text-slate-800 dark:hover:text-white'}`}>
-          <Filter size={12} className={filterType === 'ALL' ? 'text-white' : 'text-slate-400 group-hover:text-blue-500'} />
+          <Filter size={12} className={filterType === 'ALL' ? 'text-white' : 'text-slate-400 group-hover:text-pink-400'} />
           ทั้งหมด
         </button>
         <button onClick={() => setFilterType('INCOME')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-sm' : 'text-slate-500 dark:text-[#94A3B8] hover:text-emerald-500'}`}>
@@ -241,7 +241,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
                       <span className="text-xs text-slate-500 dark:text-white/60 font-medium truncate">{cleanNote || (inKind ? 'ถวายสิ่งของ/ชำระให้โดยตรง' : '—')}</span>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
-                      <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-blue-500 hover:border-blue-400/50 active:scale-95 transition-all"><Edit size={13} /></button>
+                      <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-pink-400 hover:border-pink-400/50 active:scale-95 transition-all"><Edit size={13} /></button>
                       <button onClick={(e) => { e.stopPropagation(); handleDeleteTransaction(t.id); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-rose-500 hover:border-rose-400/50 active:scale-95 transition-all"><Trash2 size={13} /></button>
                     </div>
                   </div>
