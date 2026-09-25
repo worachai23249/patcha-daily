@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,7 +12,7 @@
       (function() {
         try {
           var saved = localStorage.getItem('theme');
-          var isDark = saved ? saved === 'dark' : true;
+          var isDark = saved ? saved === 'dark' : false;
           if (isDark) {
             document.documentElement.classList.add('dark');
             var meta = document.getElementById('theme-color-meta');

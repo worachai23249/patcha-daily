@@ -36,7 +36,7 @@ export default function Login({ onLogin, onBack }) {
   };
 
   return (
-    <div className="h-screen w-full flex items-center justify-center bg-slate-50 dark:bg-[#030610] transition-colors duration-500 overflow-hidden font-sans relative p-4 sm:p-6 lg:p-12">
+    <div className="h-screen w-full flex items-center justify-center bg-[#FDF2F8] dark:bg-[#030610] transition-colors duration-500 overflow-hidden font-sans relative p-4 sm:p-6 lg:p-12">
 
       {/* ── Static Ambient Background (ไม่กระพริบ) ── */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800A_1px,transparent_1px),linear-gradient(to_bottom,#8080800A_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none" />
@@ -52,7 +52,7 @@ export default function Login({ onLogin, onBack }) {
       <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] rounded-full bg-purple-600/15 blur-[120px] pointer-events-none" />
 
       {/* ── Main HUD Container ── */}
-      <div className="w-full h-full max-w-[1400px] flex flex-col lg:flex-row rounded-[30px] lg:rounded-[40px] overflow-hidden z-10 animate-fade-in-up border border-slate-200/50 dark:border-white/5 bg-white/30 dark:bg-[#060A13]/40 backdrop-blur-3xl shadow-[0_0_50px_rgba(0,0,0,0.1)] dark:shadow-[0_0_80px_rgba(0,0,0,0.5)] relative">
+      <div className="w-full h-full max-w-[1400px] flex flex-col lg:flex-row rounded-[30px] lg:rounded-[40px] overflow-hidden z-10 animate-fade-in-up border border-pink-100 dark:border-white/5 bg-white/90 dark:bg-[#060A13]/40 backdrop-blur-3xl shadow-[0_0_50px_rgba(0,0,0,0.1)] dark:shadow-[0_0_80px_rgba(0,0,0,0.5)] relative">
 
         {/* Top / Bottom edge rail */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent z-20" />
@@ -61,8 +61,8 @@ export default function Login({ onLogin, onBack }) {
         {/* ═══════════════════════════════════════
             LEFT — Branding
         ═══════════════════════════════════════ */}
-        <div className="hidden lg:flex w-1/2 p-8 xl:p-12 2xl:p-16 flex-col justify-between relative overflow-hidden border-r border-slate-200/50 dark:border-white/5 group">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-purple-100/30 dark:from-blue-900/10 dark:to-purple-900/10 z-0" />
+        <div className="hidden lg:flex w-1/2 p-8 xl:p-12 2xl:p-16 flex-col justify-between relative overflow-hidden border-r border-pink-100 dark:border-white/5 group">
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-100/50 to-rose-100/50 dark:from-blue-900/10 dark:to-purple-900/10 z-0" />
 
           <div className="relative z-10 flex flex-col flex-1 justify-center items-center text-center">
 
@@ -90,13 +90,13 @@ export default function Login({ onLogin, onBack }) {
         {/* ═══════════════════════════════════════
             RIGHT — Login Form
         ═══════════════════════════════════════ */}
-        <div className="w-full h-full lg:w-1/2 p-8 sm:p-12 xl:p-14 flex flex-col justify-center relative bg-white/40 dark:bg-[#0B1121]/40 overflow-y-auto">
+        <div className="w-full h-full lg:w-1/2 p-8 sm:p-12 xl:p-14 flex flex-col justify-center relative bg-white dark:bg-[#0B1121]/40 overflow-y-auto">
 
           {onBack && (
             <button
               type="button"
               onClick={onBack}
-              className="absolute top-6 right-6 xl:top-8 xl:right-8 w-10 h-10 xl:w-12 xl:h-12 rounded-full bg-white/60 dark:bg-white/5 backdrop-blur-md border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-500 hover:text-rose-500 dark:text-[#94A3B8] dark:hover:text-rose-400 hover:bg-white dark:hover:bg-white/10 hover:shadow-[0_4px_20px_rgba(244,63,94,0.15)] transition-all duration-300 hover:rotate-90 hover:scale-110 z-50"
+              className="absolute top-6 right-6 xl:top-8 xl:right-8 w-10 h-10 xl:w-12 xl:h-12 rounded-full bg-white dark:bg-pink-50/60 backdrop-blur-md border border-pink-200 dark:border-white/10 flex items-center justify-center text-gray-500 hover:text-rose-500 dark:text-[#94A3B8] dark:hover:text-rose-400 hover:bg-pink-50 dark:hover:bg-pink-50/80 hover:shadow-[0_4px_20px_rgba(244,63,94,0.15)] transition-all duration-300 hover:rotate-90 hover:scale-110 z-50"
               title="ยกเลิก / กลับไปหน้าหลัก"
             >
               <X size={20} className="xl:w-6 xl:h-6" />
@@ -125,18 +125,18 @@ export default function Login({ onLogin, onBack }) {
                 <div className="w-2 h-2 rounded-full bg-pink-500 mr-2 relative z-10" />
                 <span className="text-[10px] font-black text-pink-500 dark:text-pink-400 uppercase tracking-widest relative z-10">จำเป็นต้องเข้าสู่ระบบ</span>
               </div>
-              <h2 className="text-3xl xl:text-4xl font-black text-slate-800 dark:text-white mb-3 tracking-tight">เข้าสู่ระบบ</h2>
-              <p className="text-slate-500 dark:text-[#94A3B8] font-bold text-sm tracking-wide">กรุณายืนยันตัวตนเพื่อเข้าใช้งาน</p>
+              <h2 className="text-3xl xl:text-4xl font-black text-gray-800 dark:text-white mb-3 tracking-tight">เข้าสู่ระบบ</h2>
+              <p className="text-gray-500 dark:text-[#94A3B8] font-bold text-sm tracking-wide">กรุณายืนยันตัวตนเพื่อเข้าใช้งาน</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
 
               {/* Email */}
               <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                <label className="text-[10px] font-black text-slate-500 dark:text-[#94A3B8] ml-2 uppercase tracking-[0.2em]">อีเมลผู้ใช้งาน</label>
+                <label className="text-[10px] font-black text-gray-500 dark:text-[#94A3B8] ml-2 uppercase tracking-[0.2em]">อีเมลผู้ใช้งาน</label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                    <Mail className="text-slate-400 dark:text-slate-500 group-focus-within:text-pink-500 dark:group-focus-within:text-pink-400 transition-colors" size={18} />
+                    <Mail className="text-gray-400 dark:text-gray-500 group-focus-within:text-pink-500 dark:group-focus-within:text-pink-400 transition-colors" size={18} />
                   </div>
                   <input
                     type="email"
@@ -154,7 +154,7 @@ export default function Login({ onLogin, onBack }) {
                       WebkitTextFillColor: '#e2e8f0',
                       caretColor: '#e2e8f0',
                     }}
-                    className="w-full pl-14 pr-6 py-4 xl:py-5 bg-white/80 dark:bg-[#060A13]/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-[18px] text-slate-800 dark:text-white outline-none focus:ring-1 focus:ring-pink-400/50 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-bold tracking-wide shadow-inner text-sm"
+                    className="w-full pl-14 pr-6 py-4 xl:py-5 bg-white dark:bg-[#060A13]/80 backdrop-blur-xl border border-pink-200 dark:border-white/10 rounded-[18px] text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-pink-400/50 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-bold tracking-wide shadow-inner text-sm"
                   />
                   <div className="absolute top-1/2 -translate-y-1/2 right-4 w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 transition-colors group-focus-within:bg-pink-500 shadow-[0_0_8px_rgba(244,114,182,0.5)] opacity-0 group-focus-within:opacity-100" />
                 </div>
@@ -162,10 +162,10 @@ export default function Login({ onLogin, onBack }) {
 
               {/* Password */}
               <div className="space-y-2 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                <label className="text-[10px] font-black text-slate-500 dark:text-[#94A3B8] ml-2 uppercase tracking-[0.2em]">รหัสผ่าน</label>
+                <label className="text-[10px] font-black text-gray-500 dark:text-[#94A3B8] ml-2 uppercase tracking-[0.2em]">รหัสผ่าน</label>
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                    <Lock className="text-slate-400 dark:text-slate-500 group-focus-within:text-pink-500 dark:group-focus-within:text-pink-400 transition-colors" size={18} />
+                    <Lock className="text-gray-400 dark:text-gray-500 group-focus-within:text-pink-500 dark:group-focus-within:text-pink-400 transition-colors" size={18} />
                   </div>
                   <input
                     type={showPassword ? 'text' : 'password'}
@@ -181,12 +181,12 @@ export default function Login({ onLogin, onBack }) {
                       WebkitTextFillColor: '#e2e8f0',
                       caretColor: '#e2e8f0',
                     }}
-                    className="w-full pl-14 pr-16 py-4 xl:py-5 bg-white/80 dark:bg-[#060A13]/80 backdrop-blur-xl border border-slate-200/80 dark:border-white/10 rounded-[18px] text-slate-800 dark:text-white outline-none focus:ring-1 focus:ring-pink-400/50 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-black tracking-widest shadow-inner text-sm"
+                    className="w-full pl-14 pr-16 py-4 xl:py-5 bg-white dark:bg-[#060A13]/80 backdrop-blur-xl border border-pink-200 dark:border-white/10 rounded-[18px] text-gray-800 dark:text-white outline-none focus:ring-1 focus:ring-pink-400/50 focus:border-pink-400 dark:focus:border-pink-400 transition-all font-black tracking-widest shadow-inner text-sm"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-5 flex items-center text-slate-400 dark:text-slate-500 hover:text-pink-500 dark:hover:text-pink-400 transition-colors focus:outline-none"
+                    className="absolute inset-y-0 right-0 pr-5 flex items-center text-gray-400 dark:text-gray-500 hover:text-pink-500 dark:hover:text-pink-400 transition-colors focus:outline-none"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -196,7 +196,7 @@ export default function Login({ onLogin, onBack }) {
               {/* Remember me */}
               <div className="flex items-center justify-between pt-1 pb-4 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
                 <label className="flex items-center space-x-3 cursor-pointer group">
-                  <div className="relative flex items-center justify-center w-5 h-5 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-[#0B1121] transition-all group-hover:border-blue-500 shadow-inner overflow-hidden">
+                  <div className="relative flex items-center justify-center w-5 h-5 rounded border border-pink-300 dark:border-slate-600 bg-white dark:bg-[#0B1121] transition-all group-hover:border-blue-500 shadow-inner overflow-hidden">
                     <input
                       type="checkbox"
                       className="peer sr-only"
@@ -208,7 +208,7 @@ export default function Login({ onLogin, onBack }) {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-[10px] font-black text-slate-500 dark:text-[#94A3B8] tracking-[0.1em] uppercase transition-colors group-hover:text-pink-500 dark:group-hover:text-pink-400">จดจำการเข้าสู่ระบบ</span>
+                  <span className="text-[10px] font-black text-gray-500 dark:text-[#94A3B8] tracking-[0.1em] uppercase transition-colors group-hover:text-pink-500 dark:group-hover:text-pink-400">จดจำการเข้าสู่ระบบ</span>
                 </label>
               </div>
 
@@ -231,7 +231,7 @@ export default function Login({ onLogin, onBack }) {
                   ) : (
                     <>
                       <span className="relative z-20 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">เข้าสู่ระบบ</span>
-                      <div className="relative z-20 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm shadow-[inset_0_0_10px_rgba(255,255,255,0.2)] flex items-center justify-center group-hover:bg-white group-hover:text-indigo-600 transition-all duration-500 group-hover:translate-x-3">
+                      <div className="relative z-20 w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm shadow-[inset_0_0_10px_rgba(255,255,255,0.2)] flex items-center justify-center group-hover:bg-pink-50 group-hover:text-indigo-600 transition-all duration-500 group-hover:translate-x-3">
                         <ArrowRight size={12} className="transition-transform duration-500" />
                       </div>
                     </>

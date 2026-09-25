@@ -35,7 +35,7 @@ function App() {
   const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme === 'dark' : true;
+    return savedTheme ? savedTheme === 'dark' : false;
   });
   const [transactions, setTransactions] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -398,7 +398,7 @@ function App() {
     <div className={`h-screen ${isDarkMode ? 'bg-[#060A13] text-white' : 'bg-slate-50 text-slate-800'} flex flex-col items-center justify-center gap-6 overflow-hidden relative select-none transition-colors duration-500`}>
       {/* Background grid for light mode */}
       {!isDarkMode && (
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#F9A8D412_1px,transparent_1px),linear-gradient(to_bottom,#F9A8D412_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
       )}
 
       {/* Ambient background aura */}
@@ -440,7 +440,7 @@ function App() {
   }} onBack={() => setShowLoginScreen(false)} />;
 
   return (
-    <div className="h-screen bg-slate-50 dark:bg-[#060A13] text-slate-800 dark:text-white font-sans flex overflow-hidden relative">
+    <div className="h-screen bg-[#FDF2F8] dark:bg-[#060A13] text-gray-800 dark:text-white font-sans flex overflow-hidden relative">
 
       {/* Background & Aura Effects */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none"></div>
@@ -454,9 +454,9 @@ function App() {
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
-      <aside className={`w-72 h-full border-r border-slate-200/50 dark:border-white/5 bg-slate-50/95 dark:bg-[#030610]/95 backdrop-blur-2xl flex flex-col justify-between shrink-0 z-[100] shadow-[10px_0_30px_-10px_rgba(0,0,0,0.1)] fixed lg:relative transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} left-0 overflow-y-auto custom-scrollbar`}>
+      <aside className={`w-72 h-full border-r border-pink-100 dark:border-white/5 bg-[#FFF0F5]/95 dark:bg-[#030610]/95 backdrop-blur-2xl flex flex-col justify-between shrink-0 z-[100] shadow-[10px_0_30px_-10px_rgba(0,0,0,0.1)] fixed lg:relative transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} left-0 overflow-y-auto custom-scrollbar`}>
         <div>
-          <div className="p-8 border-b border-slate-200/50 dark:border-white/5 flex flex-col items-center relative overflow-hidden group">
+          <div className="p-8 border-b border-pink-100 dark:border-white/5 flex flex-col items-center relative overflow-hidden group">
             <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-blue-500/10 dark:from-blue-600/10 to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
 
             <div className="relative mb-6 transition-transform duration-700 z-10 flex justify-center items-center group-hover:-translate-y-2">
@@ -486,7 +486,7 @@ function App() {
                 <button
                   key={menu.id}
                   onClick={() => { setActiveMenu(menu.id); setIsMobileMenuOpen(false); }}
-                  className={`group relative w-full flex items-center space-x-4 px-5 py-3.5 rounded-[18px] transition-all duration-500 overflow-hidden font-black tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-pink-500 dark:text-white border border-pink-400/40 dark:border-pink-400/30 shadow-[0_5px_20px_-5px_rgba(244,114,182,0.2)] bg-pink-50/80 dark:bg-pink-900/10' : 'text-slate-500 dark:text-[#64748B] hover:text-slate-800 dark:hover:text-white border border-transparent hover:border-slate-200/50 dark:hover:border-white/10 hover:bg-slate-100/50 dark:hover:bg-white/[0.03]'}`}
+                  className={`group relative w-full flex items-center space-x-4 px-5 py-3.5 rounded-[18px] transition-all duration-500 overflow-hidden font-black tracking-[0.15em] text-[11px] uppercase ${isActive ? 'text-pink-500 dark:text-white border border-pink-400/40 dark:border-pink-400/30 shadow-[0_5px_20px_-5px_rgba(244,114,182,0.2)] bg-pink-50/80 dark:bg-pink-900/10' : 'text-gray-500 dark:text-[#64748B] hover:text-gray-800 dark:hover:text-white border border-transparent hover:border-pink-100 dark:hover:border-white/10 hover:bg-pink-50/50 dark:hover:bg-white/[0.03]'}`}
                 >
                   {/* Indicator Edge Rail */}
                   {isActive && (
@@ -510,10 +510,10 @@ function App() {
           </div>
         </div>
 
-        <div className="p-6 space-y-4 border-t border-slate-200/50 dark:border-white/5 bg-gradient-to-b from-transparent to-slate-100/50 dark:to-[#060A13]/80 backdrop-blur-md">
+        <div className="p-6 space-y-4 border-t border-pink-100 dark:border-white/5 bg-gradient-to-b from-transparent to-slate-100/50 dark:to-[#060A13]/80 backdrop-blur-md">
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
-            className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-slate-50/80 dark:bg-[#0A101D]/80 border border-slate-200/80 dark:border-white/5 text-slate-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-pink-400/50 dark:hover:border-pink-400/30 hover:shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
+            className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-[#FFF0F5]/80 dark:bg-[#0A101D]/80 border border-pink-200 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-pink-400/50 dark:hover:border-pink-400/30 hover:shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-pink-400/0 to-pink-400/5 dark:to-pink-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="relative z-10 flex items-center justify-center p-2 rounded-[12px] bg-transparent group-hover:bg-pink-50 dark:group-hover:bg-pink-400/20 transition-all duration-500">
@@ -531,7 +531,7 @@ function App() {
           {isLoggedIn && (
             <button
               onClick={() => { setIsNotifModalOpen(true); setIsMobileMenuOpen(false); }}
-              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-slate-50/80 dark:bg-[#0A101D]/80 border border-slate-200/80 dark:border-white/5 text-slate-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-emerald-400/50 dark:hover:border-emerald-500/30 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
+              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-[#FFF0F5]/80 dark:bg-[#0A101D]/80 border border-pink-200 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-emerald-400/50 dark:hover:border-emerald-500/30 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/0 to-emerald-500/5 dark:to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10 flex items-center justify-center p-2 rounded-[12px] bg-transparent group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/20 transition-all duration-500">
@@ -544,7 +544,7 @@ function App() {
           {!isLoggedIn ? (
             <button
               onClick={() => { setShowLoginScreen(true); setIsMobileMenuOpen(false); }}
-              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-slate-50/80 dark:bg-[#0A101D]/80 border border-slate-200/80 dark:border-white/5 text-slate-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-pink-400/50 dark:hover:border-pink-400/30 hover:shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
+              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-[#FFF0F5]/80 dark:bg-[#0A101D]/80 border border-pink-200 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-pink-400/50 dark:hover:border-pink-400/30 hover:shadow-[0_0_20px_rgba(244,114,182,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-pink-400/0 to-pink-400/5 dark:to-pink-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10 flex items-center justify-center p-2 rounded-[12px] bg-transparent group-hover:bg-pink-50 dark:group-hover:bg-pink-400/20 transition-all duration-500">
@@ -560,7 +560,7 @@ function App() {
                 setActiveMenu('overview'); 
                 setIsMobileMenuOpen(false); 
               }}
-              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-slate-50/80 dark:bg-[#0A101D]/80 border border-slate-200/80 dark:border-white/5 text-slate-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-rose-400/50 dark:hover:border-rose-500/30 hover:shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
+              className="group relative w-full flex items-center space-x-4 px-5 py-4 rounded-[18px] bg-[#FFF0F5]/80 dark:bg-[#0A101D]/80 border border-pink-200 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-500 hover:border-rose-400/50 dark:hover:border-rose-500/30 hover:shadow-[0_0_20px_rgba(244,63,94,0.15)] hover:bg-white dark:hover:bg-[#0F172A]"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-rose-500/0 to-rose-500/5 dark:to-rose-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10 flex items-center justify-center p-2 rounded-[12px] bg-transparent group-hover:bg-rose-50 dark:group-hover:bg-rose-500/20 transition-all duration-500">
@@ -573,9 +573,9 @@ function App() {
       </aside>
 
       {/* Mobile Top Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-slate-50/90 dark:bg-[#030610]/90 backdrop-blur-xl border-b border-slate-200/50 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-sm">
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-[#FFF0F5]/90 dark:bg-[#030610]/90 backdrop-blur-xl border-b border-pink-100 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-sm">
         <div className="flex items-center">
-          <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-slate-600 dark:text-slate-300 hover:text-pink-400">
+          <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 dark:text-slate-300 hover:text-pink-400">
             <Menu size={24} />
           </button>
           <img src="/logo.png?v=6" alt="Logo" className="w-8 h-8 object-contain ml-2 shrink-0 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" />
@@ -603,20 +603,20 @@ function App() {
       {isFormOpen && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-[#060A13]/80 backdrop-blur-xl animate-fade-in">
           <div className="glass-panel w-[92vw] sm:w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh] rounded-[24px] md:rounded-[40px] shadow-[0_0_50px_rgba(0,0,0,0.2)] animate-fade-in-up">
-            <div className="flex justify-between items-center p-5 md:p-8 border-b border-slate-200/50 dark:border-white/10 shrink-0 bg-white/30 dark:bg-[#0F172A]/30">
-              <h3 className="text-xl md:text-2xl font-black text-slate-800 dark:text-white tracking-tight">{editingId ? 'แก้ไขรายการ' : 'เพิ่มรายการใหม่'}</h3>
-              <button onClick={() => setIsFormOpen(false)} className="p-2 md:p-3 bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-transparent text-slate-500 dark:text-[#94A3B8] rounded-full hover:text-white hover:bg-slate-800 dark:hover:bg-[#334155] hover:rotate-90 transition-all shadow-sm"><X size={18} className="md:w-5 md:h-5" /></button>
+            <div className="flex justify-between items-center p-5 md:p-8 border-b border-pink-100 dark:border-white/10 shrink-0 bg-white/90 dark:bg-[#0F172A]/30">
+              <h3 className="text-xl md:text-2xl font-black text-gray-800 dark:text-white tracking-tight">{editingId ? 'แก้ไขรายการ' : 'เพิ่มรายการใหม่'}</h3>
+              <button onClick={() => setIsFormOpen(false)} className="p-2 md:p-3 bg-white dark:bg-[#1E293B] border border-pink-200 dark:border-transparent text-gray-500 dark:text-[#94A3B8] rounded-full hover:text-white hover:bg-slate-800 dark:hover:bg-[#334155] hover:rotate-90 transition-all shadow-sm"><X size={18} className="md:w-5 md:h-5" /></button>
             </div>
-            <form onSubmit={handleSubmitTransaction} className="p-5 md:p-8 space-y-4 md:space-y-6 overflow-y-auto custom-scrollbar bg-white/40 dark:bg-transparent">
-              <div className="flex bg-white/70 dark:bg-[#0F172A]/80 border border-slate-200/50 dark:border-[#1E293B] rounded-[16px] md:rounded-2xl p-1 md:p-1.5 shadow-inner">
-                <button type="button" onClick={() => setFormData({ ...formData, type: 'INCOME', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-slate-500 dark:text-[#64748B] hover:text-emerald-500'}`}>รายรับ</button>
-                <button type="button" onClick={() => setFormData({ ...formData, type: 'EXPENSE', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-slate-500 dark:text-[#64748B] hover:text-rose-500'}`}>รายจ่าย</button>
+            <form onSubmit={handleSubmitTransaction} className="p-5 md:p-8 space-y-4 md:space-y-6 overflow-y-auto custom-scrollbar bg-white/95 dark:bg-transparent">
+              <div className="flex bg-white/70 dark:bg-[#0F172A]/80 border border-pink-100 dark:border-[#1E293B] rounded-[16px] md:rounded-2xl p-1 md:p-1.5 shadow-inner">
+                <button type="button" onClick={() => setFormData({ ...formData, type: 'INCOME', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-emerald-500'}`}>รายรับ</button>
+                <button type="button" onClick={() => setFormData({ ...formData, type: 'EXPENSE', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-rose-500'}`}>รายจ่าย</button>
               </div>
 
               {formData.type === 'INCOME' && (
                 <div className="bg-white/60 dark:bg-[#060A13]/60 border border-slate-200/60 dark:border-white/10 rounded-[18px] p-2.5 shadow-sm space-y-2 animate-fade-in">
                   <div className="flex items-center justify-between px-1">
-                    <span className="text-[10px] font-black text-slate-500 dark:text-[#94A3B8] uppercase tracking-wider">รูปแบบการถวาย / รายรับ</span>
+                    <span className="text-[10px] font-black text-gray-500 dark:text-[#94A3B8] uppercase tracking-wider">รูปแบบการถวาย / รายรับ</span>
                     {donationType === 'IN_KIND' && (
                       <span className="text-[10px] font-black text-purple-600 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/70 border border-purple-300/50 dark:border-purple-800/50 px-2.5 py-0.5 rounded-full">
                         ✨ ไม่รวมในยอดเงินสด
@@ -627,14 +627,14 @@ function App() {
                     <button
                       type="button"
                       onClick={() => setDonationType('CASH')}
-                      className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${donationType === 'CASH' ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20' : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}
+                      className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${donationType === 'CASH' ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20' : 'bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}
                     >
                       <span>💵 ถวายเป็นเงินสด</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setDonationType('IN_KIND')}
-                      className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${donationType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/30' : 'bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:text-purple-500'}`}
+                      className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${donationType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/30' : 'bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-slate-400 hover:text-purple-500'}`}
                     >
                       <span>🎁 สิ่งของ / จ่ายให้</span>
                     </button>
@@ -644,7 +644,7 @@ function App() {
 
               <div>
                 <div className="flex items-center justify-between mb-2 ml-1">
-                  <label className="block text-[10px] font-black text-slate-500 dark:text-[#64748B] uppercase tracking-[0.2em]">
+                  <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.2em]">
                     {formData.type === 'INCOME' && donationType === 'IN_KIND' ? 'มูลค่าประเมินสิ่งของ / ยอดชำระให้ (บาท)' : 'จำนวนเงิน (บาท)'}
                   </label>
                   {formData.type === 'INCOME' && donationType === 'IN_KIND' && (
@@ -656,48 +656,48 @@ function App() {
                   value={formData.amount} 
                   onChange={(e) => setFormData({ ...formData, amount: e.target.value })} 
                   required 
-                  className={`w-full py-4 md:py-5 text-3xl md:text-4xl font-black text-center bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border rounded-[16px] md:rounded-[20px] outline-none text-slate-800 dark:text-white transition-all shadow-sm font-sans ${formData.type === 'INCOME' && donationType === 'IN_KIND' ? 'border-purple-500/50 focus:ring-2 focus:ring-purple-500/50 text-purple-600 dark:text-purple-300' : 'border-slate-200/50 dark:border-white/10 focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400'}`} 
+                  className={`w-full py-4 md:py-5 text-3xl md:text-4xl font-black text-center bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white transition-all shadow-sm font-sans ${formData.type === 'INCOME' && donationType === 'IN_KIND' ? 'border-purple-500/50 focus:ring-2 focus:ring-purple-500/50 text-purple-600 dark:text-purple-300' : 'border-pink-100 dark:border-white/10 focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400'}`} 
                   placeholder="0.00" 
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-black text-slate-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">หมวดหมู่</label>
-                  <select value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} required className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-slate-200/50 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-slate-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base">
+                  <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">หมวดหมู่</label>
+                  <select value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} required className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base">
                     <option value="">เลือก...</option>
                     {categories.filter(c => c.type === formData.type).map(c => (<option key={c.id} value={c.name}>{c.name}</option>))}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[10px] font-black text-slate-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">วันที่</label>
-                  <input type="date" value={formData.transaction_date} onChange={(e) => setFormData({ ...formData, transaction_date: e.target.value })} required className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-slate-200/50 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-slate-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base [color-scheme:light_dark]" />
+                  <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">วันที่</label>
+                  <input type="date" value={formData.transaction_date} onChange={(e) => setFormData({ ...formData, transaction_date: e.target.value })} required className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base [color-scheme:light_dark]" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-slate-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">หมายเหตุ</label>
-                <input type="text" value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })} placeholder="ระบุรายละเอียดเพิ่มเติม..." className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-slate-200/50 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-slate-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-bold text-sm md:text-base" />
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">หมายเหตุ</label>
+                <input type="text" value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })} placeholder="ระบุรายละเอียดเพิ่มเติม..." className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-bold text-sm md:text-base" />
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-slate-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">หลักฐานการทำรายการ</label>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">หลักฐานการทำรายการ</label>
                 <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleImageChange} />
                 <input type="file" accept="image/*" capture="environment" className="hidden" ref={cameraInputRef} onChange={handleImageChange} />
                 {!imagePreview && (
                   <div className="flex gap-2 w-full">
-                    <div onClick={() => fileInputRef.current.click()} className="flex-1 py-8 bg-white/40 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
-                      <Upload size={28} className="text-slate-400 dark:text-[#334155] mb-2 group-hover:text-pink-400 group-hover:animate-bounce transition-colors" />
-                      <span className="text-[10px] font-black text-slate-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">อัปโหลดสลิป</span>
+                    <div onClick={() => fileInputRef.current.click()} className="flex-1 py-8 bg-white/95 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
+                      <Upload size={28} className="text-gray-400 dark:text-[#334155] mb-2 group-hover:text-pink-400 group-hover:animate-bounce transition-colors" />
+                      <span className="text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">อัปโหลดสลิป</span>
                     </div>
-                    <div onClick={() => cameraInputRef.current.click()} className="flex-1 py-8 bg-white/40 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
-                      <Camera size={28} className="text-slate-400 dark:text-[#334155] mb-2 group-hover:text-pink-400 group-hover:animate-bounce transition-colors" />
-                      <span className="text-[10px] font-black text-slate-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">ถ่ายรูป</span>
+                    <div onClick={() => cameraInputRef.current.click()} className="flex-1 py-8 bg-white/95 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
+                      <Camera size={28} className="text-gray-400 dark:text-[#334155] mb-2 group-hover:text-pink-400 group-hover:animate-bounce transition-colors" />
+                      <span className="text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">ถ่ายรูป</span>
                     </div>
                   </div>
                 )}
                 {imagePreview && (
-                  <div className="relative w-full h-48 mt-4 rounded-[20px] overflow-hidden border-2 border-slate-200/50 dark:border-[#1E293B] group shadow-sm">
+                  <div className="relative w-full h-48 mt-4 rounded-[20px] overflow-hidden border-2 border-pink-100 dark:border-[#1E293B] group shadow-sm">
                     <img src={imagePreview} alt="Preview" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all backdrop-blur-sm">
                       <button type="button" onClick={() => setImagePreview(null)} className="p-3 bg-rose-500 text-white rounded-xl font-black tracking-wider uppercase text-xs shadow-[0_0_20px_rgba(244,63,94,0.5)] flex items-center space-x-2 hover:bg-rose-600 transition-colors hover:scale-105 active:scale-95"><Trash2 size={16} /><span>ลบรูปภาพ</span></button>
@@ -719,35 +719,35 @@ function App() {
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-[#060A13]/80 backdrop-blur-xl animate-fade-in">
           <div className="glass-panel w-[92vw] sm:w-full max-w-md rounded-[24px] md:rounded-[40px] shadow-[0_0_50px_rgba(0,0,0,0.2)] overflow-hidden flex flex-col animate-fade-in-up">
 
-            <div className="flex justify-between items-center p-5 md:p-8 border-b border-slate-200/50 dark:border-[#1E293B] bg-white/30 dark:bg-[#0F172A]/30">
-              <h3 className="text-xl md:text-2xl font-black text-slate-800 dark:text-white tracking-tight">{categoryFormData.id ? 'แก้ไขหมวดหมู่' : 'เพิ่มหมวดหมู่ใหม่'}</h3>
-              <button onClick={() => setIsCategoryFormOpen(false)} className="p-2 md:p-3 bg-white dark:bg-[#1E293B] border border-slate-200 dark:border-transparent text-slate-500 dark:text-[#94A3B8] rounded-full hover:text-white hover:bg-slate-800 dark:hover:bg-[#334155] hover:rotate-90 transition-all shadow-sm"><X size={18} className="md:w-5 md:h-5" /></button>
+            <div className="flex justify-between items-center p-5 md:p-8 border-b border-pink-100 dark:border-[#1E293B] bg-white/90 dark:bg-[#0F172A]/30">
+              <h3 className="text-xl md:text-2xl font-black text-gray-800 dark:text-white tracking-tight">{categoryFormData.id ? 'แก้ไขหมวดหมู่' : 'เพิ่มหมวดหมู่ใหม่'}</h3>
+              <button onClick={() => setIsCategoryFormOpen(false)} className="p-2 md:p-3 bg-white dark:bg-[#1E293B] border border-pink-200 dark:border-transparent text-gray-500 dark:text-[#94A3B8] rounded-full hover:text-white hover:bg-slate-800 dark:hover:bg-[#334155] hover:rotate-90 transition-all shadow-sm"><X size={18} className="md:w-5 md:h-5" /></button>
             </div>
 
-            <form onSubmit={handleCategorySubmit} className="p-5 md:p-8 space-y-6 md:space-y-8 bg-white/40 dark:bg-transparent">
+            <form onSubmit={handleCategorySubmit} className="p-5 md:p-8 space-y-6 md:space-y-8 bg-white/95 dark:bg-transparent">
 
               <div>
-                <label className="block text-[10px] font-black text-slate-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">ชื่อหมวดหมู่</label>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">ชื่อหมวดหมู่</label>
                 <input
                   type="text"
                   value={categoryFormData.name}
                   onChange={(e) => setCategoryFormData({ ...categoryFormData, name: e.target.value })}
                   placeholder="เช่น อาหาร, ถุงถวาย"
                   required
-                  className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-slate-200/50 dark:border-white/10 rounded-[16px] md:rounded-[20px] text-slate-800 dark:text-white font-bold outline-none focus:ring-2 focus:ring-pink-400/50 transition-colors shadow-sm text-sm md:text-base"
+                  className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] text-gray-800 dark:text-white font-bold outline-none focus:ring-2 focus:ring-pink-400/50 transition-colors shadow-sm text-sm md:text-base"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-slate-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">ประเภท</label>
-                <div className="flex bg-white/70 dark:bg-[#0F172A]/80 border border-slate-200/50 dark:border-[#1E293B] rounded-[16px] md:rounded-2xl p-1 md:p-1.5 shadow-inner">
-                  <button type="button" onClick={() => setCategoryFormData({ ...categoryFormData, type: 'INCOME' })} className={`flex-1 py-3 md:py-3.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 ${categoryFormData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-slate-500 dark:text-[#64748B] hover:text-emerald-500'}`}>รายรับ</button>
-                  <button type="button" onClick={() => setCategoryFormData({ ...categoryFormData, type: 'EXPENSE' })} className={`flex-1 py-3 md:py-3.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 ${categoryFormData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-slate-500 dark:text-[#64748B] hover:text-rose-500'}`}>รายจ่าย</button>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">ประเภท</label>
+                <div className="flex bg-white/70 dark:bg-[#0F172A]/80 border border-pink-100 dark:border-[#1E293B] rounded-[16px] md:rounded-2xl p-1 md:p-1.5 shadow-inner">
+                  <button type="button" onClick={() => setCategoryFormData({ ...categoryFormData, type: 'INCOME' })} className={`flex-1 py-3 md:py-3.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 ${categoryFormData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-emerald-500'}`}>รายรับ</button>
+                  <button type="button" onClick={() => setCategoryFormData({ ...categoryFormData, type: 'EXPENSE' })} className={`flex-1 py-3 md:py-3.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 ${categoryFormData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-rose-500'}`}>รายจ่าย</button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-slate-500 dark:text-[#64748B] mb-4 uppercase tracking-[0.2em] ml-1 text-center">เลือกสีประจำหมวดหมู่</label>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-4 uppercase tracking-[0.2em] ml-1 text-center">เลือกสีประจำหมวดหมู่</label>
                 <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
                   {CATEGORY_COLORS.map(color => (
                     <button
@@ -857,10 +857,10 @@ function App() {
               </div>
 
               {/* Title & Message */}
-              <h3 className="text-xl sm:text-2xl font-black text-slate-800 dark:text-white mb-1 tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-black text-gray-800 dark:text-white mb-1 tracking-tight">
                 {successModal.title}
               </h3>
-              <p className="text-sm font-medium text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+              <p className="text-sm font-medium text-gray-600 dark:text-slate-300 leading-relaxed mb-3">
                 {successModal.message}
               </p>
 

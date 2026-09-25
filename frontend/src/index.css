@@ -1,11 +1,11 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 @variant dark (&:is(.dark *));
 
 @layer base {
 
   /* โหมดสว่าง (ค่าเริ่มต้น) */
   body {
-    @apply bg-slate-50 text-slate-800 transition-colors duration-300;
+    @apply bg-[#FDF2F8] text-gray-800 transition-colors duration-300;
   }
 
   /* โหมดมืด */
@@ -34,12 +34,12 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-slate-300 dark:bg-[#1E293B] rounded-full;
+    @apply bg-pink-200 dark:bg-[#1E293B] rounded-full;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-    background-color: rgb(59 130 246);
+    box-shadow: 0 0 10px rgba(244, 114, 182, 0.5);
+    background-color: rgb(244 114 182);
   }
 
   /* Login input: override browser autofill white background */
@@ -64,8 +64,8 @@
 
   .login-input:focus {
     background-color: rgba(255, 255, 255, 0.06) !important;
-    border-color: rgba(59, 130, 246, 0.5) !important;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: rgba(244, 114, 182, 0.5) !important;
+    box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.1);
   }
 }
 

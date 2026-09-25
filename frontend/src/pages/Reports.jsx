@@ -272,7 +272,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="flex items-center gap-3">
               <button 
                 onClick={() => { setSelectedMonthDetail(null); setSelectedWeek('all'); }} 
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-white/80 dark:bg-[#0B1121]/70 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center text-slate-600 dark:text-[#94A3B8] hover:text-pink-400 dark:hover:text-pink-400 hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm shrink-0"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-white dark:bg-[#0B1121]/70 backdrop-blur-md border border-pink-200 dark:border-white/10 rounded-2xl flex items-center justify-center text-gray-600 dark:text-[#94A3B8] hover:text-pink-400 dark:hover:text-pink-400 hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm shrink-0"
                 title="กลับไปหน้ารวม 12 เดือน"
               >
                 <ArrowLeft size={18} className="sm:w-5 sm:h-5" />
@@ -286,8 +286,8 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                     <Calendar size={12} className="text-pink-400 shrink-0" />
                     {detailMonthName} {selectedYear}
                   </span>
-                  <span className="text-slate-400 dark:text-white/30 text-xs">•</span>
-                  <span className="text-slate-500 dark:text-[#94A3B8] text-[11px] sm:text-xs font-bold truncate">
+                  <span className="text-gray-400 dark:text-white/30 text-xs">•</span>
+                  <span className="text-gray-500 dark:text-[#94A3B8] text-[11px] sm:text-xs font-bold truncate">
                     {activeDateRangeSubtitle}
                   </span>
                 </div>
@@ -302,18 +302,18 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 <button
                   disabled={selectedMonthDetail <= 1}
                   onClick={() => { setSelectedMonthDetail(m => m - 1); setSelectedWeek('all'); }}
-                  className={`p-2 rounded-xl transition-all ${selectedMonthDetail <= 1 ? 'opacity-30 cursor-not-allowed text-slate-400' : 'text-slate-600 dark:text-slate-300 hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}
+                  className={`p-2 rounded-xl transition-all ${selectedMonthDetail <= 1 ? 'opacity-30 cursor-not-allowed text-gray-400' : 'text-gray-600 dark:text-gray-300 hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-pink-50/5'}`}
                   title="เดือนก่อนหน้า"
                 >
                   <ChevronLeft size={18} />
                 </button>
-                <span className="px-3 text-xs sm:text-sm font-black text-slate-700 dark:text-white whitespace-nowrap text-center flex-1 sm:flex-none">
+                <span className="px-3 text-xs sm:text-sm font-black text-gray-700 dark:text-white whitespace-nowrap text-center flex-1 sm:flex-none">
                   {MONTHS_TH[selectedMonthDetail - 1]} {selectedYear}
                 </span>
                 <button
                   disabled={selectedMonthDetail >= 12}
                   onClick={() => { setSelectedMonthDetail(m => m + 1); setSelectedWeek('all'); }}
-                  className={`p-2 rounded-xl transition-all ${selectedMonthDetail >= 12 ? 'opacity-30 cursor-not-allowed text-slate-400' : 'text-slate-600 dark:text-slate-300 hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5'}`}
+                  className={`p-2 rounded-xl transition-all ${selectedMonthDetail >= 12 ? 'opacity-30 cursor-not-allowed text-gray-400' : 'text-gray-600 dark:text-gray-300 hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-pink-50/5'}`}
                   title="เดือนถัดไป"
                 >
                   <ChevronRight size={18} />
@@ -325,7 +325,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 {/* Export Button */}
                 <button
                   onClick={() => handleExportCSV(activeTransactions, exportFilePrefix)}
-                  className="flex items-center justify-center space-x-1.5 bg-white hover:bg-slate-50 border border-slate-200 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-white px-3 py-2.5 rounded-2xl font-black text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-sm"
+                  className="flex items-center justify-center space-x-1.5 bg-white hover:bg-[#FDF2F8] border border-pink-200 dark:border-white/10 dark:bg-pink-50/80 dark:hover:bg-pink-50/20 text-gray-700 dark:text-white px-3 py-2.5 rounded-2xl font-black text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-sm"
                   title="ดาวน์โหลดไฟล์ CSV"
                 >
                   <Download size={14} className="text-pink-400 shrink-0" />
@@ -367,13 +367,13 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               className={`flex-1 min-w-[125px] sm:min-w-0 py-2 px-3 rounded-xl transition-all duration-200 flex flex-col items-center justify-center gap-0.5 text-center shrink-0 sm:shrink
                 ${selectedWeek === 'all'
                   ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/20 scale-[1.01]'
-                  : 'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'}`}
+                  : 'bg-transparent text-gray-600 dark:text-gray-300 hover:bg-pink-50 dark:hover:bg-pink-50/5'}`}
             >
               <div className="flex items-center gap-1 font-black text-xs sm:text-sm whitespace-nowrap">
                 <CalendarDays size={13} className={selectedWeek === 'all' ? 'text-white' : 'text-pink-400'} />
                 <span>ทั้งเดือน</span>
               </div>
-              <span className={`text-[10px] font-bold ${selectedWeek === 'all' ? 'text-blue-100' : 'text-slate-400 dark:text-[#64748B]'}`}>
+              <span className={`text-[10px] font-bold ${selectedWeek === 'all' ? 'text-blue-100' : 'text-gray-400 dark:text-[#64748B]'}`}>
                 {allMonthTransactions.length} รายการ ({MONTHS_TH[selectedMonthDetail - 1]})
               </span>
             </button>
@@ -389,7 +389,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   className={`flex-1 min-w-[115px] sm:min-w-0 py-2 px-2.5 rounded-xl transition-all duration-200 flex flex-col items-center justify-center gap-0.5 text-center shrink-0 sm:shrink
                     ${isActive
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-md shadow-blue-500/20 scale-[1.01]'
-                      : 'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/5'}`}
+                      : 'bg-transparent text-gray-600 dark:text-gray-300 hover:bg-pink-50 dark:hover:bg-pink-50/5'}`}
                 >
                   <div className="flex items-center gap-1 font-black text-xs sm:text-sm whitespace-nowrap">
                     <span>สัปดาห์ที่ {w.weekNum}</span>
@@ -398,11 +398,11 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                     )}
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className={`text-[10px] font-bold ${isActive ? 'text-blue-100' : 'text-slate-400 dark:text-[#64748B]'}`}>
+                    <span className={`text-[10px] font-bold ${isActive ? 'text-blue-100' : 'text-gray-400 dark:text-[#64748B]'}`}>
                       {w.shortRangeWithDays || w.shortRange}
                     </span>
                     {hasTx && (
-                      <span className={`text-[9px] px-1 py-0.2 rounded-full font-black ${isActive ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-slate-300'}`}>
+                      <span className={`text-[9px] px-1 py-0.2 rounded-full font-black ${isActive ? 'bg-white/20 text-white' : 'bg-slate-200 dark:bg-pink-50/80 text-gray-600 dark:text-gray-300'}`}>
                         {w.count}
                       </span>
                     )}
@@ -420,7 +420,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="flex items-center justify-between mb-1.5 relative z-10">
               <div className="flex items-center gap-1.5 min-w-0">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.7)]"></div>
-                <span className="text-slate-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">รายรับ</span>
+                <span className="text-gray-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">รายรับ</span>
               </div>
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 shrink-0">
                 <TrendingUp size={14} className="sm:w-4 sm:h-4" />
@@ -436,7 +436,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="flex items-center justify-between mb-1.5 relative z-10">
               <div className="flex items-center gap-1.5 min-w-0">
                 <div className="w-2 h-2 rounded-full bg-rose-500 shrink-0 shadow-[0_0_8px_rgba(244,63,94,0.7)]"></div>
-                <span className="text-slate-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">รายจ่าย</span>
+                <span className="text-gray-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">รายจ่าย</span>
               </div>
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-500 shrink-0">
                 <TrendingDown size={14} className="sm:w-4 sm:h-4" />
@@ -452,7 +452,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="flex items-center justify-between mb-1.5 relative z-10">
               <div className="flex items-center gap-1.5 min-w-0">
                 <div className={`w-2 h-2 rounded-full shrink-0 ${activeBalance >= 0 ? 'bg-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.7)]' : 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.7)]'}`}></div>
-                <span className="text-slate-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">คงเหลือสุทธิ</span>
+                <span className="text-gray-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">คงเหลือสุทธิ</span>
               </div>
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-500 shrink-0">
                 <Wallet size={14} className="sm:w-4 sm:h-4" />
@@ -468,17 +468,17 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="flex items-center justify-between mb-1.5 relative z-10">
               <div className="flex items-center gap-1.5 min-w-0">
                 <div className="w-2 h-2 rounded-full bg-pink-500 shrink-0 shadow-[0_0_8px_rgba(244,114,182,0.7)]"></div>
-                <span className="text-slate-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">จำนวนรายการ</span>
+                <span className="text-gray-500 dark:text-[#94A3B8] text-[10px] sm:text-xs font-black uppercase tracking-wider truncate">จำนวนรายการ</span>
               </div>
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-pink-400/10 border border-blue-500/20 flex items-center justify-center text-pink-400 shrink-0">
                 <Activity size={14} className="sm:w-4 sm:h-4" />
               </div>
             </div>
             <div className="flex items-baseline gap-1 relative z-10">
-              <span className="text-lg sm:text-2xl lg:text-3xl font-black text-slate-800 dark:text-white tracking-tight">
+              <span className="text-lg sm:text-2xl lg:text-3xl font-black text-gray-800 dark:text-white tracking-tight">
                 {activeTransactions.length}
               </span>
-              <span className="text-[10px] sm:text-xs text-slate-400 font-bold uppercase">รายการ</span>
+              <span className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase">รายการ</span>
             </div>
           </div>
         </div>
@@ -489,11 +489,11 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3.5">
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-4 bg-gradient-to-b from-blue-400 to-purple-600 rounded-full shrink-0"></div>
-                <h3 className="text-xs sm:text-base font-black text-slate-800 dark:text-white">
+                <h3 className="text-xs sm:text-base font-black text-gray-800 dark:text-white">
                   เปรียบเทียบรายสัปดาห์ ({weeksData.length} สัปดาห์)
                 </h3>
               </div>
-              <span className="text-[10px] sm:text-[11px] text-slate-400 font-bold ml-3.5 sm:ml-0">คลิกสัปดาห์เพื่อกรองดูเฉพาะช่วง</span>
+              <span className="text-[10px] sm:text-[11px] text-gray-400 font-bold ml-3.5 sm:ml-0">คลิกสัปดาห์เพื่อกรองดูเฉพาะช่วง</span>
             </div>
 
             <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${weeksData.length === 4 ? 'lg:grid-cols-4' : weeksData.length === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-3 xl:grid-cols-6'} gap-2.5 sm:gap-3`}>
@@ -507,28 +507,28 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="font-black text-xs sm:text-sm text-slate-800 dark:text-white group-hover:text-pink-400 transition-colors">
+                        <span className="font-black text-xs sm:text-sm text-gray-800 dark:text-white group-hover:text-pink-400 transition-colors">
                           {w.title}
                         </span>
                         <span className={`text-[9px] sm:text-[10px] px-2 py-0.5 rounded-lg font-black border ${w.balance >= 0 ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200/50 dark:border-emerald-500/20' : 'bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200/50 dark:border-rose-500/20'}`}>
                           {w.balance >= 0 ? 'สุทธิบวก' : 'สุทธิลบ'}
                         </span>
                       </div>
-                      <p className="text-[10px] sm:text-[11px] text-slate-400 font-bold mb-2.5">{w.shortRangeWithDays || w.shortRange}</p>
+                      <p className="text-[10px] sm:text-[11px] text-gray-400 font-bold mb-2.5">{w.shortRangeWithDays || w.shortRange}</p>
 
-                      <div className="space-y-1 p-2 sm:p-2.5 rounded-xl bg-slate-50 dark:bg-[#060A13]/50 border border-slate-100 dark:border-white/5 text-xs">
+                      <div className="space-y-1 p-2 sm:p-2.5 rounded-xl bg-[#FDF2F8] dark:bg-[#060A13]/50 border border-slate-100 dark:border-white/5 text-xs">
                         <div className="flex justify-between items-center text-[11px]">
-                          <span className="text-slate-500 dark:text-[#94A3B8] font-bold">รับ</span>
+                          <span className="text-gray-500 dark:text-[#94A3B8] font-bold">รับ</span>
                           <span className="font-black text-emerald-500">+{fmt(w.income)}</span>
                         </div>
                         <div className="flex justify-between items-center text-[11px]">
-                          <span className="text-slate-500 dark:text-[#94A3B8] font-bold">จ่าย</span>
+                          <span className="text-gray-500 dark:text-[#94A3B8] font-bold">จ่าย</span>
                           <span className="font-black text-rose-500">-{fmt(w.expense)}</span>
                         </div>
-                        <div className="w-full h-px bg-slate-200/50 dark:bg-white/5 my-0.5"></div>
+                        <div className="w-full h-px bg-slate-200/50 dark:bg-pink-50/60 my-0.5"></div>
                         <div className="flex justify-between items-center text-[11px]">
-                          <span className="text-slate-500 dark:text-[#94A3B8] font-bold">คงเหลือ</span>
-                          <span className={`font-black ${w.balance >= 0 ? 'text-slate-800 dark:text-white' : 'text-rose-500'}`}>
+                          <span className="text-gray-500 dark:text-[#94A3B8] font-bold">คงเหลือ</span>
+                          <span className={`font-black ${w.balance >= 0 ? 'text-gray-800 dark:text-white' : 'text-rose-500'}`}>
                             ฿{fmt(w.balance)}
                           </span>
                         </div>
@@ -563,16 +563,16 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
 
           return (
             <div className="glass-panel rounded-[28px] overflow-hidden animate-fade-in-up">
-              <div className="px-4 sm:px-5 py-4 border-b border-slate-200/50 dark:border-white/10 flex flex-col gap-3 bg-slate-50/50 dark:bg-[#0B1121]/50">
+              <div className="px-4 sm:px-5 py-4 border-b border-pink-100 dark:border-white/10 flex flex-col gap-3 bg-[#FDF2F8]/50 dark:bg-[#0B1121]/50">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
                     <div className="w-1.5 h-5 bg-gradient-to-b from-blue-400 to-purple-600 rounded-full shrink-0"></div>
-                    <h3 className="text-sm sm:text-base font-black text-slate-800 dark:text-white">
+                    <h3 className="text-sm sm:text-base font-black text-gray-800 dark:text-white">
                       รายการธุรกรรม: {activeLabel}
                     </h3>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-slate-500 dark:text-[#94A3B8] font-bold">
+                    <span className="text-xs text-gray-500 dark:text-[#94A3B8] font-bold">
                       {activeDateRangeSubtitle}
                     </span>
                     <span className="text-xs px-2.5 py-0.5 rounded-full bg-pink-50 dark:bg-pink-400/10 text-pink-500 dark:text-pink-400 font-black border border-pink-200/50 dark:border-blue-500/20">
@@ -603,11 +603,11 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                               : f.color === 'purple'
                               ? 'bg-purple-600 text-white shadow-md shadow-purple-500/20'
                               : 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                            : 'bg-white/60 dark:bg-white/5 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-white/10 border border-slate-200/50 dark:border-white/5'
+                            : 'bg-white dark:bg-pink-50/60 text-gray-600 dark:text-gray-300 hover:bg-pink-50 dark:hover:bg-pink-50/80 border border-pink-100 dark:border-white/5'
                         }`}
                       >
                         <span>{f.label}</span>
-                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-200/80 dark:bg-white/10 text-slate-600 dark:text-slate-300'}`}>
+                        <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-200/80 dark:bg-pink-50/80 text-gray-600 dark:text-gray-300'}`}>
                           {f.count}
                         </span>
                       </button>
@@ -617,14 +617,14 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               </div>
 
               {displayedTransactions.length === 0 ? (
-                <div className="p-12 flex flex-col items-center text-slate-400 space-y-3">
-                  <div className="w-16 h-16 rounded-full border-2 border-dashed border-slate-300 dark:border-[#334155] flex items-center justify-center text-slate-400 dark:text-[#64748B]">
+                <div className="p-12 flex flex-col items-center text-gray-400 space-y-3">
+                  <div className="w-16 h-16 rounded-full border-2 border-dashed border-pink-300 dark:border-[#334155] flex items-center justify-center text-gray-400 dark:text-[#64748B]">
                     <Activity size={22} />
                   </div>
-                  <p className="text-sm font-black text-slate-600 dark:text-slate-300">
+                  <p className="text-sm font-black text-gray-600 dark:text-gray-300">
                     ไม่มีรายการ{detailFilterType === 'INCOME' ? 'รายรับ' : detailFilterType === 'EXPENSE' ? 'รายจ่าย' : detailFilterType === 'IN_KIND' ? 'ถวายพิเศษ' : ''}ใน{activeLabel}
                   </p>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-gray-400">
                     ช่วงวันที่ {activeDateRangeSubtitle}
                   </p>
                 </div>
@@ -658,7 +658,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                               </span>
                             )}
                           </div>
-                          <span className="text-sm text-slate-500 dark:text-white font-bold tracking-wide">
+                          <span className="text-sm text-gray-500 dark:text-white font-bold tracking-wide">
                             {formatThaiDate(t.transaction_date)}
                           </span>
                         </div>
@@ -668,7 +668,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                         {/* BODY */}
                         <div className="relative flex items-center justify-between px-5 py-4">
                           <div className="flex-1 min-w-0 mr-4">
-                            <p className="text-base font-black text-slate-800 dark:text-white mb-1.5 truncate tracking-tight">
+                            <p className="text-base font-black text-gray-800 dark:text-white mb-1.5 truncate tracking-tight">
                               {t.description}
                             </p>
                             {inKind ? (
@@ -686,9 +686,9 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                             className={`relative w-16 h-16 rounded-2xl flex-shrink-0 flex items-center justify-center overflow-hidden transition-all duration-300 active:scale-95
                             ${t.image_url
                                 ? `cursor-pointer border-2 ${inKind ? 'border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.3)]' : (isIncome ? 'border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.3)]')}`
-                                : 'border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 cursor-default opacity-40'}`}
+                                : 'border border-pink-200 dark:border-white/10 bg-pink-50 dark:bg-pink-50/60 cursor-default opacity-40'}`}
                           >
-                            {t.image_url ? <img src={t.image_url} alt="Evidence" className="w-full h-full object-cover" /> : <ImageIcon size={20} className="text-slate-400 dark:text-white/30" />}
+                            {t.image_url ? <img src={t.image_url} alt="Evidence" className="w-full h-full object-cover" /> : <ImageIcon size={20} className="text-gray-400 dark:text-white/30" />}
                           </button>
                         </div>
 
@@ -697,13 +697,13 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                         {/* FOOTER */}
                         <div className="flex items-center justify-between px-5 py-3.5">
                           <div className="flex items-center gap-2 min-w-0 flex-1 mr-2">
-                            <span className="text-slate-400 dark:text-white/25 text-[10px] font-black uppercase tracking-widest shrink-0">NOTE</span>
-                            <span className="text-xs text-slate-500 dark:text-white/60 font-medium truncate">{cleanNote || (inKind ? 'ถวายสิ่งของ/ชำระให้โดยตรง' : '—')}</span>
+                            <span className="text-gray-400 dark:text-white/25 text-[10px] font-black uppercase tracking-widest shrink-0">NOTE</span>
+                            <span className="text-xs text-gray-500 dark:text-white/60 font-medium truncate">{cleanNote || (inKind ? 'ถวายสิ่งของ/ชำระให้โดยตรง' : '—')}</span>
                           </div>
                           {isLoggedIn && (
                             <div className="flex items-center gap-2 shrink-0">
-                              <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-pink-400 hover:border-pink-400/50 active:scale-95 transition-all"><Edit size={13} /></button>
-                              <button onClick={(e) => { e.stopPropagation(); handleDeleteTransaction(t.id); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-rose-500 hover:border-rose-400/50 active:scale-95 transition-all"><Trash2 size={13} /></button>
+                              <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-pink-50 dark:bg-pink-50/80 border border-pink-200 dark:border-white/15 flex items-center justify-center text-gray-400 dark:text-white/50 hover:text-pink-400 hover:border-pink-400/50 active:scale-95 transition-all"><Edit size={13} /></button>
+                              <button onClick={(e) => { e.stopPropagation(); handleDeleteTransaction(t.id); }} className="w-8 h-8 rounded-xl bg-pink-50 dark:bg-pink-50/80 border border-pink-200 dark:border-white/15 flex items-center justify-center text-gray-400 dark:text-white/50 hover:text-rose-500 hover:border-rose-400/50 active:scale-95 transition-all"><Trash2 size={13} /></button>
                             </div>
                           )}
                         </div>
@@ -731,7 +731,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
           <div>
             <h1 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-2 pb-2 tracking-tighter drop-shadow-sm">Financial Analytics</h1>
-            <p className="text-slate-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
+            <p className="text-gray-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
               <PieIcon size={14} className="text-pink-400" />
               รายงานสรุปการเงินคริสตจักร ประจำปี
             </p>
@@ -742,7 +742,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="flex gap-3 w-full md:w-auto">
               <button
                 onClick={() => handleExportCSV(reportTransactions, `worship_data_yearly_${selectedYear}`)}
-                className="group relative flex flex-1 md:flex-none items-center justify-center space-x-2 bg-white hover:bg-slate-50 border border-slate-200 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-white px-4 py-3 md:py-2.5 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
+                className="group relative flex flex-1 md:flex-none items-center justify-center space-x-2 bg-white hover:bg-[#FDF2F8] border border-pink-200 dark:border-white/10 dark:bg-pink-50/80 dark:hover:bg-pink-50/20 text-gray-700 dark:text-white px-4 py-3 md:py-2.5 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
               >
                 <Download size={14} className="text-pink-400 group-hover:translate-y-1 transition-transform duration-300" />
                 <span className="whitespace-nowrap">ส่งออกรายปี</span>
@@ -752,16 +752,16 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
             <div className="glass-panel p-1 rounded-2xl flex items-center justify-between md:justify-start w-full md:w-auto shadow-lg shadow-blue-500/5">
               <button
                 onClick={() => setSelectedYear(y => y - 1)}
-                className="p-4 md:p-3 text-slate-400 dark:text-[#64748B] hover:text-pink-400 dark:hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all duration-300"
+                className="p-4 md:p-3 text-gray-400 dark:text-[#64748B] hover:text-pink-400 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-pink-50/60 rounded-xl transition-all duration-300"
               >
                 <ChevronLeft size={24} className="md:w-5 md:h-5" />
               </button>
-              <div className="px-4 md:px-8 font-black text-2xl md:text-2xl text-slate-800 dark:text-white tracking-widest text-glow-emerald">
+              <div className="px-4 md:px-8 font-black text-2xl md:text-2xl text-gray-800 dark:text-white tracking-widest text-glow-emerald">
                 {selectedYear}
               </div>
               <button
                 onClick={() => setSelectedYear(y => y + 1)}
-                className="p-4 md:p-3 text-slate-400 dark:text-[#64748B] hover:text-pink-400 dark:hover:text-pink-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all duration-300"
+                className="p-4 md:p-3 text-gray-400 dark:text-[#64748B] hover:text-pink-400 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-pink-50/60 rounded-xl transition-all duration-300"
               >
                 <ChevronRight size={24} className="md:w-5 md:h-5" />
               </button>
@@ -778,7 +778,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
-              <div className="text-slate-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">รายรับรวมทั้งปี</div>
+              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">รายรับรวมทั้งปี</div>
             </div>
             <div className="text-3xl lg:text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700 dark:from-emerald-400 dark:to-emerald-500">฿{fmt(reportYearlyIncome)}</div>
           </div>
@@ -792,7 +792,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
-              <div className="text-slate-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">รายจ่ายรวมทั้งปี</div>
+              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">รายจ่ายรวมทั้งปี</div>
             </div>
             <div className="text-3xl lg:text-4xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-rose-700 dark:from-rose-400 dark:to-rose-500">฿{fmt(reportYearlyExpense)}</div>
           </div>
@@ -806,7 +806,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <div className={`w-1.5 h-1.5 rounded-full ${reportYearlyBalance >= 0 ? 'bg-violet-500' : 'bg-rose-500'}`}></div>
-              <div className="text-slate-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">ยอดคงเหลือสุทธิปีนี้</div>
+              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">ยอดคงเหลือสุทธิปีนี้</div>
             </div>
             <div className={`text-3xl lg:text-4xl font-black tracking-tight ${reportYearlyBalance >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-violet-500 to-fuchsia-500' : 'text-rose-500'}`}>฿{fmt(reportYearlyBalance)}</div>
           </div>
@@ -820,11 +820,11 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse"></div>
-              <div className="text-slate-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">อัตราการออมสุทธิ</div>
+              <div className="text-gray-500 dark:text-[#94A3B8] text-xs font-black uppercase tracking-[0.15em] whitespace-nowrap">อัตราการออมสุทธิ</div>
             </div>
             <div className="flex items-baseline gap-1">
               <div className={`text-3xl lg:text-4xl font-black tracking-tight ${reportSavingsRate >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400' : 'text-rose-500'}`}>{reportSavingsRate > 0 ? '+' : ''}{reportSavingsRate}</div>
-              <span className="text-lg font-bold text-slate-500">%</span>
+              <span className="text-lg font-bold text-gray-500">%</span>
             </div>
           </div>
           <div className="relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400/20 to-blue-600/5 border border-blue-500/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-[0_0_15px_rgba(244,114,182,0.1)]">
@@ -841,11 +841,11 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
         <div className="glass-panel p-5 md:p-8 rounded-[24px] md:rounded-[32px] h-[340px] md:h-[450px] flex flex-col relative animate-fade-in-up">
           <div className="absolute top-0 right-0 w-[80%] h-full bg-gradient-to-l from-blue-500/5 to-transparent pointer-events-none rounded-r-[32px]"></div>
           <div className="mb-8 relative z-10">
-            <h3 className="text-xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-3">
+            <h3 className="text-xl font-black text-gray-800 dark:text-white tracking-tight flex items-center gap-3">
               <span className="w-2 h-6 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></span>
               แนวโน้มรายรับ-รายจ่าย (12 เดือน)
             </h3>
-            <p className="text-xs text-slate-500 ml-5 mt-1 font-bold uppercase tracking-widest">Yearly Trend Analysis</p>
+            <p className="text-xs text-gray-500 ml-5 mt-1 font-bold uppercase tracking-widest">Yearly Trend Analysis</p>
           </div>
 
           <div className="flex-1 w-full relative z-10">
@@ -855,7 +855,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                   <linearGradient id="colorIncAreaLine" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#34D399" stopOpacity={0.4} /><stop offset="95%" stopColor="#34D399" stopOpacity={0} /></linearGradient>
                   <linearGradient id="colorExpAreaLine" x1="0" y1="0" x2="0" y2="1"><stop offset="5%" stopColor="#FB7185" stopOpacity={0.4} /><stop offset="95%" stopColor="#FB7185" stopOpacity={0} /></linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-slate-200 dark:text-[#1E293B]" opacity={0.5} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-gray-200 dark:text-[#1E293B]" opacity={0.5} />
                 <XAxis
                   dataKey="name"
                   tickLine={false}
@@ -881,12 +881,12 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                     if (active && payload && payload.length) {
                       return (
                         <div className="bg-[#0F172A]/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
-                          <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest mb-3">{label}</p>
+                          <p className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-3">{label}</p>
                           <div className="space-y-2.5">
                             {payload.map((entry, index) => (
                               <div key={`item-${index}`} className="flex items-center gap-3">
                                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: entry.color, boxShadow: `0 0 10px ${entry.color}` }}></div>
-                                <span className="text-slate-200 font-bold text-xs">{entry.name}: <span className="font-black text-white ml-1">฿{fmt(entry.value)}</span></span>
+                                <span className="text-gray-200 font-bold text-xs">{entry.name}: <span className="font-black text-white ml-1">฿{fmt(entry.value)}</span></span>
                               </div>
                             ))}
                           </div>
@@ -907,16 +907,16 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
         <div className="glass-panel p-5 md:p-8 rounded-[24px] md:rounded-[32px] h-[340px] md:h-[450px] flex flex-col relative animate-fade-in-up">
           <div className="absolute top-0 left-0 w-[80%] h-full bg-gradient-to-r from-purple-500/5 to-transparent pointer-events-none rounded-l-[32px]"></div>
           <div className="mb-8 relative z-10">
-            <h3 className="text-xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-3">
+            <h3 className="text-xl font-black text-gray-800 dark:text-white tracking-tight flex items-center gap-3">
               <span className="w-2 h-6 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full"></span>
               เงินคงเหลือรายเดือนสุทธิ
             </h3>
-            <p className="text-xs text-slate-500 ml-5 mt-1 font-bold uppercase tracking-widest">Monthly Net Balance</p>
+            <p className="text-xs text-gray-500 ml-5 mt-1 font-bold uppercase tracking-widest">Monthly Net Balance</p>
           </div>
           <div className="flex-1 w-full relative z-10">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={reportMonthlyStats} margin={{ top: 10, right: 10, left: -10, bottom: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-slate-200 dark:text-[#1E293B]" opacity={0.5} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="currentColor" className="text-gray-200 dark:text-[#1E293B]" opacity={0.5} />
                 <XAxis
                   dataKey="name"
                   tickLine={false}
@@ -944,10 +944,10 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                       const isPos = item.balance >= 0;
                       return (
                         <div className="bg-[#0F172A]/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
-                          <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest mb-3">{label}</p>
+                          <p className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-3">{label}</p>
                           <div className="flex items-center gap-3">
                             <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: isPos ? '#8B5CF6' : '#F43F5E', boxShadow: `0 0 10px ${isPos ? '#8B5CF6' : '#F43F5E'}` }}></div>
-                            <span className="text-slate-200 font-bold text-xs">{isPos ? 'คงเหลือสุทธิ' : 'ขาดทุนสุทธิ'}: <span className={`font-black ml-1 ${isPos ? 'text-violet-400' : 'text-rose-400'}`}>{isPos ? '+' : '-'}฿{fmt(Math.abs(item.balance))}</span></span>
+                            <span className="text-gray-200 font-bold text-xs">{isPos ? 'คงเหลือสุทธิ' : 'ขาดทุนสุทธิ'}: <span className={`font-black ml-1 ${isPos ? 'text-violet-400' : 'text-rose-400'}`}>{isPos ? '+' : '-'}฿{fmt(Math.abs(item.balance))}</span></span>
                           </div>
                         </div>
                       );
@@ -966,10 +966,10 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
 
       {/* Monthly Summary Grids (12 Cards) */}
       <div className="mb-6 mt-8 md:mt-0 relative animate-fade-in-up">
-        <h3 className="text-xl md:text-2xl font-black text-slate-800 dark:text-white tracking-tight flex items-center gap-3">
+        <h3 className="text-xl md:text-2xl font-black text-gray-800 dark:text-white tracking-tight flex items-center gap-3">
           <LineChart className="text-pink-400 md:w-6 md:h-6" size={20} /> สรุปละเอียดรายเดือน
         </h3>
-        <p className="text-[10px] md:text-xs text-slate-500 font-bold uppercase tracking-widest mt-1 ml-8 md:ml-9">Monthly Breakdown Panel (คลิกเพื่อดูรายละเอียด)</p>
+        <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest mt-1 ml-8 md:ml-9">Monthly Breakdown Panel (คลิกเพื่อดูรายละเอียด)</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 pb-12 animate-fade-in-up">
@@ -991,7 +991,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               )}
 
               <div className="flex justify-between items-center mb-5 relative z-10">
-                <h4 className={`font-black text-lg tracking-wide transition-colors group-hover:text-pink-400 dark:group-hover:text-pink-400 ${isCurrentMonth ? 'text-pink-500 dark:text-pink-400' : 'text-slate-800 dark:text-white'}`}>
+                <h4 className={`font-black text-lg tracking-wide transition-colors group-hover:text-pink-400 dark:group-hover:text-pink-400 ${isCurrentMonth ? 'text-pink-500 dark:text-pink-400' : 'text-gray-800 dark:text-white'}`}>
                   {month.name}
                 </h4>
                 <div className={`px-2.5 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider border ${month.balance >= 0 ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-200/50 dark:border-emerald-500/20' : 'bg-rose-50 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-200/50 dark:border-rose-500/20'}`}>
@@ -1000,21 +1000,21 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
               </div>
 
               <div className="space-y-4 relative z-10">
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#060A13]/50 border border-slate-100 dark:border-white/5 space-y-2.5">
+                <div className="p-3 rounded-xl bg-[#FDF2F8] dark:bg-[#060A13]/50 border border-slate-100 dark:border-white/5 space-y-2.5">
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500 dark:text-[#94A3B8] text-[11px] font-bold uppercase tracking-wider">รายรับ</span>
+                    <span className="text-gray-500 dark:text-[#94A3B8] text-[11px] font-bold uppercase tracking-wider">รายรับ</span>
                     <span className="text-emerald-500 dark:text-[#4ADE80] font-black text-sm tracking-wide">+{fmt(month.income)}</span>
                   </div>
                   <div className="w-full h-px bg-slate-200/50 dark:bg-white/5"></div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500 dark:text-[#94A3B8] text-[11px] font-bold uppercase tracking-wider">รายจ่าย</span>
+                    <span className="text-gray-500 dark:text-[#94A3B8] text-[11px] font-bold uppercase tracking-wider">รายจ่าย</span>
                     <span className="text-rose-500 dark:text-[#FB7185] font-black text-sm tracking-wide">-{fmt(month.expense)}</span>
                   </div>
                 </div>
 
                 <div className="flex justify-between items-end px-1">
-                  <span className="text-slate-400 dark:text-[#64748B] text-[10px] font-bold uppercase tracking-widest">ยอดสุทธิ</span>
-                  <span className={`font-black tracking-tight ${month.balance >= 0 ? 'text-slate-800 dark:text-white group-hover:text-pink-400 transition-colors' : 'text-rose-500'}`}>
+                  <span className="text-gray-400 dark:text-[#64748B] text-[10px] font-bold uppercase tracking-widest">ยอดสุทธิ</span>
+                  <span className={`font-black tracking-tight ${month.balance >= 0 ? 'text-gray-800 dark:text-white group-hover:text-pink-400 transition-colors' : 'text-rose-500'}`}>
                     ฿{fmt(month.balance)}
                   </span>
                 </div>

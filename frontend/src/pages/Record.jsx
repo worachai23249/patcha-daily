@@ -117,7 +117,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
         <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 mb-2 pb-1 tracking-tighter drop-shadow-sm">Transaction Logs</h1>
-            <p className="text-slate-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
+            <p className="text-gray-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
               <Database size={14} className="text-pink-400" />
               บันทึกการเงินและรายการทั้งหมด
             </p>
@@ -125,7 +125,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
           <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto mt-4 md:mt-0">
             <button
               onClick={handleExportCSV}
-              className="group relative flex items-center justify-center space-x-2 bg-white hover:bg-slate-50 border border-slate-200 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/20 text-slate-700 dark:text-white px-5 py-3.5 md:py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
+              className="group relative flex items-center justify-center space-x-2 bg-white hover:bg-[#FDF2F8] border border-pink-200 dark:border-white/10 dark:bg-pink-50/80 dark:hover:bg-pink-50/20 text-gray-700 dark:text-white px-5 py-3.5 md:py-3 rounded-full font-black text-xs uppercase tracking-widest transition-all duration-300 active:scale-95 shadow-sm"
             >
               <Download size={16} className="text-pink-400 group-hover:translate-y-1 transition-transform duration-300" />
               <span>ส่งออก</span>
@@ -143,20 +143,20 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex bg-white/70 dark:bg-[#0B1121]/60 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-[20px] p-1 mb-6 max-w-xl shadow-sm animate-fade-in-up">
-        <button onClick={() => setFilterType('ALL')} className={`group flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'ALL' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm' : 'text-slate-500 dark:text-[#94A3B8] hover:text-slate-800 dark:hover:text-white'}`}>
-          <Filter size={12} className={filterType === 'ALL' ? 'text-white' : 'text-slate-400 group-hover:text-pink-400'} />
+      <div className="flex bg-white dark:bg-[#0B1121]/60 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-[20px] p-1 mb-6 max-w-xl shadow-sm animate-fade-in-up">
+        <button onClick={() => setFilterType('ALL')} className={`group flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'ALL' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-gray-800 dark:hover:text-white'}`}>
+          <Filter size={12} className={filterType === 'ALL' ? 'text-white' : 'text-gray-400 group-hover:text-pink-400'} />
           ทั้งหมด
         </button>
-        <button onClick={() => setFilterType('INCOME')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-sm' : 'text-slate-500 dark:text-[#94A3B8] hover:text-emerald-500'}`}>
+        <button onClick={() => setFilterType('INCOME')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-emerald-500'}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'INCOME' ? 'bg-white' : 'bg-emerald-500'}`}></span>
           รายรับ
         </button>
-        <button onClick={() => setFilterType('EXPENSE')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-sm' : 'text-slate-500 dark:text-[#94A3B8] hover:text-rose-500'}`}>
+        <button onClick={() => setFilterType('EXPENSE')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-sm' : 'text-gray-500 dark:text-[#94A3B8] hover:text-rose-500'}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'EXPENSE' ? 'bg-white' : 'bg-rose-500'}`}></span>
           รายจ่าย
         </button>
-        <button onClick={() => setFilterType('IN_KIND')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm shadow-purple-500/20' : 'text-slate-500 dark:text-[#94A3B8] hover:text-purple-500'}`}>
+        <button onClick={() => setFilterType('IN_KIND')} className={`flex-1 py-2.5 rounded-[16px] text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm shadow-purple-500/20' : 'text-gray-500 dark:text-[#94A3B8] hover:text-purple-500'}`}>
           <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'IN_KIND' ? 'bg-white' : 'bg-purple-500'}`}></span>
           🎁 สิ่งของ
         </button>
@@ -165,10 +165,10 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
       {/* Premium Card Grid — All screens */}
       <div className="animate-fade-in-up">
         {filteredTransactions.length === 0 ? (
-          <div className="glass-panel rounded-[24px] p-12 flex flex-col items-center text-slate-400 space-y-4">
-            <div className="w-14 h-14 rounded-full border-2 border-slate-300 dark:border-[#334155] border-t-blue-500 flex items-center justify-center"><Database size={20} className="text-slate-400" /></div>
-            <span className="text-sm font-black uppercase tracking-widest text-slate-500 dark:text-[#94A3B8]">No Data Found</span>
-            <span className="text-xs text-slate-400">ไม่พบข้อมูลในหมวดหมู่นี้</span>
+          <div className="glass-panel rounded-[24px] p-12 flex flex-col items-center text-gray-400 space-y-4">
+            <div className="w-14 h-14 rounded-full border-2 border-pink-300 dark:border-[#334155] border-t-blue-500 flex items-center justify-center"><Database size={20} className="text-gray-400" /></div>
+            <span className="text-sm font-black uppercase tracking-widest text-gray-500 dark:text-[#94A3B8]">No Data Found</span>
+            <span className="text-xs text-gray-400">ไม่พบข้อมูลในหมวดหมู่นี้</span>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 px-0">
@@ -200,7 +200,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
                         <span className={`text-sm font-black tracking-[0.25em] uppercase ${isIncome ? 'text-emerald-400' : 'text-rose-400'}`}>{isIncome ? 'รายรับ' : 'รายจ่าย'}</span>
                       )}
                     </div>
-                    <span className="text-sm text-slate-500 dark:text-white font-bold tracking-wide">{formatThaiDate(t.transaction_date)}</span>
+                    <span className="text-sm text-gray-500 dark:text-white font-bold tracking-wide">{formatThaiDate(t.transaction_date)}</span>
                   </div>
 
                   {/* Divider */}
@@ -209,7 +209,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
                   {/* BODY */}
                   <div className="relative flex items-center justify-between px-5 py-4">
                     <div className="flex-1 min-w-0 mr-4">
-                      <p className="text-base font-black text-slate-800 dark:text-white mb-1.5 truncate tracking-tight">{t.description}</p>
+                      <p className="text-base font-black text-gray-800 dark:text-white mb-1.5 truncate tracking-tight">{t.description}</p>
                       {inKind ? (
                         <span className="text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-purple-300">
                           ฿{fmt(t.amount)}
@@ -225,9 +225,9 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
                       className={`relative w-16 h-16 rounded-2xl flex-shrink-0 flex items-center justify-center overflow-hidden transition-all duration-300 active:scale-95
                         ${t.image_url
                           ? `cursor-pointer border-2 ${inKind ? 'border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.3)]' : (isIncome ? 'border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.3)]' : 'border-rose-500/50 shadow-[0_0_20px_rgba(244,63,94,0.3)]')}`
-                          : 'border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 cursor-default opacity-40'}`}
+                          : 'border border-pink-200 dark:border-white/10 bg-pink-50 dark:bg-pink-50/60 cursor-default opacity-40'}`}
                     >
-                      {t.image_url ? <img src={t.image_url} alt="Receipt" className="w-full h-full object-cover" /> : <ImageIcon size={20} className="text-slate-400 dark:text-white/30" />}
+                      {t.image_url ? <img src={t.image_url} alt="Receipt" className="w-full h-full object-cover" /> : <ImageIcon size={20} className="text-gray-400 dark:text-white/30" />}
                     </button>
                   </div>
 
@@ -237,12 +237,12 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
                   {/* FOOTER */}
                   <div className="flex items-center justify-between px-5 py-3.5">
                     <div className="flex items-center gap-2 min-w-0 flex-1 mr-2">
-                      <span className="text-slate-400 dark:text-white/25 text-[10px] font-black uppercase tracking-widest shrink-0">NOTE</span>
-                      <span className="text-xs text-slate-500 dark:text-white/60 font-medium truncate">{cleanNote || (inKind ? 'ถวายสิ่งของ/ชำระให้โดยตรง' : '—')}</span>
+                      <span className="text-gray-400 dark:text-white/25 text-[10px] font-black uppercase tracking-widest shrink-0">NOTE</span>
+                      <span className="text-xs text-gray-500 dark:text-white/60 font-medium truncate">{cleanNote || (inKind ? 'ถวายสิ่งของ/ชำระให้โดยตรง' : '—')}</span>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
-                      <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-pink-400 hover:border-pink-400/50 active:scale-95 transition-all"><Edit size={13} /></button>
-                      <button onClick={(e) => { e.stopPropagation(); handleDeleteTransaction(t.id); }} className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/15 flex items-center justify-center text-slate-400 dark:text-white/50 hover:text-rose-500 hover:border-rose-400/50 active:scale-95 transition-all"><Trash2 size={13} /></button>
+                      <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-pink-50 dark:bg-pink-50/80 border border-pink-200 dark:border-white/15 flex items-center justify-center text-gray-400 dark:text-white/50 hover:text-pink-400 hover:border-pink-400/50 active:scale-95 transition-all"><Edit size={13} /></button>
+                      <button onClick={(e) => { e.stopPropagation(); handleDeleteTransaction(t.id); }} className="w-8 h-8 rounded-xl bg-pink-50 dark:bg-pink-50/80 border border-pink-200 dark:border-white/15 flex items-center justify-center text-gray-400 dark:text-white/50 hover:text-rose-500 hover:border-rose-400/50 active:scale-95 transition-all"><Trash2 size={13} /></button>
                     </div>
                   </div>
                 </div>
