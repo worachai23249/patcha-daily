@@ -128,18 +128,35 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
               };
 
               if (!isIncome) {
-                theme = {
-                  border: 'border-rose-400/50 dark:border-rose-500/40 bg-rose-500/5',
-                  shimmer: 'via-rose-400',
-                  glow: 'bg-rose-500/20',
-                  dot: 'bg-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.9)]',
-                  badge: isTransfer ? 'text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-950/70 border border-blue-300/60 dark:border-blue-800/60' : 'text-rose-700 dark:text-rose-300 bg-rose-100 dark:bg-rose-950/70 border border-rose-300/60 dark:border-rose-800/60',
-                  badgeText: isTransfer ? '💳 เงินโอน' : '💵 เงินสด',
-                  typeText: 'text-rose-600 dark:text-rose-400',
-                  typeLabel: 'รายจ่าย',
-                  amountGradient: 'text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-rose-600 dark:from-rose-300 dark:to-rose-500',
-                  sign: '-'
-                };
+                if (isTransfer) {
+                  // 🟣 รายจ่าย (เงินโอน) - ม่วงอินดิโก้ / น้ำเงินคราม
+                  theme = {
+                    border: 'border-indigo-400/50 dark:border-indigo-500/40 bg-indigo-500/5',
+                    shimmer: 'via-indigo-400',
+                    glow: 'bg-indigo-500/25',
+                    dot: 'bg-indigo-400 shadow-[0_0_10px_rgba(99,102,241,0.9)]',
+                    badge: 'text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950/70 border border-indigo-300/60 dark:border-indigo-800/60',
+                    badgeText: '💳 เงินโอน',
+                    typeText: 'text-indigo-600 dark:text-indigo-400',
+                    typeLabel: 'รายจ่าย',
+                    amountGradient: 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 dark:from-indigo-300 dark:via-purple-300 dark:to-violet-300',
+                    sign: '-'
+                  };
+                } else {
+                  // 🔴 รายจ่าย (เงินสด) - แดงกุหลาบ / ชมพูสดใส
+                  theme = {
+                    border: 'border-rose-400/50 dark:border-rose-500/40 bg-rose-500/5',
+                    shimmer: 'via-rose-400',
+                    glow: 'bg-rose-500/20',
+                    dot: 'bg-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.9)]',
+                    badge: 'text-rose-700 dark:text-rose-300 bg-rose-100 dark:bg-rose-950/70 border border-rose-300/60 dark:border-rose-800/60',
+                    badgeText: '💵 เงินสด',
+                    typeText: 'text-rose-600 dark:text-rose-400',
+                    typeLabel: 'รายจ่าย',
+                    amountGradient: 'text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-red-600 dark:from-rose-300 dark:to-red-400',
+                    sign: '-'
+                  };
+                }
               } else if (isTransfer) {
                 theme = {
                   border: 'border-cyan-400/50 dark:border-cyan-500/40 bg-cyan-500/5',
