@@ -787,11 +787,9 @@ function App() {
             {/* Soft pink aura */}
             <div className="absolute top-[20px] w-[260px] h-[260px] bg-pink-400/20 dark:bg-pink-500/25 rounded-full blur-[60px] pointer-events-none z-0" />
 
-            {/* Logo mascot floating above card */}
-            <div className="relative z-10 w-[120px] sm:w-[140px] -mb-10 drop-shadow-[0_15px_25px_rgba(244,114,182,0.4)] transition-transform duration-500 hover:scale-105 pointer-events-none">
-              <div className="w-full h-full rounded-full p-2 glass-panel border-2 border-white/90 shadow-[0_15px_35px_-5px_rgba(244,114,182,0.4)] flex items-center justify-center">
-                <img src="/logo.png?v=8" alt="Patcha Daily" className="w-full h-full object-contain" />
-              </div>
+            {/* Success Pig Mascot (Floating OK piglet) */}
+            <div className="relative z-10 w-[190px] sm:w-[220px] -mb-12 drop-shadow-[0_15px_30px_rgba(244,114,182,0.45)] transition-transform duration-500 hover:scale-105 pointer-events-none">
+              <img src="/success_pig.png?v=1" alt="Success" className="w-full h-auto object-contain" />
             </div>
 
             {/* Main Card */}
