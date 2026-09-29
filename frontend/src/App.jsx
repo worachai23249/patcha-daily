@@ -25,7 +25,7 @@ import Reports from './pages/Reports';
 import Login from './pages/Login';
 import NotificationToast from './components/NotificationToast';
 import NotificationSettingsModal from './components/NotificationSettingsModal';
-import { sendTransactionNotification, isInKindTransaction, cleanTransactionNote } from './services/notificationService';
+import { sendTransactionNotification, cleanTransactionNote } from './services/notificationService';
 
 const CATEGORY_COLORS = ['#EF4444', '#F87171', '#F97316', '#EAB308', '#84CC16', '#10B981', '#059669', '#14B8A6', '#06B6D4', '#0EA5E9', '#3B82F6', '#6366F1', '#8B5CF6', '#A855F7', '#D946EF', '#EC4899', '#64748B'];
 
@@ -130,7 +130,6 @@ function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isCategoryFormOpen, setIsCategoryFormOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
-  const [donationType, setDonationType] = useState('CASH'); // 'CASH' or 'IN_KIND'
   const [formData, setFormData] = useState({ transaction_date: new Date().toISOString().split('T')[0], type: 'EXPENSE', description: '', amount: '', note: '' });
   const [categoryFormData, setCategoryFormData] = useState({ id: null, name: '', type: 'EXPENSE', color: CATEGORY_COLORS[11] });
   const [imagePreview, setImagePreview] = useState(null);
@@ -237,7 +236,6 @@ function App() {
 
   const handleOpenAddTransaction = () => {
     setEditingId(null); 
-    setDonationType('CASH');
     setFormData({ transaction_date: new Date().toISOString().split('T')[0], type: 'EXPENSE', description: '', amount: '', note: '' });
     setImagePreview(null); 
     setIsFormOpen(true);
@@ -245,7 +243,6 @@ function App() {
 
   const handleOpenEditTransaction = (tx) => {
     setEditingId(tx.id);
-    setDonationType(isInKindTransaction(tx) ? 'IN_KIND' : 'CASH');
     setFormData({ 
       transaction_date: tx.transaction_date, 
       type: tx.type, 
@@ -310,12 +307,8 @@ function App() {
     e.preventDefault();
     const isEdit = !!editingId;
     try {
-      const rawNote = cleanTransactionNote(formData.note);
-      const finalNote = (formData.type === 'INCOME' && donationType === 'IN_KIND')
-        ? `[สิ่งของ/จ่ายให้] ${rawNote}`.trim()
-        : rawNote;
-
-      const payload = { ...formData, note: finalNote, image_url: imagePreview };
+      const cleanNote = cleanTransactionNote(formData.note);
+      const payload = { ...formData, note: cleanNote, image_url: imagePreview };
 
       let res;
       if (isEdit) {
@@ -597,50 +590,17 @@ function App() {
                 <button type="button" onClick={() => setFormData({ ...formData, type: 'EXPENSE', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-rose-500'}`}>รายจ่าย</button>
               </div>
 
-              {formData.type === 'INCOME' && (
-                <div className="bg-white/60 dark:bg-[#060A13]/60 border border-slate-200/60 dark:border-white/10 rounded-[18px] p-2.5 shadow-sm space-y-2 animate-fade-in">
-                  <div className="flex items-center justify-between px-1">
-                    <span className="text-[10px] font-black text-gray-500 dark:text-[#94A3B8] uppercase tracking-wider">รูปแบบการถวาย / รายรับ</span>
-                    {donationType === 'IN_KIND' && (
-                      <span className="text-[10px] font-black text-purple-600 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/70 border border-purple-300/50 dark:border-purple-800/50 px-2.5 py-0.5 rounded-full">
-                        ✨ ไม่รวมในยอดเงินสด
-                      </span>
-                    )}
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      type="button"
-                      onClick={() => setDonationType('CASH')}
-                      className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${donationType === 'CASH' ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20' : 'bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}
-                    >
-                      <span>💵 ถวายเป็นเงินสด</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setDonationType('IN_KIND')}
-                      className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${donationType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/30' : 'bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-slate-400 hover:text-purple-500'}`}
-                    >
-                      <span>🎁 สิ่งของ / จ่ายให้</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-
               <div>
-                <div className="flex items-center justify-between mb-2 ml-1">
-                  <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.2em]">
-                    {formData.type === 'INCOME' && donationType === 'IN_KIND' ? 'มูลค่าประเมินสิ่งของ / ยอดชำระให้ (บาท)' : 'จำนวนเงิน (บาท)'}
-                  </label>
-                  {formData.type === 'INCOME' && donationType === 'IN_KIND' && (
-                    <span className="text-[10px] font-bold text-purple-500 dark:text-purple-400">*ไม่นำไปรวมเงินสดคงเหลือ</span>
-                  )}
-                </div>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">
+                  จำนวนเงิน (บาท)
+                </label>
                 <input 
                   type="number" 
+                  step="any"
                   value={formData.amount} 
                   onChange={(e) => setFormData({ ...formData, amount: e.target.value })} 
                   required 
-                  className={`w-full py-4 md:py-5 text-3xl md:text-4xl font-black text-center bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white transition-all shadow-sm font-sans ${formData.type === 'INCOME' && donationType === 'IN_KIND' ? 'border-purple-500/50 focus:ring-2 focus:ring-purple-500/50 text-purple-600 dark:text-purple-300' : 'border-pink-100 dark:border-white/10 focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400'}`} 
+                  className="w-full py-4 md:py-5 text-3xl md:text-4xl font-black text-center bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-sans" 
                   placeholder="0.00" 
                 />
               </div>
@@ -716,7 +676,7 @@ function App() {
                   type="text"
                   value={categoryFormData.name}
                   onChange={(e) => setCategoryFormData({ ...categoryFormData, name: e.target.value })}
-                  placeholder="เช่น อาหาร, ถุงถวาย"
+                  placeholder="เช่น กล่องพัสดุ, แฟลชโฮม, ค่าไฟ"
                   required
                   className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] text-gray-800 dark:text-white font-bold outline-none focus:ring-2 focus:ring-pink-400/50 transition-colors shadow-sm text-sm md:text-base"
                 />
