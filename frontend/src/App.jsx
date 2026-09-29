@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   getTransactions,
   getCategories,
@@ -10,7 +10,7 @@ import {
   deleteCategory,
   getNewTransactions,
   checkAuth,
-  logout,
+  logout
 } from './supabase';
 
 import {
@@ -70,7 +70,7 @@ function App() {
       gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
       oscillator.start(audioCtx.currentTime);
       oscillator.stop(audioCtx.currentTime + 0.3);
-    } catch { /* AudioContext not available */ }
+    } catch { /* Audio not supported */ }
   };
 
   const setUnreadBadge = (count) => {
@@ -86,11 +86,11 @@ function App() {
     }
   };
 
-  // เธชเนเธ Web Notification เธเธฃเธดเธเนเธเธขเธฑเธ notification bar เธเธญเธเธกเธทเธญเธ–เธทเธญ/เธเธญเธก
+  // ส่ง Web Notification จริงไปยัง notification bar ของมือถือ/คอม
   const sendWebNotification = (title, body) => {
     if (!('Notification' in window) || Notification.permission !== 'granted') return;
     try {
-      // เนเธเน Service Worker showNotification (เธฃเธญเธเธฃเธฑเธเธกเธทเธญเธ–เธทเธญเธ”เธตเธเธงเนเธฒ new Notification)
+      // ใช้ Service Worker showNotification (รองรับมือถือดีกว่า new Notification)
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.ready.then(reg => {
           reg.showNotification(title, {
@@ -170,14 +170,14 @@ function App() {
     Promise.all([fetchTransactions(), fetchCategories(), authCheck])
       .finally(() => setLoading(false));
 
-    // Register Service Worker + เธเธญเธชเธดเธ—เธเธดเนเนเธเนเธเน€เธ•เธทเธญเธเธญเธฑเธ•เนเธเธกเธฑเธ•เธด
+    // Register Service Worker + ขอสิทธิ์แจ้งเตือนอัตโนมัติ
     setupPWAWorker();
     if ('Notification' in window && Notification.permission === 'default') {
       setTimeout(() => requestNotificationPermission(), 3000);
     }
   }, []);
 
-  // โ”€โ”€ เน€เธเธฅเธตเธขเธฃเน badge เน€เธกเธทเนเธญเธเธนเนเนเธเนเน€เธเธดเธ”เนเธญเธ/เนเธเธเธฑเธชเธ—เธตเนเธซเธเนเธฒเธ•เนเธฒเธ โ”€โ”€
+  // ── เคลียร์ badge เมื่อผู้ใช้เปิดแอพ/โฟกัสที่หน้าต่าง ──
   useEffect(() => {
     const clearOnFocus = () => {
       notifCountRef.current = 0;
@@ -192,14 +192,14 @@ function App() {
     };
   }, []);
 
-  // โ”€โ”€ Set initial lastId once transactions load โ”€โ”€
+  // ── Set initial lastId once transactions load ──
   useEffect(() => {
     if (lastIdRef.current === null && transactions.length > 0) {
       lastIdRef.current = Math.max(...transactions.map(t => parseInt(t.id) || 0));
     }
   }, [transactions]);
 
-  // โ”€โ”€ Poll for new transactions every 30s โ”€โ”€
+  // ── Poll for new transactions every 30s ──
   useEffect(() => {
     let interval;
     const startPolling = () => {
@@ -214,12 +214,12 @@ function App() {
             const newCount = data.length;
             notifCountRef.current += newCount;
             setUnreadBadge(notifCountRef.current);
-            // เธชเนเธ Web Notification เน€เธเนเธฒ notification bar เธกเธทเธญเธ–เธทเธญ
+            // ส่ง Web Notification เข้า notification bar มือถือ
             const first = data[0];
-            const typeLabel = first.type === 'INCOME' ? 'เธฃเธฒเธขเธฃเธฑเธเนเธซเธกเน' : 'เธฃเธฒเธขเธเนเธฒเธขเนเธซเธกเน';
-            const amountLabel = `เธฟ${Number(first.amount).toLocaleString('th-TH')}`;
+            const typeLabel = first.type === 'INCOME' ? 'รายรับใหม่' : 'รายจ่ายใหม่';
+            const amountLabel = `฿${Number(first.amount).toLocaleString('th-TH')}`;
             sendWebNotification(
-              `Patcha Daily โ€” ${typeLabel}${newCount > 1 ? ` (+${newCount} เธฃเธฒเธขเธเธฒเธฃ)` : ''}`,
+              `Patcha Daily — ${typeLabel}${newCount > 1 ? ` (+${newCount} รายการ)` : ''}`,
               `${first.description}: ${amountLabel}`
             );
             setToasts(prev => [
@@ -228,7 +228,7 @@ function App() {
             ]);
             fetchTransactions();
           }
-        } catch { /* Poll failed silently */ }
+        } catch { /* Polling error ignored */ }
       }, 30000);
     };
     const timeout = setTimeout(startPolling, 5000);
@@ -262,8 +262,8 @@ function App() {
       isOpen: true,
       id: id,
       type: 'TRANSACTION',
-      title: 'เธ•เนเธญเธเธเธฒเธฃเธฅเธเธฃเธฒเธขเธเธฒเธฃเธเธตเน?',
-      message: 'เธเธฒเธฃเธฅเธเธฃเธฒเธขเธเธฒเธฃเธเธตเนเธเธฐเนเธกเนเธชเธฒเธกเธฒเธฃเธ–เธเธนเนเธเธทเธเนเธ”เน เธเธฃเธธเธ“เธฒเธขเธทเธเธขเธฑเธเธเธฒเธฃเธ”เธณเน€เธเธดเธเธเธฒเธฃ'
+      title: 'ต้องการลบรายการนี้?',
+      message: 'การลบรายการนี้จะไม่สามารถกู้คืนได้ กรุณายืนยันการดำเนินการ'
     });
   };
 
@@ -272,17 +272,17 @@ function App() {
       const res = await deleteTransaction(deleteModal.id);
       if (res.status === 'success') {
         fetchTransactions();
-        showSuccess('เธฅเธเธชเธณเน€เธฃเนเธ', 'เธเนเธญเธกเธนเธฅเธฃเธฒเธขเธเธฒเธฃเธ–เธนเธเธฅเธเน€เธฃเธตเธขเธเธฃเนเธญเธขเนเธฅเนเธง');
+        showSuccess('ลบสำเร็จ', 'ข้อมูลรายการถูกลบเรียบร้อยแล้ว');
       } else {
-        alert(res.message || "เน€เธเธดเธ”เธเนเธญเธเธดเธ”เธเธฅเธฒเธ”");
+        alert(res.message || "เกิดข้อผิดพลาด");
       }
     } else if (deleteModal.type === 'CATEGORY') {
       const res = await deleteCategory(deleteModal.id);
       if (res.status === 'success') {
         fetchCategories();
-        showSuccess('เธฅเธเธชเธณเน€เธฃเนเธ', 'เธซเธกเธงเธ”เธซเธกเธนเนเธ–เธนเธเธฅเธเน€เธฃเธตเธขเธเธฃเนเธญเธขเนเธฅเนเธง');
+        showSuccess('ลบสำเร็จ', 'หมวดหมู่ถูกลบเรียบร้อยแล้ว');
       } else {
-        alert(res.message || "เน€เธเธดเธ”เธเนเธญเธเธดเธ”เธเธฅเธฒเธ”");
+        alert(res.message || "เกิดข้อผิดพลาด");
       }
     }
     setDeleteModal({ ...deleteModal, isOpen: false });
@@ -312,7 +312,7 @@ function App() {
     try {
       const rawNote = cleanTransactionNote(formData.note);
       const finalNote = (formData.type === 'INCOME' && donationType === 'IN_KIND')
-        ? `[เธชเธดเนเธเธเธญเธ/เธเนเธฒเธขเนเธซเน] ${rawNote}`.trim()
+        ? `[สิ่งของ/จ่ายให้] ${rawNote}`.trim()
         : rawNote;
 
       const payload = { ...formData, note: finalNote, image_url: imagePreview };
@@ -327,28 +327,28 @@ function App() {
       if (res.status === 'success') {
         fetchTransactions();
         setIsFormOpen(false);
-        showSuccess(isEdit ? 'เนเธเนเนเธเธชเธณเน€เธฃเนเธ' : 'เน€เธเธดเนเธกเธชเธณเน€เธฃเนเธ', isEdit ? 'เธเนเธญเธกเธนเธฅเธฃเธฒเธขเธเธฒเธฃเธ–เธนเธเธญเธฑเธเน€เธ”เธ•เน€เธฃเธตเธขเธเธฃเนเธญเธขเนเธฅเนเธง' : 'เธชเธฃเนเธฒเธเธฃเธฒเธขเธเธฒเธฃเนเธซเธกเนเน€เธฃเธตเธขเธเธฃเนเธญเธขเนเธฅเนเธง');
+        showSuccess(isEdit ? 'แก้ไขสำเร็จ' : 'เพิ่มสำเร็จ', isEdit ? 'ข้อมูลรายการถูกอัปเดตเรียบร้อยแล้ว' : 'สร้างรายการใหม่เรียบร้อยแล้ว');
         
-        // เธชเนเธเธเธฒเธฃเนเธเนเธเน€เธ•เธทเธญเธเธญเธฑเธ•เนเธเธกเธฑเธ•เธดเน€เธเนเธฒ LINE (เธ—เธธเธเธฃเธฒเธขเธเธฒเธฃเธเธฃเนเธญเธกเนเธเธเธฃเธนเธเธชเธฅเธดเธ)
+        // ส่งการแจ้งเตือนอัตโนมัติเข้า LINE (ทุกรายการพร้อมแนบรูปสลิป)
         sendTransactionNotification(payload, isEdit ? 'UPDATE' : 'ADD');
 
-        // เธชเนเธ Web Notification เน€เธเนเธฒ notification bar เธกเธทเธญเธ–เธทเธญ
+        // ส่ง Web Notification เข้า notification bar มือถือ
         if (!isEdit) {
-          const typeLabel = formData.type === 'INCOME' ? 'เธเธฑเธเธ—เธถเธเธฃเธฒเธขเธฃเธฑเธ' : 'เธเธฑเธเธ—เธถเธเธฃเธฒเธขเธเนเธฒเธข';
-          const amountLabel = `เธฟ${Number(formData.amount).toLocaleString('th-TH')}`;
+          const typeLabel = formData.type === 'INCOME' ? 'บันทึกรายรับ' : 'บันทึกรายจ่าย';
+          const amountLabel = `฿${Number(formData.amount).toLocaleString('th-TH')}`;
           sendWebNotification(
-            `Patcha Daily โ€” ${typeLabel}เธชเธณเน€เธฃเนเธ`,
+            `Patcha Daily — ${typeLabel}สำเร็จ`,
             `${formData.description}: ${amountLabel}`
           );
           notifCountRef.current += 1;
           setUnreadBadge(notifCountRef.current);
         }
       } else {
-        alert("เนเธกเนเธชเธฒเธกเธฒเธฃเธ–เธเธฑเธเธ—เธถเธเนเธ”เน: " + (res.message || JSON.stringify(res)));
+        alert("ไม่สามารถบันทึกได้: " + (res.message || JSON.stringify(res)));
       }
     } catch (err) {
       console.error(err);
-      alert("เน€เธเธดเธฃเนเธเน€เธงเธญเธฃเนเธกเธตเธเธฑเธเธซเธฒ เธเธฃเธธเธ“เธฒเธฅเธญเธเนเธซเธกเน");
+      alert("เซิร์ฟเวอร์มีปัญหา กรุณาลองใหม่");
     }
   };
 
@@ -359,8 +359,8 @@ function App() {
       isOpen: true,
       id: id,
       type: 'CATEGORY',
-      title: 'เธ•เนเธญเธเธเธฒเธฃเธฅเธเธซเธกเธงเธ”เธซเธกเธนเนเธเธตเน?',
-      message: 'เธเธฒเธฃเธฅเธเธซเธกเธงเธ”เธซเธกเธนเนเธเธฐเนเธกเนเธชเธฒเธกเธฒเธฃเธ–เธเธนเนเธเธทเธเนเธ”เน เธเธฃเธธเธ“เธฒเธขเธทเธเธขเธฑเธเธเธฒเธฃเธ”เธณเน€เธเธดเธเธเธฒเธฃ'
+      title: 'ต้องการลบหมวดหมู่นี้?',
+      message: 'การลบหมวดหมู่จะไม่สามารถกู้คืนได้ กรุณายืนยันการดำเนินการ'
     });
   };
 
@@ -378,12 +378,12 @@ function App() {
       if (res.status === 'success') {
         fetchCategories();
         setIsCategoryFormOpen(false);
-        showSuccess(isEdit ? 'เนเธเนเนเธเธชเธณเน€เธฃเนเธ' : 'เน€เธเธดเนเธกเธชเธณเน€เธฃเนเธ', `เธซเธกเธงเธ”เธซเธกเธนเน "${categoryFormData.name}" ${isEdit ? 'เธ–เธนเธเนเธเนเนเธเน€เธฃเธตเธขเธเธฃเนเธญเธขเนเธฅเนเธง' : 'เธ–เธนเธเธชเธฃเนเธฒเธเน€เธฃเธตเธขเธเธฃเนเธญเธขเนเธฅเนเธง'}`);
+        showSuccess(isEdit ? 'แก้ไขสำเร็จ' : 'เพิ่มสำเร็จ', `หมวดหมู่ "${categoryFormData.name}" ${isEdit ? 'ถูกแก้ไขเรียบร้อยแล้ว' : 'ถูกสร้างเรียบร้อยแล้ว'}`);
       } else {
         alert(res.message);
       }
-    } catch (_) {
-      alert("เธเธฑเธเธ—เธถเธเนเธกเนเธชเธณเน€เธฃเนเธ");
+    } catch {
+      alert("บันทึกไม่สำเร็จ");
     }
   };
 
@@ -422,7 +422,7 @@ function App() {
         <div className={`w-48 h-1.5 ${isDarkMode ? 'bg-white/5 border-white/10' : 'bg-slate-200/90 border-slate-300/60 shadow-inner'} rounded-full overflow-hidden border relative`}>
           <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-full" />
         </div>
-        <p className="text-[11px] tracking-[0.2em] uppercase text-slate-500 font-bold">เธเธณเธฅเธฑเธเนเธซเธฅเธ”เธฃเธฐเธเธ...</p>
+        <p className="text-[11px] tracking-[0.2em] uppercase text-slate-500 font-bold">กำลังโหลดระบบ...</p>
       </div>
     </div>
   );
@@ -438,12 +438,12 @@ function App() {
   return (
     <div className="h-screen bg-[#FDF2F8] dark:bg-[#060A13] text-gray-800 dark:text-white font-sans flex overflow-hidden relative">
 
-      {/* ๐ธ Cute Pastel Flower Background Pattern & Aura Effects */}
+      {/* 🌸 Cute Pastel Flower Background Pattern & Aura Effects */}
       <div className="absolute inset-0 cute-flower-pattern pointer-events-none"></div>
       <div className="fixed top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-pink-400/10 dark:bg-pink-500/10 blur-[180px] pointer-events-none"></div>
       <div className="fixed bottom-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-rose-300/15 dark:bg-pink-500/10 blur-[180px] pointer-events-none"></div>
 
-      {/* ๐€ Sidebar with Soft Pink Gradient & Bubbly Rounded Cards */}
+      {/* 🎀 Sidebar with Soft Pink Gradient & Bubbly Rounded Cards */}
       {isMobileMenuOpen && (
         <div
           className="lg:hidden fixed inset-0 bg-slate-900/30 dark:bg-black/40 backdrop-blur-sm z-[90] animate-fade-in"
@@ -465,19 +465,19 @@ function App() {
 
             {/* Title with Emoji */}
             <h1 className="text-center font-black uppercase relative z-10 w-full px-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 drop-shadow-sm flex items-center justify-center gap-1.5 transition-all duration-500">
-              <span className="text-[15px] leading-[1.2em] tracking-[0.15em]">๐ธ Patcha Daily โจ</span>
+              <span className="text-[15px] leading-[1.2em] tracking-[0.15em]">🌸 Patcha Daily ✨</span>
             </h1>
           </div>
 
           {/* Navigation Menu with Emojis & Soft Pastel Active Pill */}
           <div className="p-4 space-y-2.5">
             {[
-              { id: 'overview', icon: LayoutDashboard, label: '๐ธ เธ เธฒเธเธฃเธงเธก' },
+              { id: 'overview', icon: LayoutDashboard, label: '🌸 ภาพรวม' },
               ...(isLoggedIn ? [
-                { id: 'record', icon: ArrowLeftRight, label: '๐“ เธเธฑเธเธ—เธถเธเธเธฒเธฃเน€เธเธดเธ' },
-                { id: 'categories', icon: Tags, label: '๐ท๏ธ เธเธฃเธฐเน€เธ เธ—เธฃเธฒเธขเธเธฒเธฃ' }
+                { id: 'record', icon: ArrowLeftRight, label: '📝 บันทึกการเงิน' },
+                { id: 'categories', icon: Tags, label: '🏷️ ประเภทรายการ' }
               ] : []),
-              { id: 'reports', icon: PieChartIcon, label: '๐“ เธฃเธฒเธขเธเธฒเธเธเธฒเธฃเน€เธเธดเธ' }
+              { id: 'reports', icon: PieChartIcon, label: '📊 รายงานการเงิน' }
             ].map(menu => {
               const isActive = activeMenu === menu.id;
               const Icon = menu.icon;
@@ -512,7 +512,7 @@ function App() {
                 {isDarkMode ? <Sun size={16} className="text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]" /> : <Moon size={16} className="text-pink-500 drop-shadow-[0_0_8px_rgba(244,114,182,0.6)]" />}
               </div>
             </div>
-            <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">{isDarkMode ? 'โ€๏ธ Light Mode' : '๐ Dark Mode'}</span>
+            <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">{isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}</span>
           </button>
 
           {isLoggedIn && (
@@ -523,7 +523,7 @@ function App() {
               <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-emerald-50/80 dark:bg-emerald-500/20 transition-all duration-300">
                 <Bell size={16} className="text-emerald-500 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">๐’ฌ เนเธเนเธเน€เธ•เธทเธญเธ LINE ๐€</span>
+              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">💬 แจ้งเตือน LINE 🎀</span>
             </button>
           )}
 
@@ -535,7 +535,7 @@ function App() {
               <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-pink-50/80 dark:bg-pink-400/20 transition-all duration-300">
                 <Lock size={16} className="text-pink-500 dark:text-pink-400 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">๐” เธชเธณเธซเธฃเธฑเธเน€เธเนเธฒเธซเธเนเธฒเธ—เธตเน โจ</span>
+              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">🔐 สำหรับเจ้าหน้าที่ ✨</span>
             </button>
           ) : (
             <button
@@ -550,7 +550,7 @@ function App() {
               <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-rose-50/80 dark:bg-rose-500/20 transition-all duration-300">
                 <LogOut size={16} className="text-rose-500 group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-rose-600 transition-colors">เธญเธญเธเธเธฒเธเธฃเธฐเธเธ</span>
+              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-rose-600 transition-colors">ออกจากระบบ</span>
             </button>
           )}
         </div>
@@ -563,7 +563,7 @@ function App() {
             <Menu size={22} />
           </button>
           <img src="/logo.png?v=8" alt="Logo" className="w-8 h-8 rounded-full object-contain ml-2 shrink-0 border border-pink-300 bg-white/50" />
-          <span className="ml-2 text-xs uppercase font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 whitespace-nowrap">๐ธ Patcha Daily โจ</span>
+          <span className="ml-2 text-xs uppercase font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 whitespace-nowrap">🌸 Patcha Daily ✨</span>
         </div>
         {isLoggedIn && (
           <button onClick={() => setIsNotifModalOpen(true)} className="p-2 text-emerald-500 hover:scale-110 transition-transform">
@@ -583,27 +583,27 @@ function App() {
       {/* Real-time Toast Notifications */}
       <NotificationToast toasts={toasts} onDismiss={dismissToast} />
 
-      {/* 1. Modal เธเธฑเธเธ—เธถเธเธฃเธฒเธขเธเธฒเธฃ */}
+      {/* 1. Modal บันทึกรายการ */}
       {isFormOpen && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-[#060A13]/80 backdrop-blur-xl animate-fade-in">
           <div className="glass-panel w-[92vw] sm:w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh] rounded-[24px] md:rounded-[40px] shadow-[0_0_50px_rgba(0,0,0,0.2)] animate-fade-in-up">
             <div className="flex justify-between items-center p-5 md:p-8 border-b border-pink-100 dark:border-white/10 shrink-0 bg-white/90 dark:bg-[#0F172A]/30">
-              <h3 className="text-xl md:text-2xl font-black text-gray-800 dark:text-white tracking-tight">{editingId ? 'เนเธเนเนเธเธฃเธฒเธขเธเธฒเธฃ' : 'เน€เธเธดเนเธกเธฃเธฒเธขเธเธฒเธฃเนเธซเธกเน'}</h3>
+              <h3 className="text-xl md:text-2xl font-black text-gray-800 dark:text-white tracking-tight">{editingId ? 'แก้ไขรายการ' : 'เพิ่มรายการใหม่'}</h3>
               <button onClick={() => setIsFormOpen(false)} className="p-2 md:p-3 bg-white dark:bg-[#1E293B] border border-pink-200 dark:border-transparent text-gray-500 dark:text-[#94A3B8] rounded-full hover:text-white hover:bg-slate-800 dark:hover:bg-[#334155] hover:rotate-90 transition-all shadow-sm"><X size={18} className="md:w-5 md:h-5" /></button>
             </div>
             <form onSubmit={handleSubmitTransaction} className="p-5 md:p-8 space-y-4 md:space-y-6 overflow-y-auto custom-scrollbar bg-white/95 dark:bg-transparent">
               <div className="flex bg-white/70 dark:bg-[#0F172A]/80 border border-pink-100 dark:border-[#1E293B] rounded-[16px] md:rounded-2xl p-1 md:p-1.5 shadow-inner">
-                <button type="button" onClick={() => setFormData({ ...formData, type: 'INCOME', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-emerald-500'}`}>เธฃเธฒเธขเธฃเธฑเธ</button>
-                <button type="button" onClick={() => setFormData({ ...formData, type: 'EXPENSE', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-rose-500'}`}>เธฃเธฒเธขเธเนเธฒเธข</button>
+                <button type="button" onClick={() => setFormData({ ...formData, type: 'INCOME', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-emerald-500'}`}>รายรับ</button>
+                <button type="button" onClick={() => setFormData({ ...formData, type: 'EXPENSE', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-rose-500'}`}>รายจ่าย</button>
               </div>
 
               {formData.type === 'INCOME' && (
                 <div className="bg-white/60 dark:bg-[#060A13]/60 border border-slate-200/60 dark:border-white/10 rounded-[18px] p-2.5 shadow-sm space-y-2 animate-fade-in">
                   <div className="flex items-center justify-between px-1">
-                    <span className="text-[10px] font-black text-gray-500 dark:text-[#94A3B8] uppercase tracking-wider">เธฃเธนเธเนเธเธเธเธฒเธฃเธ–เธงเธฒเธข / เธฃเธฒเธขเธฃเธฑเธ</span>
+                    <span className="text-[10px] font-black text-gray-500 dark:text-[#94A3B8] uppercase tracking-wider">รูปแบบการถวาย / รายรับ</span>
                     {donationType === 'IN_KIND' && (
                       <span className="text-[10px] font-black text-purple-600 dark:text-purple-300 bg-purple-100 dark:bg-purple-950/70 border border-purple-300/50 dark:border-purple-800/50 px-2.5 py-0.5 rounded-full">
-                        โจ เนเธกเนเธฃเธงเธกเนเธเธขเธญเธ”เน€เธเธดเธเธชเธ”
+                        ✨ ไม่รวมในยอดเงินสด
                       </span>
                     )}
                   </div>
@@ -613,14 +613,14 @@ function App() {
                       onClick={() => setDonationType('CASH')}
                       className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${donationType === 'CASH' ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20' : 'bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}
                     >
-                      <span>๐’ต เธ–เธงเธฒเธขเน€เธเนเธเน€เธเธดเธเธชเธ”</span>
+                      <span>💵 ถวายเป็นเงินสด</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setDonationType('IN_KIND')}
                       className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${donationType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/30' : 'bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-slate-400 hover:text-purple-500'}`}
                     >
-                      <span>๐ เธชเธดเนเธเธเธญเธ / เธเนเธฒเธขเนเธซเน</span>
+                      <span>🎁 สิ่งของ / จ่ายให้</span>
                     </button>
                   </div>
                 </div>
@@ -629,10 +629,10 @@ function App() {
               <div>
                 <div className="flex items-center justify-between mb-2 ml-1">
                   <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.2em]">
-                    {formData.type === 'INCOME' && donationType === 'IN_KIND' ? 'เธกเธนเธฅเธเนเธฒเธเธฃเธฐเน€เธกเธดเธเธชเธดเนเธเธเธญเธ / เธขเธญเธ”เธเธณเธฃเธฐเนเธซเน (เธเธฒเธ—)' : 'เธเธณเธเธงเธเน€เธเธดเธ (เธเธฒเธ—)'}
+                    {formData.type === 'INCOME' && donationType === 'IN_KIND' ? 'มูลค่าประเมินสิ่งของ / ยอดชำระให้ (บาท)' : 'จำนวนเงิน (บาท)'}
                   </label>
                   {formData.type === 'INCOME' && donationType === 'IN_KIND' && (
-                    <span className="text-[10px] font-bold text-purple-500 dark:text-purple-400">*เนเธกเนเธเธณเนเธเธฃเธงเธกเน€เธเธดเธเธชเธ”เธเธเน€เธซเธฅเธทเธญ</span>
+                    <span className="text-[10px] font-bold text-purple-500 dark:text-purple-400">*ไม่นำไปรวมเงินสดคงเหลือ</span>
                   )}
                 </div>
                 <input 
@@ -647,36 +647,36 @@ function App() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">เธซเธกเธงเธ”เธซเธกเธนเน</label>
+                  <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">หมวดหมู่</label>
                   <select value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} required className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base">
-                    <option value="">เน€เธฅเธทเธญเธ...</option>
+                    <option value="">เลือก...</option>
                     {categories.filter(c => c.type === formData.type).map(c => (<option key={c.id} value={c.name}>{c.name}</option>))}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">เธงเธฑเธเธ—เธตเน</label>
+                  <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">วันที่</label>
                   <input type="date" value={formData.transaction_date} onChange={(e) => setFormData({ ...formData, transaction_date: e.target.value })} required className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base [color-scheme:light_dark]" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">เธซเธกเธฒเธขเน€เธซเธ•เธธ</label>
-                <input type="text" value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })} placeholder="เธฃเธฐเธเธธเธฃเธฒเธขเธฅเธฐเน€เธญเธตเธขเธ”เน€เธเธดเนเธกเน€เธ•เธดเธก..." className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-bold text-sm md:text-base" />
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">หมายเหตุ</label>
+                <input type="text" value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })} placeholder="ระบุรายละเอียดเพิ่มเติม..." className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-bold text-sm md:text-base" />
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">เธซเธฅเธฑเธเธเธฒเธเธเธฒเธฃเธ—เธณเธฃเธฒเธขเธเธฒเธฃ</label>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">หลักฐานการทำรายการ</label>
                 <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleImageChange} />
                 <input type="file" accept="image/*" capture="environment" className="hidden" ref={cameraInputRef} onChange={handleImageChange} />
                 {!imagePreview && (
                   <div className="flex gap-2 w-full">
                     <div onClick={() => fileInputRef.current.click()} className="flex-1 py-8 bg-white/95 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
                       <Upload size={28} className="text-gray-400 dark:text-[#334155] mb-2 group-hover:text-pink-400 group-hover:animate-bounce transition-colors" />
-                      <span className="text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">เธญเธฑเธเนเธซเธฅเธ”เธชเธฅเธดเธ</span>
+                      <span className="text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">อัปโหลดสลิป</span>
                     </div>
                     <div onClick={() => cameraInputRef.current.click()} className="flex-1 py-8 bg-white/95 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
                       <Camera size={28} className="text-gray-400 dark:text-[#334155] mb-2 group-hover:text-pink-400 group-hover:animate-bounce transition-colors" />
-                      <span className="text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">เธ–เนเธฒเธขเธฃเธนเธ</span>
+                      <span className="text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">ถ่ายรูป</span>
                     </div>
                   </div>
                 )}
@@ -684,54 +684,54 @@ function App() {
                   <div className="relative w-full h-48 mt-4 rounded-[20px] overflow-hidden border-2 border-pink-100 dark:border-[#1E293B] group shadow-sm">
                     <img src={imagePreview} alt="Preview" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all backdrop-blur-sm">
-                      <button type="button" onClick={() => setImagePreview(null)} className="p-3 bg-rose-500 text-white rounded-xl font-black tracking-wider uppercase text-xs shadow-[0_0_20px_rgba(244,63,94,0.5)] flex items-center space-x-2 hover:bg-rose-600 transition-colors hover:scale-105 active:scale-95"><Trash2 size={16} /><span>เธฅเธเธฃเธนเธเธ เธฒเธ</span></button>
+                      <button type="button" onClick={() => setImagePreview(null)} className="p-3 bg-rose-500 text-white rounded-xl font-black tracking-wider uppercase text-xs shadow-[0_0_20px_rgba(244,63,94,0.5)] flex items-center space-x-2 hover:bg-rose-600 transition-colors hover:scale-105 active:scale-95"><Trash2 size={16} /><span>ลบรูปภาพ</span></button>
                     </div>
                   </div>
                 )}
               </div>
 
               <button type="submit" className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-[20px] font-black tracking-widest uppercase text-sm shadow-[0_0_20px_rgba(244,114,182,0.4)] hover:shadow-[0_0_30px_rgba(244,114,182,0.6)] hover:-translate-y-1 active:scale-95 transition-all duration-300">
-                เธเธฑเธเธ—เธถเธเธเนเธญเธกเธนเธฅ
+                บันทึกข้อมูล
               </button>
             </form>
           </div>
         </div>
       )}
 
-      {/* 2. Modal เธเธฑเธ”เธเธฒเธฃเธซเธกเธงเธ”เธซเธกเธนเน */}
+      {/* 2. Modal จัดการหมวดหมู่ */}
       {isCategoryFormOpen && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-[#060A13]/80 backdrop-blur-xl animate-fade-in">
           <div className="glass-panel w-[92vw] sm:w-full max-w-md rounded-[24px] md:rounded-[40px] shadow-[0_0_50px_rgba(0,0,0,0.2)] overflow-hidden flex flex-col animate-fade-in-up">
 
             <div className="flex justify-between items-center p-5 md:p-8 border-b border-pink-100 dark:border-[#1E293B] bg-white/90 dark:bg-[#0F172A]/30">
-              <h3 className="text-xl md:text-2xl font-black text-gray-800 dark:text-white tracking-tight">{categoryFormData.id ? 'เนเธเนเนเธเธซเธกเธงเธ”เธซเธกเธนเน' : 'เน€เธเธดเนเธกเธซเธกเธงเธ”เธซเธกเธนเนเนเธซเธกเน'}</h3>
+              <h3 className="text-xl md:text-2xl font-black text-gray-800 dark:text-white tracking-tight">{categoryFormData.id ? 'แก้ไขหมวดหมู่' : 'เพิ่มหมวดหมู่ใหม่'}</h3>
               <button onClick={() => setIsCategoryFormOpen(false)} className="p-2 md:p-3 bg-white dark:bg-[#1E293B] border border-pink-200 dark:border-transparent text-gray-500 dark:text-[#94A3B8] rounded-full hover:text-white hover:bg-slate-800 dark:hover:bg-[#334155] hover:rotate-90 transition-all shadow-sm"><X size={18} className="md:w-5 md:h-5" /></button>
             </div>
 
             <form onSubmit={handleCategorySubmit} className="p-5 md:p-8 space-y-6 md:space-y-8 bg-white/95 dark:bg-transparent">
 
               <div>
-                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">เธเธทเนเธญเธซเธกเธงเธ”เธซเธกเธนเน</label>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">ชื่อหมวดหมู่</label>
                 <input
                   type="text"
                   value={categoryFormData.name}
                   onChange={(e) => setCategoryFormData({ ...categoryFormData, name: e.target.value })}
-                  placeholder="เน€เธเนเธ เธญเธฒเธซเธฒเธฃ, เธ–เธธเธเธ–เธงเธฒเธข"
+                  placeholder="เช่น อาหาร, ถุงถวาย"
                   required
                   className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] text-gray-800 dark:text-white font-bold outline-none focus:ring-2 focus:ring-pink-400/50 transition-colors shadow-sm text-sm md:text-base"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">เธเธฃเธฐเน€เธ เธ—</label>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-3 uppercase tracking-[0.2em] ml-1">ประเภท</label>
                 <div className="flex bg-white/70 dark:bg-[#0F172A]/80 border border-pink-100 dark:border-[#1E293B] rounded-[16px] md:rounded-2xl p-1 md:p-1.5 shadow-inner">
-                  <button type="button" onClick={() => setCategoryFormData({ ...categoryFormData, type: 'INCOME' })} className={`flex-1 py-3 md:py-3.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 ${categoryFormData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-emerald-500'}`}>เธฃเธฒเธขเธฃเธฑเธ</button>
-                  <button type="button" onClick={() => setCategoryFormData({ ...categoryFormData, type: 'EXPENSE' })} className={`flex-1 py-3 md:py-3.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 ${categoryFormData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-rose-500'}`}>เธฃเธฒเธขเธเนเธฒเธข</button>
+                  <button type="button" onClick={() => setCategoryFormData({ ...categoryFormData, type: 'INCOME' })} className={`flex-1 py-3 md:py-3.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 ${categoryFormData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-emerald-500'}`}>รายรับ</button>
+                  <button type="button" onClick={() => setCategoryFormData({ ...categoryFormData, type: 'EXPENSE' })} className={`flex-1 py-3 md:py-3.5 rounded-xl text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-300 ${categoryFormData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-rose-500'}`}>รายจ่าย</button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-4 uppercase tracking-[0.2em] ml-1 text-center">เน€เธฅเธทเธญเธเธชเธตเธเธฃเธฐเธเธณเธซเธกเธงเธ”เธซเธกเธนเน</label>
+                <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-4 uppercase tracking-[0.2em] ml-1 text-center">เลือกสีประจำหมวดหมู่</label>
                 <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
                   {CATEGORY_COLORS.map(color => (
                     <button
@@ -756,7 +756,7 @@ function App() {
                 type="submit"
                 className="w-full mt-2 py-5 bg-gradient-to-r from-[#60A5FA] to-[#A855F7] hover:from-[#3B82F6] hover:to-[#9333EA] text-white rounded-[20px] font-black uppercase tracking-widest text-sm shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:-translate-y-1 active:scale-95 transition-all duration-300"
               >
-                {categoryFormData.id ? 'เธเธฑเธเธ—เธถเธเธเธฒเธฃเนเธเนเนเธ' : 'เน€เธเธดเนเธกเธซเธกเธงเธ”เธซเธกเธนเน'}
+                {categoryFormData.id ? 'บันทึกการแก้ไข' : 'เพิ่มหมวดหมู่'}
               </button>
 
             </form>
@@ -764,7 +764,7 @@ function App() {
         </div>
       )}
 
-      {/* 4. Modal เธขเธทเธเธขเธฑเธเธเธฒเธฃเธฅเธ (เนเธ—เธ window.confirm) */}
+      {/* 4. Modal ยืนยันการลบ (แทน window.confirm) */}
       {deleteModal.isOpen && (
         <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-[#030610]/80 backdrop-blur-md animate-fade-in">
           <div className="relative w-[92vw] sm:w-full max-w-md overflow-hidden flex flex-col rounded-[24px] md:rounded-[32px] bg-[#13151c] border border-white/5 shadow-[0_0_80px_rgba(255,42,95,0.15)] animate-fade-in-up">
@@ -795,13 +795,13 @@ function App() {
                   onClick={() => setDeleteModal({ ...deleteModal, isOpen: false })}
                   className="w-full py-3.5 md:py-4 px-2 bg-[#212431] hover:bg-[#2a2e3d] border border-[#2d3142] text-white rounded-[16px] md:rounded-[20px] font-black uppercase tracking-widest text-[12px] md:text-[13px] transition-all shadow-sm active:scale-95"
                 >
-                  เธขเธเน€เธฅเธดเธ
+                  ยกเลิก
                 </button>
                 <button
                   onClick={confirmDelete}
                   className="w-full py-3.5 md:py-4 px-2 bg-[#ff2a5f] hover:bg-[#ff154d] border border-[#ff2a5f]/50 text-white rounded-[16px] md:rounded-[20px] font-black uppercase tracking-widest text-[12px] md:text-[13px] shadow-[0_0_30px_rgba(255,42,95,0.4)] hover:shadow-[0_0_40px_rgba(255,42,95,0.6)] hover:-translate-y-1 active:scale-95 transition-all outline-none"
                 >
-                  เธฅเธ
+                  ลบ
                 </button>
               </div>
             </div>
@@ -809,7 +809,7 @@ function App() {
         </div>
       )}
 
-      {/* 3. Modal เธ”เธนเธฃเธนเธเธ เธฒเธ */}
+      {/* 3. Modal ดูรูปภาพ */}
       {isImageModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/90 dark:bg-[#060A13]/95 backdrop-blur-2xl animate-fade-in" onClick={() => setIsImageModalOpen(false)}>
           <div className="relative flex flex-col items-center justify-center max-w-5xl w-full animate-fade-in-up" onClick={e => e.stopPropagation()}>
@@ -819,7 +819,7 @@ function App() {
         </div>
       )}
 
-      {/* 5. Modal เนเธเนเธเน€เธ•เธทเธญเธเธชเธณเน€เธฃเนเธ */}
+      {/* 5. Modal แจ้งเตือนสำเร็จ (Jesus Image - Clean & Soothing Edition) */}
       {successModal.isOpen && (
         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 dark:bg-[#060A13]/85 backdrop-blur-md animate-fade-in" onClick={() => setSuccessModal(prev => ({ ...prev, isOpen: false }))}>
           <div className="relative w-[92vw] sm:w-full max-w-[390px] flex flex-col items-center animate-fade-in-up" onClick={e => e.stopPropagation()}>
@@ -859,7 +859,7 @@ function App() {
         </div>
       )}
 
-      {/* Modal เธ•เธฑเนเธเธเนเธฒเธเธฒเธฃเนเธเนเธเน€เธ•เธทเธญเธ LINE/Telegram */}
+      {/* Modal ตั้งค่าการแจ้งเตือน LINE/Telegram */}
       <NotificationSettingsModal
         isOpen={isNotifModalOpen}
         onClose={() => setIsNotifModalOpen(false)}
