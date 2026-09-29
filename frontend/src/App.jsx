@@ -779,38 +779,55 @@ function App() {
         </div>
       )}
 
-      {/* 5. Modal แจ้งเตือนสำเร็จ (Jesus Image - Clean & Soothing Edition) */}
+      {/* 5. Modal แจ้งเตือนสำเร็จ (Grand Cute OK Piglet with Floating Aura & Sparkles) */}
       {successModal.isOpen && (
-        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/60 dark:bg-[#060A13]/85 backdrop-blur-md animate-fade-in" onClick={() => setSuccessModal(prev => ({ ...prev, isOpen: false }))}>
-          <div className="relative w-[92vw] sm:w-full max-w-[390px] flex flex-col items-center animate-fade-in-up" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/65 dark:bg-[#060A13]/90 backdrop-blur-md animate-fade-in" onClick={() => setSuccessModal(prev => ({ ...prev, isOpen: false }))}>
+          <div className="relative w-[94vw] sm:w-full max-w-[420px] flex flex-col items-center animate-fade-in-up" onClick={e => e.stopPropagation()}>
             
-            {/* Soft pink aura */}
-            <div className="absolute top-[20px] w-[260px] h-[260px] bg-pink-400/20 dark:bg-pink-500/25 rounded-full blur-[60px] pointer-events-none z-0" />
+            {/* Multi-layered Glowing Cosmic Aura behind Mascot */}
+            <div className="absolute top-[-10px] w-[320px] sm:w-[360px] h-[320px] sm:h-[360px] bg-gradient-to-tr from-pink-400/35 via-rose-300/30 to-amber-300/30 rounded-full blur-[70px] pointer-events-none z-0 animate-ring-pulse" />
+            <div className="absolute top-[20px] w-[240px] sm:w-[280px] h-[240px] sm:h-[280px] bg-gradient-to-r from-pink-500/30 via-fuchsia-400/25 to-amber-300/35 rounded-full blur-[45px] pointer-events-none z-0" />
 
-            {/* Success Pig Mascot (Floating OK piglet) */}
-            <div className="relative z-10 w-[190px] sm:w-[220px] -mb-12 drop-shadow-[0_15px_30px_rgba(244,114,182,0.45)] transition-transform duration-500 hover:scale-105 pointer-events-none">
-              <img src="/success_pig.png?v=1" alt="Success" className="w-full h-auto object-contain" />
+            {/* Floating Magical Sparkles & Petals around Mascot */}
+            <div className="absolute top-2 left-6 z-20 pointer-events-none select-none animate-sparkle-1">
+              <span className="text-2xl sm:text-3xl drop-shadow-[0_0_12px_rgba(251,191,36,0.9)]">✨</span>
+            </div>
+            <div className="absolute top-0 right-6 z-20 pointer-events-none select-none animate-sparkle-2">
+              <span className="text-3xl sm:text-4xl drop-shadow-[0_0_15px_rgba(244,114,182,0.9)]">🌸</span>
+            </div>
+            <div className="absolute top-28 left-0 z-20 pointer-events-none select-none animate-sparkle-3">
+              <span className="text-xl sm:text-2xl drop-shadow-[0_0_10px_rgba(244,63,94,0.8)]">💖</span>
+            </div>
+            <div className="absolute top-24 right-2 z-20 pointer-events-none select-none animate-sparkle-1">
+              <span className="text-2xl sm:text-3xl drop-shadow-[0_0_12px_rgba(251,191,36,0.9)]">⭐</span>
             </div>
 
-            {/* Main Card */}
-            <div className="w-full bg-white dark:bg-[#0F172A] border border-pink-300/40 dark:border-pink-500/30 rounded-[32px] shadow-2xl p-6 pt-14 sm:p-7 sm:pt-16 flex flex-col items-center text-center relative z-20 overflow-hidden">
+            {/* Grand Pig Mascot with Pop Bounce & Gentle Floating Motion */}
+            <div className="relative z-10 w-[260px] sm:w-[300px] md:w-[320px] -mb-16 sm:-mb-20 drop-shadow-[0_20px_35px_rgba(244,114,182,0.55)] drop-shadow-[0_6px_16px_rgba(251,191,36,0.35)] pointer-events-none animate-pop-bounce">
+              <div className="animate-gentle-float">
+                <img src="/success_pig.png?v=2" alt="Success Piglet" className="w-full h-auto object-contain" />
+              </div>
+            </div>
+
+            {/* Main Premium Card */}
+            <div className="w-full bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-2xl border-2 border-pink-300/60 dark:border-pink-500/40 rounded-[36px] shadow-[0_25px_60px_-15px_rgba(244,114,182,0.35)] p-6 pt-16 sm:p-8 sm:pt-20 flex flex-col items-center text-center relative z-20 overflow-hidden">
               
-              {/* Soft Check Badge */}
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-200 dark:border-emerald-500/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-3 shadow-sm">
-                <CheckCircle size={24} strokeWidth={2.5} />
+              {/* Soft Check Badge with Glowing Emerald Gradient */}
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white flex items-center justify-center mb-3 shadow-[0_8px_25px_rgba(16,185,129,0.45)] border-2 border-white/80 dark:border-white/20">
+                <CheckCircle size={26} strokeWidth={2.8} />
               </div>
 
               {/* Title & Message */}
-              <h3 className="text-xl sm:text-2xl font-black text-gray-800 dark:text-white mb-1 tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 mb-1.5 tracking-tight drop-shadow-sm">
                 {successModal.title}
               </h3>
-              <p className="text-sm font-medium text-gray-600 dark:text-slate-300 leading-relaxed mb-3">
+              <p className="text-sm sm:text-base font-bold text-gray-600 dark:text-slate-300 leading-relaxed mb-4">
                 {successModal.message}
               </p>
 
-              {/* Subtle shrinking countdown line */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-100 dark:bg-white/5 overflow-hidden">
-                <div className="h-full bg-gradient-to-r from-pink-400 to-rose-400 rounded-full animate-[progress-shrink_2.5s_linear_forwards] w-full origin-left" />
+              {/* Glowing multi-color countdown progress line */}
+              <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-pink-100 dark:bg-white/5 overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-pink-500 via-rose-400 to-amber-400 rounded-full animate-[progress-shrink_2.5s_linear_forwards] w-full origin-left shadow-[0_0_10px_rgba(244,114,182,0.8)]" />
               </div>
             </div>
           </div>
