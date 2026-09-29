@@ -18,7 +18,7 @@ self.addEventListener('push', function(event) {
       data: { url: data.url || '/' },
       requireInteraction: true // แนะนำให้ค้างไว้ที่จอจนกว่าจะกด
     };
-    event.waitUntil(self.registration.showNotification(data.title || "The House of Worship", options));
+    event.waitUntil(self.registration.showNotification(data.title || "Patcha Daily", options));
   }
 });
 

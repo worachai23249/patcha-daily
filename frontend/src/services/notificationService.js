@@ -156,7 +156,7 @@ export async function sendTransactionNotification(tx, actionType = 'ADD') {
   let dateFormatted = tx.transaction_date;
   try {
     dateFormatted = new Date(tx.transaction_date).toLocaleDateString('th-TH', { day: 'numeric', month: 'short', year: 'numeric' });
-  } catch (e) {}
+  } catch { /* date format fallback */ }
 
   const msg = [
     actionTitle,
@@ -217,11 +217,11 @@ export async function sendMonthlySummaryNotification(year, monthNum, allTransact
     `🟢 รายรับรวม:  +฿${fmt ? fmt(totalIncome) : totalIncome.toLocaleString('th-TH')} บาท`,
     `🔴 รายจ่ายรวม: -฿${fmt ? fmt(totalExpense) : totalExpense.toLocaleString('th-TH')} บาท`,
     `⚡ คงเหลือสุทธิ:  ${netBalance >= 0 ? '+' : '-'}฿${fmt ? fmt(Math.abs(netBalance)) : Math.abs(netBalance).toLocaleString('th-TH')} บาท`,
-    `🏦 คงเหลือในคริสตจักร: ฿${fmt ? fmt(accumulatedBalance) : accumulatedBalance.toLocaleString('th-TH')} บาท`,
+    `🏦 คงเหลือรวมสะสม: ฿${fmt ? fmt(accumulatedBalance) : accumulatedBalance.toLocaleString('th-TH')} บาท`,
     `📋 รายการทั้งหมด: ${monthTx.length} รายการ`,
     `━━━━━━━━━━━━━━━━━━━━`,
-    `🌐 เข้าดูระบบเพิ่มเติม: https://church-accounting.pages.dev`,
-    `🙏 ขอพระเจ้าทรงอวยพระพรทุกท่าน`
+    `🌐 เข้าดูระบบเพิ่มเติม: https://patcha-daily.pages.dev`,
+    `✨ Patcha Daily — บันทึกการเงินอย่างง่าย`
   ].join('\n');
 
   return await sendPlatformMessage(msg, { year, monthNum, monthName, totalIncome, totalExpense, netBalance, accumulatedBalance });

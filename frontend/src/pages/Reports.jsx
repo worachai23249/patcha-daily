@@ -1,8 +1,7 @@
-import { useState, useRef } from 'react';
-import { addTransaction } from '../supabase';
+import { useState } from 'react';
 import { sendMonthlySummaryNotification, isCashTransaction, isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
 
-import { ChevronLeft, ChevronRight, TrendingUp, TrendingDown, Wallet, Activity, ArrowLeft, Edit, Trash2, Image as ImageIcon, PieChart as PieIcon, LineChart, Download, Upload, Calendar, CalendarDays, CheckCircle2, ChevronDown, ListFilter, ArrowRight, MessageSquare, Gift } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TrendingUp, TrendingDown, Wallet, Activity, ArrowLeft, Edit, Trash2, Image as ImageIcon, PieChart as PieIcon, LineChart, Download, Calendar, CalendarDays, CheckCircle2, ChevronDown, ListFilter, ArrowRight, MessageSquare } from 'lucide-react';
 import Papa from 'papaparse';
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell, ReferenceLine } from 'recharts';
 
@@ -17,7 +16,7 @@ export default function Reports({ transactions, fmt, formatThaiDate, handleViewI
   const [selectedMonthDetail, setSelectedMonthDetail] = useState(null);
   const [selectedWeek, setSelectedWeek] = useState('all'); // 'all' or 1, 2, 3, 4, 5
   const [detailFilterType, setDetailFilterType] = useState('ALL'); // 'ALL' | 'INCOME' | 'EXPENSE' | 'IN_KIND'
-  const fileInputRef = useRef(null);
+
 
   const reportTransactions = transactions.filter(t => t.transaction_date.startsWith(selectedYear.toString()));
   const reportYearlyIncome = reportTransactions.filter(t => t.type === 'INCOME' && isCashTransaction(t)).reduce((sum, t) => sum + parseFloat(t.amount), 0);
@@ -198,62 +197,6 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
     document.body.removeChild(link);
   };
 
-  // ========== Import CSV function ==========
-  const handleImportCSV = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    Papa.parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: async (results) => {
-        const data = results.data;
-        if (data.length === 0) {
-          alert("ไม่พบข้อมูลในไฟล์ หรือไฟล์ผิดรูปแบบ");
-          return;
-        }
-
-        const formattedData = data.map(row => {
-          let dateStr = row['วันที่'] || new Date().toISOString().split('T')[0];
-          if (dateStr.includes('/')) {
-            const parts = dateStr.split('/');
-            if (parts.length === 3) {
-              let year = parseInt(parts[2]);
-              if (year > 2500) year -= 543;
-              dateStr = `${year}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
-            }
-          }
-
-          return {
-            transaction_date: dateStr,
-            type: row['ประเภท'] === 'รายรับ' ? 'INCOME' : 'EXPENSE',
-            description: row['หมวดหมู่'] || 'Uncategorized',
-            amount: parseFloat(row['จำนวนเงิน']?.toString().replace(/,/g, '') || 0),
-            note: row['หมายเหตุ'] || '',
-            image_url: null
-          };
-        });
-
-        try {
-          const resData = await addTransaction(formattedData);
-          if (resData.status === 'success') {
-            alert(resData.message);
-            window.location.reload();
-          } else {
-            alert("เกิดข้อผิดพลาด: " + resData.message);
-          }
-        } catch (err) {
-          console.error(err);
-          alert("เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
-        }
-
-        e.target.value = null;
-      },
-      error: (error) => {
-        alert("อ่านไฟล์ไม่สำเร็จ: " + error.message);
-      }
-    });
-  };
 
   // --- Render Month Details View ---
   if (selectedMonthDetail) {
@@ -498,7 +441,6 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
 
             <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${weeksData.length === 4 ? 'lg:grid-cols-4' : weeksData.length === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-3 xl:grid-cols-6'} gap-2.5 sm:gap-3`}>
               {weeksData.map((w) => {
-                const hasTx = w.count > 0;
                 return (
                   <div
                     key={w.weekNum}

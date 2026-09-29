@@ -8,7 +8,6 @@ export default function Login({ onLogin, onBack }) {
   const [password, setPassword] = useState(() => localStorage.getItem('savedPassword') || '');
   const [rememberMe, setRememberMe] = useState(() => localStorage.getItem('savedEmail') ? true : false);
   const [isLoading, setIsLoading] = useState(false);
-  const [focused, setFocused] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -142,8 +141,6 @@ export default function Login({ onLogin, onBack }) {
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    onFocus={() => setFocused('email')}
-                    onBlur={() => setFocused('')}
                     placeholder="กรอกอีเมลของคุณ..."
                     required
                     autoComplete="email"
@@ -164,8 +161,6 @@ export default function Login({ onLogin, onBack }) {
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={e => setPassword(e.target.value)}
-                    onFocus={() => setFocused('password')}
-                    onBlur={() => setFocused('')}
                     placeholder="••••••••"
                     required
                     autoComplete="current-password"

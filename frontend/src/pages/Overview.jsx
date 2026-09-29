@@ -18,8 +18,6 @@ export default function Overview({ transactions, categories = [], formatThaiDate
 
   const totalIncome = currentMonthTransactions.filter(t => t.type === 'INCOME' && isCashTransaction(t)).reduce((sum, t) => sum + parseFloat(t.amount), 0);
   const totalExpense = currentMonthTransactions.filter(t => t.type === 'EXPENSE').reduce((sum, t) => sum + parseFloat(t.amount), 0);
-  const totalInKind = currentMonthTransactions.filter(t => isInKindTransaction(t)).reduce((sum, t) => sum + parseFloat(t.amount), 0);
-  const inKindCount = currentMonthTransactions.filter(t => isInKindTransaction(t)).length;
   const balance = totalIncome - totalExpense;
   const transactionCount = currentMonthTransactions.length;
 

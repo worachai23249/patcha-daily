@@ -1,12 +1,10 @@
-import { useState, useRef } from 'react';
-import { addTransaction } from '../supabase';
+import { useState } from 'react';
 import { isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
-import { Plus, Edit, Trash2, Image as ImageIcon, Database, Filter, Download, Upload, FileSpreadsheet, Gift } from 'lucide-react';
+import { Plus, Edit, Trash2, Image as ImageIcon, Database, Filter, Download } from 'lucide-react';
 import Papa from 'papaparse';
 
 export default function Record({ transactions, formatThaiDate, fmt, handleViewImage, handleOpenAddTransaction, handleOpenEditTransaction, handleDeleteTransaction }) {
   const [filterType, setFilterType] = useState('ALL');
-  const fileInputRef = useRef(null);
 
   const filteredTransactions = transactions.filter(t => {
     if (filterType === 'ALL') return true;
@@ -22,7 +20,6 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
       return;
     }
 
-    // แปลงข้อมูลเพื่อส่งออก (เอาพวก ID หรือ Field ที่ไม่จำเป็นออก)
     const exportData = filteredTransactions.map(t => ({
       วันที่: new Date(t.transaction_date).toLocaleDateString('th-TH'),
       ประเภท: t.type === 'INCOME' ? 'รายรับ' : 'รายจ่าย',
@@ -32,81 +29,15 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
       รูปภาพ: t.image_url ? '[มีรูปภาพแนบ]' : '-'
     }));
 
-    // แปลง Object เป็นโครงสร้าง CSV (รองรับภาษาไทย)
     const csv = Papa.unparse(exportData);
-    // เติม BOM เพื่อให้ Excel ภาษาไทยอ่านออก ไม่เป็นต่างดาว
     const csvData = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' });
 
-    // สร้างลิงก์ลับเพื่อสั่งให้เบราว์เซอร์ดาวน์โหลด
     const link = document.createElement('a');
     link.href = URL.createObjectURL(csvData);
-    link.setAttribute('download', `worship_data_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `patcha_daily_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  // ========== ฟังก์ชัน Import ข้อมูล (อัปโหลดจาก CSV) ==========
-  const handleImportCSV = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    Papa.parse(file, {
-      header: true,
-      skipEmptyLines: true,
-      complete: async (results) => {
-        const data = results.data;
-        if (data.length === 0) {
-          alert("ไม่พบข้อมูลในไฟล์ หรือไฟล์ผิดรูปแบบ");
-          return;
-        }
-
-        // แปลงหัวตารางภาษาไทยกลับเป็นรูปแบบที่ฐานข้อมูลเราต้องการ
-        const formattedData = data.map(row => {
-          // พยายามแปลงวันที่ให้เป็น YYYY-MM-DD
-          let dateStr = row['วันที่'] || new Date().toISOString().split('T')[0];
-          // เผื่อคนพิมพ์วันที่ไทยมา เช่น 28/2/2569
-          if (dateStr.includes('/')) {
-            const parts = dateStr.split('/');
-            if (parts.length === 3) {
-              // สมมติว่ารูปแบบเป็น DD/MM/YYYY(ค.ศ.) แต่ถ้าเป็น พ.ศ. เอามาลบ 543
-              let year = parseInt(parts[2]);
-              if (year > 2500) year -= 543;
-              dateStr = `${year}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
-            }
-          }
-
-          return {
-            transaction_date: dateStr,
-            type: row['ประเภท'] === 'รายรับ' ? 'INCOME' : 'EXPENSE',
-            description: row['หมวดหมู่'] || 'Uncategorized',
-            amount: parseFloat(row['จำนวนเงิน']?.toString().replace(/,/g, '') || 0),
-            note: row['หมายเหตุ'] || '',
-            image_url: null // ไม่รองรับการนำเข้ารูปจาก Excel เพราะยาวเกินไป
-          };
-        });
-
-        // ส่งข้อมูลทั้งก้อนไปให้ Supabase ทีเดียว
-        try {
-          const resData = await addTransaction(formattedData);
-          if (resData.status === 'success') {
-            alert(resData.message);
-            window.location.reload();
-          } else {
-            alert("เกิดข้อผิดพลาด: " + resData.message);
-          }
-        } catch (err) {
-          console.error(err);
-          alert("เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
-        }
-
-        // ล้างอินพุตเพื่อให้เลือกไฟล์เดิมใหม่ได้ถ้ามีแก้
-        e.target.value = null;
-      },
-      error: (error) => {
-        alert("อ่านไฟล์ไม่สำเร็จ: " + error.message);
-      }
-    });
   };
 
   return (
