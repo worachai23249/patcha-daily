@@ -8,8 +8,8 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
 
   const filteredTransactions = transactions.filter(t => {
     if (filterType === 'ALL') return true;
-    if (filterType === 'IN_KIND') return isInKindTransaction(t);
-    if (filterType === 'INCOME') return t.type === 'INCOME' && !isInKindTransaction(t);
+    if (filterType === 'TRANSFER') return (t.note || '').includes('[เงินโอน]');
+    if (filterType === 'CASH') return (t.note || '').includes('[เงินสด]') || !(t.note || '').includes('[เงินโอน]');
     return t.type === filterType;
   });
 
@@ -89,9 +89,13 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
           <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'EXPENSE' ? 'bg-white' : 'bg-rose-500'}`}></span>
           รายจ่าย
         </button>
-        <button onClick={() => setFilterType('IN_KIND')} className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'IN_KIND' ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-sm shadow-purple-500/20' : 'text-gray-500 dark:text-[#94A3B8] hover:text-purple-500'}`}>
-          <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'IN_KIND' ? 'bg-white' : 'bg-purple-500'}`}></span>
-          🎁 สิ่งของ
+        <button onClick={() => setFilterType('TRANSFER')} className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'TRANSFER' ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm shadow-blue-500/25' : 'text-gray-500 dark:text-[#94A3B8] hover:text-blue-500'}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'TRANSFER' ? 'bg-white' : 'bg-blue-500'}`}></span>
+          💳 เงินโอน
+        </button>
+        <button onClick={() => setFilterType('CASH')} className={`flex-1 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-1.5 transition-all duration-200 ${filterType === 'CASH' ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-sm shadow-emerald-500/20' : 'text-gray-500 dark:text-[#94A3B8] hover:text-emerald-500'}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${filterType === 'CASH' ? 'bg-white' : 'bg-emerald-500'}`}></span>
+          💵 เงินสด
         </button>
       </div>
 
@@ -123,15 +127,14 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
 
                   {/* HEADER */}
                   <div className="relative flex items-center justify-between px-5 pt-4 pb-3">
-                    <div className="flex items-center gap-2.5">
-                      <div className={`w-2 h-2 rounded-full shrink-0 ${inKind ? 'bg-purple-400 shadow-[0_0_10px_rgba(168,85,247,0.9)]' : (isIncome ? 'bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.9)]' : 'bg-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.9)]')}`} />
-                      {inKind ? (
-                        <span className="text-xs md:text-sm font-black tracking-[0.15em] uppercase text-purple-400 flex items-center gap-1">
-                          🎁 ถวายสิ่งของ/จ่ายให้
-                        </span>
-                      ) : (
-                        <span className={`text-sm font-black tracking-[0.25em] uppercase ${isIncome ? 'text-emerald-400' : 'text-rose-400'}`}>{isIncome ? 'รายรับ' : 'รายจ่าย'}</span>
-                      )}
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full shrink-0 ${isIncome ? 'bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.9)]' : 'bg-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.9)]'}`} />
+                      <span className={`text-sm font-black tracking-[0.2em] uppercase ${isIncome ? 'text-emerald-500 dark:text-emerald-400' : 'text-rose-500 dark:text-rose-400'}`}>
+                        {isIncome ? 'รายรับ' : 'รายจ่าย'}
+                      </span>
+                      <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${(t.note || '').includes('[เงินโอน]') ? 'text-blue-600 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40' : 'text-emerald-600 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/40'}`}>
+                        {(t.note || '').includes('[เงินโอน]') ? '💳 โอน' : '💵 สด'}
+                      </span>
                     </div>
                     <span className="text-sm text-gray-500 dark:text-white font-bold tracking-wide">{formatThaiDate(t.transaction_date)}</span>
                   </div>
@@ -171,7 +174,7 @@ export default function Record({ transactions, formatThaiDate, fmt, handleViewIm
                   <div className="flex items-center justify-between px-5 py-3.5">
                     <div className="flex items-center gap-2 min-w-0 flex-1 mr-2">
                       <span className="text-gray-400 dark:text-white/25 text-[10px] font-black uppercase tracking-widest shrink-0">NOTE</span>
-                      <span className="text-xs text-gray-500 dark:text-white/60 font-medium truncate">{cleanNote || (inKind ? 'ถวายสิ่งของ/ชำระให้โดยตรง' : '—')}</span>
+                      <span className="text-xs text-gray-500 dark:text-white/60 font-medium truncate">{cleanNote || '—'}</span>
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       <button onClick={(e) => { e.stopPropagation(); handleOpenEditTransaction(t); }} className="w-8 h-8 rounded-xl bg-pink-50 dark:bg-pink-50/80 border border-pink-200 dark:border-white/15 flex items-center justify-center text-gray-400 dark:text-white/50 hover:text-pink-400 hover:border-pink-400/50 active:scale-95 transition-all"><Edit size={13} /></button>

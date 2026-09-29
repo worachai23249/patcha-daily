@@ -127,9 +127,17 @@ export function isCashTransaction(tx) {
   return !isInKindTransaction(tx);
 }
 
+export function getPaymentMethod(tx) {
+  const note = (tx && tx.note) || '';
+  if (note.includes('[เงินโอน]')) return 'TRANSFER';
+  return 'CASH';
+}
+
 export function cleanTransactionNote(note) {
   if (!note) return '';
   return note
+    .replace(/\[เงินสด\]/g, '')
+    .replace(/\[เงินโอน\]/g, '')
     .replace(/\[สิ่งของ\/จ่ายให้\]/g, '')
     .replace(/\[ถวายสิ่งของ\]/g, '')
     .replace(/\[IN_KIND\]/g, '')
@@ -143,6 +151,8 @@ export async function sendTransactionNotification(tx, actionType = 'ADD') {
 
   const isIncome = tx.type === 'INCOME';
   const inKind = isInKindTransaction(tx);
+  const paymentMethod = getPaymentMethod(tx);
+  const paymentLabel = paymentMethod === 'TRANSFER' ? '💳 เงินโอน' : '💵 เงินสด';
   
   let typeLabel = isIncome ? 'รายรับ' : 'รายจ่าย';
   if (inKind) {
@@ -161,7 +171,7 @@ export async function sendTransactionNotification(tx, actionType = 'ADD') {
   const msg = [
     actionTitle,
     `━━━━━━━━━━━━━━━━━━━━`,
-    `📌 ประเภท: ${typeLabel}`,
+    `📌 ประเภท: ${typeLabel} (${paymentLabel})`,
     inKind ? `💰 มูลค่า: ฿${formattedAmount} บาท` : `💰 จำนวนเงิน: ฿${formattedAmount} บาท`,
     `📂 หมวดหมู่: ${tx.description || 'ไม่ระบุ'}`,
     `📅 วันที่: ${dateFormatted}`,

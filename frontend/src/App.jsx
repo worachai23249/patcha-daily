@@ -130,6 +130,7 @@ function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isCategoryFormOpen, setIsCategoryFormOpen] = useState(false);
   const [editingId, setEditingId] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState('CASH'); // 'CASH' or 'TRANSFER'
   const [formData, setFormData] = useState({ transaction_date: new Date().toISOString().split('T')[0], type: 'EXPENSE', description: '', amount: '', note: '' });
   const [categoryFormData, setCategoryFormData] = useState({ id: null, name: '', type: 'EXPENSE', color: CATEGORY_COLORS[11] });
   const [imagePreview, setImagePreview] = useState(null);
@@ -235,7 +236,8 @@ function App() {
   }, []);
 
   const handleOpenAddTransaction = () => {
-    setEditingId(null); 
+    setEditingId(null);
+    setPaymentMethod('CASH'); 
     setFormData({ transaction_date: new Date().toISOString().split('T')[0], type: 'EXPENSE', description: '', amount: '', note: '' });
     setImagePreview(null); 
     setIsFormOpen(true);
@@ -243,6 +245,7 @@ function App() {
 
   const handleOpenEditTransaction = (tx) => {
     setEditingId(tx.id);
+    setPaymentMethod((tx.note || '').includes('[เงินโอน]') ? 'TRANSFER' : 'CASH');
     setFormData({ 
       transaction_date: tx.transaction_date, 
       type: tx.type, 
@@ -307,8 +310,9 @@ function App() {
     e.preventDefault();
     const isEdit = !!editingId;
     try {
-      const cleanNote = cleanTransactionNote(formData.note);
-      const payload = { ...formData, note: cleanNote, image_url: imagePreview };
+      const rawNote = cleanTransactionNote(formData.note);
+      const finalNote = paymentMethod === 'TRANSFER' ? `[เงินโอน] ${rawNote}`.trim() : `[เงินสด] ${rawNote}`.trim();
+      const payload = { ...formData, note: finalNote, image_url: imagePreview };
 
       let res;
       if (isEdit) {
@@ -588,6 +592,34 @@ function App() {
               <div className="flex bg-white/70 dark:bg-[#0F172A]/80 border border-pink-100 dark:border-[#1E293B] rounded-[16px] md:rounded-2xl p-1 md:p-1.5 shadow-inner">
                 <button type="button" onClick={() => setFormData({ ...formData, type: 'INCOME', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'INCOME' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-[0_0_15px_rgba(16,185,129,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-emerald-500'}`}>รายรับ</button>
                 <button type="button" onClick={() => setFormData({ ...formData, type: 'EXPENSE', description: '' })} className={`flex-1 py-3 md:py-3.5 rounded-xl md:rounded-xl text-xs md:text-sm font-black tracking-widest uppercase transition-all duration-300 ${formData.type === 'EXPENSE' ? 'bg-gradient-to-r from-rose-500 to-rose-600 text-white shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'text-gray-500 dark:text-[#64748B] hover:text-rose-500'}`}>รายจ่าย</button>
+              </div>
+
+              {/* รูปแบบการเงิน: เงินสด / เงินโอน */}
+              <div className="bg-white/60 dark:bg-[#060A13]/60 border border-slate-200/60 dark:border-white/10 rounded-[18px] p-2.5 shadow-sm space-y-2 animate-fade-in">
+                <div className="flex items-center justify-between px-1">
+                  <span className="text-[10px] font-black text-gray-500 dark:text-[#94A3B8] uppercase tracking-wider">
+                    {formData.type === 'INCOME' ? 'รูปแบบการรับเงิน' : 'รูปแบบการจ่ายเงิน'}
+                  </span>
+                  <span className={`text-[10px] font-black px-2.5 py-0.5 rounded-full ${paymentMethod === 'TRANSFER' ? 'text-blue-600 dark:text-blue-300 bg-blue-100 dark:bg-blue-950/70 border border-blue-300/50 dark:border-blue-800/50' : 'text-emerald-600 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-300/50 dark:border-emerald-800/50'}`}>
+                    {paymentMethod === 'TRANSFER' ? '💳 บัญชี / เงินโอน' : '💵 เงินสด'}
+                  </span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod('CASH')}
+                    className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${paymentMethod === 'CASH' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white shadow-md shadow-emerald-500/25 scale-[1.02]' : 'bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}
+                  >
+                    <span>💵 เงินสด</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod('TRANSFER')}
+                    className={`py-2.5 px-3 rounded-xl text-xs font-black flex items-center justify-center gap-1.5 transition-all duration-200 ${paymentMethod === 'TRANSFER' ? 'bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white shadow-md shadow-blue-500/30 scale-[1.02]' : 'bg-slate-100 dark:bg-white/5 text-gray-600 dark:text-slate-400 hover:text-blue-500'}`}
+                  >
+                    <span>💳 เงินโอน</span>
+                  </button>
+                </div>
               </div>
 
               <div>
