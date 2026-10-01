@@ -12,6 +12,61 @@ export const AVAILABLE_FONTS = [
     sampleEn: 'Patcha Daily Accounting'
   },
   {
+    id: 'fc-muffin',
+    name: 'FC Muffin (มัฟฟิน)',
+    family: "'FC_Muffin', cursive, sans-serif",
+    category: 'handwriting',
+    categoryName: 'ลายมือ',
+    description: 'ฟอนต์ลายมือน่ารักอ้วนกลม สไตล์ขนมอบ อบอุ่น นุ่มฟู สดใส',
+    tag: 'อ้วนกลม 🧁',
+    sampleTh: 'บันทึกรายรับรายจ่ายแสนน่ารัก ฿1,350',
+    sampleEn: 'Cute & Fluffy Muffin Font'
+  },
+  {
+    id: 'fc-lamoon',
+    name: 'FC Lamoon (ละมุน)',
+    family: "'FC_Lamoon', cursive, sans-serif",
+    category: 'handwriting',
+    categoryName: 'ลายมือ',
+    description: 'ฟอนต์ลายมือละมุนละไม โค้งมน นุ่มนวล อ่านสบายตา',
+    tag: 'ละมุนละไม 🍮',
+    sampleTh: 'ความสุขของการออมเงินทุกวัน ฿2,450',
+    sampleEn: 'Soft & Gentle Handwritten'
+  },
+  {
+    id: 'fh-happyhome',
+    name: 'FH Happy Home (แฮปปี้โฮม)',
+    family: "'FH_HappyHome', cursive, sans-serif",
+    category: 'handwriting',
+    categoryName: 'ลายมือ',
+    description: 'ฟอนต์ลายมือซุกซน ขี้เล่น มีชีวิตชีวา แสนอบอุ่นในบ้าน',
+    tag: 'ซุกซน 🏡',
+    sampleTh: 'รายรับรายจ่ายและเงินออมในบ้าน ฿3,600',
+    sampleEn: 'Happy Home Playful Script'
+  },
+  {
+    id: 'mn-aitim-boran',
+    name: 'MN Aitim Boran (ไอติมโบราณ)',
+    family: "'MN_AitimBoran', cursive, sans-serif",
+    category: 'handwriting',
+    categoryName: 'ลายมือ',
+    description: 'ฟอนต์ลายมือน่ารักสไตล์ไอติมแท่งโบราณ มีเสน่ห์ ย้อนยุคหวานสดใส',
+    tag: 'ไอติมโบราณ 🍦',
+    sampleTh: 'อิ่มอร่อยสดชื่นและออมเงินทุกวัน ฿4,750',
+    sampleEn: 'Vintage Ice Cream Style'
+  },
+  {
+    id: 'playpen',
+    name: 'Playpen Sans Thai (เพลย์เพน)',
+    family: "'Playpen Sans Thai', cursive, sans-serif",
+    category: 'handwriting',
+    categoryName: 'ลายมือ',
+    description: 'ฟอนต์ลายมือแคชชวลขี้เล่น เป็นธรรมชาติ สไตล์สมุดบันทึก',
+    tag: 'ขี้เล่น 🎨',
+    sampleTh: 'บันทึกสนุกทุกตัวเลขและรายจ่าย ฿5,200',
+    sampleEn: 'Playful Casual Thai Sans'
+  },
+  {
     id: 'itim',
     name: 'Itim (Google Fonts)',
     family: "'Itim', cursive, sans-serif",
@@ -100,6 +155,28 @@ export const AVAILABLE_FONTS = [
     tag: 'ยอดนิยม 💼',
     sampleTh: 'ระบบบริหารจัดการการเงินอัจฉริยะ ฿8,200',
     sampleEn: 'Modern Geometric Typography'
+  },
+  {
+    id: 'prompt',
+    name: 'Prompt (พร้อมพ์)',
+    family: "'Prompt', sans-serif",
+    category: 'modern',
+    categoryName: 'โมเดิร์น',
+    description: 'ฟอนต์โมเดิร์นยอดนิยมอันดับต้นๆ สัดส่วนสวยงาม มืออาชีพ',
+    tag: 'ยอดนิยม 📱',
+    sampleTh: 'ระบบการเงินและบัญชีรายวัน ฿6,100',
+    sampleEn: 'Modern Professional Geometric'
+  },
+  {
+    id: 'anuphan',
+    name: 'Anuphan (อนุพันธ์)',
+    family: "'Anuphan', sans-serif",
+    category: 'modern',
+    categoryName: 'โมเดิร์น',
+    description: 'ฟอนต์โมเดิร์นร่วมสมัย เส้นสายชัดเจน สะอาดตา ลื่นไหล',
+    tag: 'สะอาดตา 💎',
+    sampleTh: 'วิเคราะห์แนวโน้มผลประกอบการ ฿7,800',
+    sampleEn: 'Contemporary Clean Aesthetics'
   },
   {
     id: 'mitr',

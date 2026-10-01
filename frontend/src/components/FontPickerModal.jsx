@@ -48,7 +48,7 @@ export default function FontPickerModal({ isOpen, onClose, currentFontId, onSele
                 </span>
               </h2>
               <p className="text-xs text-gray-500 dark:text-gray-400 font-bold">
-                มีฟอนต์ยอดนิยม 25 แบบ สลับเปลี่ยนบรรยากาศได้ตามใจสไตล์ Canva ✨
+                มีฟอนต์สวยน่ารักให้เลือก {AVAILABLE_FONTS.length} แบบ สลับเปลี่ยนบรรยากาศได้ตามใจสไตล์ Canva ✨
               </p>
             </div>
           </div>
