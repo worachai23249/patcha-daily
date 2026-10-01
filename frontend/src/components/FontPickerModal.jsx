@@ -9,11 +9,12 @@ export default function FontPickerModal({ isOpen, onClose, currentFontId, onSele
   if (!isOpen) return null;
 
   const categories = [
-    { id: 'all', label: 'ทั้งหมด' },
-    { id: 'handwriting', label: '✍️ ลายมือ/น่ารัก' },
-    { id: 'modern', label: '✨ โมเดิร์น' },
-    { id: 'classic', label: '👑 เรียบหรู' },
-    { id: 'formal', label: '📄 ทางการ' },
+    { id: 'all', label: `ทั้งหมด (${AVAILABLE_FONTS.length})` },
+    { id: 'handwriting', label: `✍️ ลายมือ/น่ารัก (${AVAILABLE_FONTS.filter(f => f.category === 'handwriting').length})` },
+    { id: 'modern', label: `✨ โมเดิร์น (${AVAILABLE_FONTS.filter(f => f.category === 'modern').length})` },
+    { id: 'classic', label: `👑 เรียบหรู (${AVAILABLE_FONTS.filter(f => f.category === 'classic').length})` },
+    { id: 'display', label: `⭐ โดดเด่น (${AVAILABLE_FONTS.filter(f => f.category === 'display').length})` },
+    { id: 'formal', label: `📄 ทางการ (${AVAILABLE_FONTS.filter(f => f.category === 'formal').length})` },
   ];
 
   const filteredFonts = AVAILABLE_FONTS.filter(font => {
@@ -42,9 +43,12 @@ export default function FontPickerModal({ isOpen, onClose, currentFontId, onSele
             <div>
               <h2 className="text-lg md:text-xl font-black text-gray-800 dark:text-white flex items-center gap-2">
                 เลือกแบบฟอนต์ที่ชอบ 🎨
+                <span className="text-xs font-black px-2 py-0.5 rounded-full bg-pink-100 dark:bg-pink-950/80 text-pink-600 dark:text-pink-300 border border-pink-200 dark:border-pink-800/40">
+                  {AVAILABLE_FONTS.length} แบบ
+                </span>
               </h2>
               <p className="text-xs text-gray-500 dark:text-gray-400 font-bold">
-                เปลี่ยนบรรยากาศหน้าเว็บในสไตล์ Canva ✨
+                มีฟอนต์ยอดนิยม 25 แบบ สลับเปลี่ยนบรรยากาศได้ตามใจสไตล์ Canva ✨
               </p>
             </div>
           </div>
