@@ -29,16 +29,22 @@
 
 @layer base {
 
-  *,
-  ::before,
-  ::after,
   html,
   body,
   input,
   button,
   select,
   textarea {
-    font-family: var(--app-font-family) !important;
+    font-family: var(--app-font-family);
+  }
+
+  /* Scoped font preview for Canva-style font picker */
+  .font-preview-scope {
+    font-family: var(--preview-font-family) !important;
+  }
+
+  .font-preview-scope * {
+    font-family: inherit !important;
   }
 
   /* โหมดสว่าง (ค่าเริ่มต้น) */

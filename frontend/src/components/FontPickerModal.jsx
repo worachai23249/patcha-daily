@@ -119,7 +119,10 @@ export default function FontPickerModal({ isOpen, onClose, currentFontId, onSele
                 >
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className="font-black text-sm md:text-base text-gray-800 dark:text-white">
+                      <h3 
+                        className="font-preview-scope font-black text-base md:text-lg text-gray-800 dark:text-white"
+                        style={{ '--preview-font-family': font.family, fontFamily: font.family }}
+                      >
                         {font.name}
                       </h3>
                       {font.tag && (
@@ -146,13 +149,19 @@ export default function FontPickerModal({ isOpen, onClose, currentFontId, onSele
 
                   {/* Live Font Preview Box */}
                   <div 
-                    className="p-3 rounded-xl bg-pink-50/50 dark:bg-[#060A13]/40 border border-pink-200/50 dark:border-white/5 space-y-1"
-                    style={{ fontFamily: font.family }}
+                    className="font-preview-scope p-3.5 rounded-xl bg-pink-50/70 dark:bg-[#060A13]/60 border border-pink-200/60 dark:border-white/10 space-y-1 shadow-sm"
+                    style={{ '--preview-font-family': font.family, fontFamily: font.family }}
                   >
-                    <div className="text-base md:text-lg font-bold text-gray-900 dark:text-pink-100 tracking-wide">
+                    <div 
+                      className="font-preview-scope text-lg md:text-xl font-bold text-gray-900 dark:text-pink-100 tracking-wide"
+                      style={{ '--preview-font-family': font.family, fontFamily: font.family }}
+                    >
                       {font.sampleTh}
                     </div>
-                    <div className="text-xs md:text-sm text-gray-600 dark:text-gray-300">
+                    <div 
+                      className="font-preview-scope text-xs md:text-sm text-gray-600 dark:text-gray-300"
+                      style={{ '--preview-font-family': font.family, fontFamily: font.family }}
+                    >
                       {font.sampleEn}
                     </div>
                   </div>
