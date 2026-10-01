@@ -15,7 +15,7 @@ import {
 
 import {
   LayoutDashboard, ArrowLeftRight, Tags, PieChart as PieChartIcon,
-  Sun, Moon, LogOut, X, Trash2, Upload, Lock, AlertTriangle, CheckCircle, Menu, Camera
+  Sun, Moon, LogOut, X, Trash2, Upload, Lock, AlertTriangle, CheckCircle, Menu, Camera, Palette
 } from 'lucide-react';
 
 import Overview from './pages/Overview';
@@ -24,14 +24,18 @@ import Categories from './pages/Categories';
 import Reports from './pages/Reports';
 import Login from './pages/Login';
 import NotificationToast from './components/NotificationToast';
+import FontPickerModal from './components/FontPickerModal';
 
 import { cleanTransactionNote } from './services/notificationService';
+import { getSavedFont, applyFont } from './services/fontService';
 
 const CATEGORY_COLORS = ['#EF4444', '#F87171', '#F97316', '#EAB308', '#84CC16', '#10B981', '#059669', '#14B8A6', '#06B6D4', '#0EA5E9', '#3B82F6', '#6366F1', '#8B5CF6', '#A855F7', '#D946EF', '#EC4899', '#64748B'];
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => sessionStorage.getItem('isLoggedIn') === 'true');
   const [showLoginScreen, setShowLoginScreen] = useState(false);
+  const [currentFont, setCurrentFont] = useState(getSavedFont);
+  const [isFontModalOpen, setIsFontModalOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     if (localStorage.getItem('theme') === 'dark') {
       localStorage.removeItem('theme');
@@ -145,6 +149,15 @@ function App() {
     const meta = document.getElementById('theme-color-meta');
     if (meta) meta.setAttribute('content', isDarkMode ? '#060A13' : '#FDF2F8');
   }, [isDarkMode]);
+
+  useEffect(() => {
+    applyFont(currentFont.id);
+  }, [currentFont]);
+
+  const handleSelectFont = (fontId) => {
+    const font = applyFont(fontId);
+    setCurrentFont(font);
+  };
 
   const fetchTransactions = () => {
     return getTransactions().then(data => setTransactions(data));
@@ -497,6 +510,28 @@ function App() {
 
         {/* Sidebar Footer Controls */}
         <div className="p-5 space-y-3 border-t border-white/60 dark:border-white/5 bg-white/30 dark:bg-[#060A13]/80 backdrop-blur-md">
+          {/* Canva-style Font Picker Button */}
+          <button
+            onClick={() => setIsFontModalOpen(true)}
+            className="group relative w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-white/55 dark:bg-[#0A101D]/80 border border-white/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-pink-300 hover:shadow-[0_4px_16px_rgba(244,114,182,0.2)] hover:bg-white/80 dark:hover:bg-[#0F172A] cursor-pointer"
+            title="เลือกแบบฟอนต์ที่ชอบ (สไตล์ Canva)"
+          >
+            <div className="flex items-center space-x-3 min-w-0">
+              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-pink-50/80 dark:bg-pink-400/20 text-pink-500 transition-all duration-300 group-hover:scale-105">
+                <Palette size={16} />
+              </div>
+              <div className="flex flex-col text-left min-w-0">
+                <span className="relative z-10 text-[9px] text-gray-400 dark:text-gray-500 uppercase tracking-wider">แบบฟอนต์</span>
+                <span className="relative z-10 text-xs font-black text-gray-800 dark:text-gray-200 truncate group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+                  {currentFont.name}
+                </span>
+              </div>
+            </div>
+            <span className="relative z-10 text-[10px] px-2 py-0.5 rounded-lg bg-pink-100/70 dark:bg-pink-950/80 text-pink-600 dark:text-pink-300 font-black shrink-0 border border-pink-200/50">
+              เลือก
+            </span>
+          </button>
+
           <button
             onClick={() => setIsDarkMode(!isDarkMode)}
             className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/55 dark:bg-[#0A101D]/80 border border-white/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-pink-300 hover:shadow-[0_4px_16px_rgba(244,114,182,0.2)] hover:bg-white/80 dark:hover:bg-[#0F172A]"
@@ -540,14 +575,22 @@ function App() {
 
       {/* Mobile Top Header with Cute iPhone Frosted Glass */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/80 dark:bg-[#030610]/85 backdrop-blur-2xl border-b border-white/90 dark:border-white/5 z-[80] flex items-center justify-between px-4 shadow-[0_4px_20px_rgba(244,114,182,0.1)]">
-        <div className="flex items-center">
-          <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 dark:text-slate-300 hover:text-pink-500">
+        <div className="flex items-center min-w-0">
+          <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 dark:text-slate-300 hover:text-pink-500 cursor-pointer">
             <Menu size={22} />
           </button>
           <img src="/logo.png?v=8" alt="Logo" className="w-8 h-8 rounded-full object-contain ml-2 shrink-0 border border-pink-300 bg-white/50" />
-          <span className="ml-2 text-xs uppercase font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 whitespace-nowrap">🌸 Patcha Daily ✨</span>
+          <span className="ml-2 text-xs uppercase font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 truncate">🌸 Patcha Daily ✨</span>
         </div>
 
+        {/* Mobile Font Button */}
+        <button
+          onClick={() => setIsFontModalOpen(true)}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-50/90 dark:bg-white/5 border border-pink-200/80 dark:border-white/10 text-xs font-black text-pink-600 dark:text-pink-300 shadow-sm cursor-pointer shrink-0 ml-2"
+        >
+          <Palette size={14} className="text-pink-500" />
+          <span className="max-w-[70px] truncate">{currentFont.name.split(' ')[0]}</span>
+        </button>
       </div>
 
       {/* Main Content */}
@@ -846,6 +889,14 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Canva-style Font Selection Modal */}
+      <FontPickerModal
+        isOpen={isFontModalOpen}
+        onClose={() => setIsFontModalOpen(false)}
+        currentFontId={currentFont.id}
+        onSelectFont={handleSelectFont}
+      />
     </div>
   );
 }

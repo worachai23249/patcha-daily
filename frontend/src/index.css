@@ -1,10 +1,4 @@
-@font-face {
-  font-family: 'Itim';
-  src: url('./assets/fonts/itimDemo.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Chonburi&family=Itim&family=Kanit:wght@300;400;500;600;700&family=Kodchasan:wght@400;600&family=Mali:wght@400;600;700&family=Mitr:wght@400;500;600&family=Pridi:wght@400;600&family=Sarabun:wght@400;500;600;700&display=swap');
 
 @font-face {
   font-family: 'Lmf_itim';
@@ -22,11 +16,15 @@
   font-display: swap;
 }
 
+:root {
+  --app-font-family: 'Lmf_itim', cursive, sans-serif;
+}
+
 @import "tailwindcss";
 @variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: 'Itim', 'Lmf_itim', 'LMF Itim', cursive, sans-serif;
+  --font-sans: var(--app-font-family);
 }
 
 @layer base {
@@ -40,7 +38,7 @@
   button,
   select,
   textarea {
-    font-family: 'Itim', 'Lmf_itim', 'LMF Itim', cursive, sans-serif;
+    font-family: var(--app-font-family) !important;
   }
 
   /* โหมดสว่าง (ค่าเริ่มต้น) */
