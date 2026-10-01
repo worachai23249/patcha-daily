@@ -1,19 +1,55 @@
 import { useState } from 'react';
-import { TrendingUp, TrendingDown, Wallet, Receipt, Image as ImageIcon, Activity, X, Gift } from 'lucide-react';
+import { TrendingUp, TrendingDown, Wallet, Receipt, Image as ImageIcon, Activity, X, Gift, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { isCashTransaction, isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
+
+const MONTHS_TH = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+const FULL_MONTHS_TH = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
 
 export default function Overview({ transactions, categories = [], formatThaiDate, fmt, handleViewImage, setActiveMenu, isLoggedIn }) {
   const [selectedExpenseCategory, setSelectedExpenseCategory] = useState(null);
   const [selectedIncomeCategory, setSelectedIncomeCategory] = useState(null);
-  const MONTHS_TH = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
 
-  const currentMonthNum = new Date().getMonth() + 1;
-  const currentYearNum = new Date().getFullYear();
+  const now = new Date();
+  const currentMonthNum = now.getMonth() + 1;
+  const currentYearNum = now.getFullYear();
+
+  const [selectedMonth, setSelectedMonth] = useState(currentMonthNum);
+  const [selectedYear, setSelectedYear] = useState(currentYearNum);
+
+  const availableYears = (() => {
+    const yearsSet = new Set(
+      transactions
+        .map(t => parseInt(t.transaction_date?.split('-')[0]))
+        .filter(y => !isNaN(y))
+    );
+    yearsSet.add(currentYearNum);
+    yearsSet.add(currentYearNum - 1);
+    yearsSet.add(currentYearNum + 1);
+    return Array.from(yearsSet).sort((a, b) => b - a);
+  })();
+
+  const handlePrevMonth = () => {
+    if (selectedMonth === 1) {
+      setSelectedMonth(12);
+      setSelectedYear(prev => prev - 1);
+    } else {
+      setSelectedMonth(prev => prev - 1);
+    }
+  };
+
+  const handleNextMonth = () => {
+    if (selectedMonth === 12) {
+      setSelectedMonth(1);
+      setSelectedYear(prev => prev + 1);
+    } else {
+      setSelectedMonth(prev => prev + 1);
+    }
+  };
 
   const currentMonthTransactions = transactions.filter(t => {
     const [y, m] = t.transaction_date.split('-');
-    return parseInt(m) === currentMonthNum && parseInt(y) === currentYearNum;
+    return parseInt(m) === selectedMonth && parseInt(y) === selectedYear;
   });
 
   const totalIncome = currentMonthTransactions.filter(t => t.type === 'INCOME' && isCashTransaction(t)).reduce((sum, t) => sum + parseFloat(t.amount), 0);
@@ -24,7 +60,7 @@ export default function Overview({ transactions, categories = [], formatThaiDate
   const monthlyData = (() => {
     const md = {};
     MONTHS_TH.forEach(m => md[m] = { name: m, income: 0, expense: 0 });
-    transactions.filter(t => t.transaction_date.startsWith(currentYearNum.toString())).forEach(t => {
+    transactions.filter(t => t.transaction_date.startsWith(selectedYear.toString())).forEach(t => {
       const [, month] = t.transaction_date.split('-');
       const monthName = MONTHS_TH[parseInt(month) - 1];
       if (t.type === 'INCOME' && isCashTransaction(t)) md[monthName].income += parseFloat(t.amount);
@@ -72,14 +108,86 @@ export default function Overview({ transactions, categories = [], formatThaiDate
             <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 mb-2 pb-1 tracking-tighter drop-shadow-sm flex items-center gap-2">
               🌸 System Overview ✨
             </h1>
-            <p className="text-gray-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2">
+            <p className="text-gray-500 dark:text-[#94A3B8] text-xs font-bold tracking-[0.2em] uppercase flex items-center gap-2 flex-wrap">
               <Activity size={14} className="text-pink-400" />
-              สรุปการเงินเดือนปัจจุบัน 🎀 <span className="text-pink-500 dark:text-pink-400 font-black">({MONTHS_TH[currentMonthNum - 1]} {currentYearNum + 543})</span>
+              สรุปการเงินประจำเดือน 🎀 <span className="text-pink-500 dark:text-pink-400 font-black">({FULL_MONTHS_TH[selectedMonth - 1]} {selectedYear + 543})</span>
+              {selectedMonth === currentMonthNum && selectedYear === currentYearNum && (
+                <span className="text-[10px] bg-pink-100 dark:bg-pink-950/60 text-pink-600 dark:text-pink-300 px-2.5 py-0.5 rounded-full font-black border border-pink-200 dark:border-pink-800/40">
+                  เดือนปัจจุบัน
+                </span>
+              )}
             </p>
           </div>
-          <div className="glass-panel px-4 py-2 rounded-full inline-flex items-center gap-2 self-start sm:self-auto border border-pink-200 shadow-sm">
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-            <span className="text-xs font-black tracking-widest uppercase text-gray-600 dark:text-gray-300">🌸 Live Status</span>
+
+          {/* Month & Year Selectors (แทน Live Status) */}
+          <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+            {/* ปุ่มลัดกลับสู่เดือนปัจจุบัน หากเลือกดูเดือนอื่นอยู่ */}
+            {(selectedMonth !== currentMonthNum || selectedYear !== currentYearNum) && (
+              <button
+                type="button"
+                onClick={() => {
+                  setSelectedMonth(currentMonthNum);
+                  setSelectedYear(currentYearNum);
+                }}
+                className="glass-panel px-3 py-1.5 rounded-full text-xs font-black text-pink-600 dark:text-pink-300 bg-pink-100/70 dark:bg-pink-950/50 hover:bg-pink-200/80 dark:hover:bg-pink-900/60 transition-all flex items-center gap-1 border border-pink-300/60 dark:border-pink-700/50 shadow-sm"
+                title="กลับสู่เดือนปัจจุบัน"
+              >
+                <span>⚡ เดือนปัจจุบัน</span>
+              </button>
+            )}
+
+            {/* กล่องเลือกเดือนและปี */}
+            <div className="glass-panel px-2.5 py-1 rounded-2xl flex items-center gap-1 border border-pink-200/80 dark:border-white/10 shadow-sm">
+              <button
+                type="button"
+                onClick={handlePrevMonth}
+                className="w-7 h-7 rounded-xl flex items-center justify-center text-gray-500 hover:text-pink-500 hover:bg-pink-100/70 dark:hover:bg-pink-500/20 transition-all cursor-pointer"
+                title="เดือนก่อนหน้า"
+              >
+                <ChevronLeft size={16} />
+              </button>
+
+              <div className="flex items-center gap-1 px-1">
+                <Calendar size={15} className="text-pink-500 shrink-0" />
+                
+                {/* ดรอปดาวน์เลือกเดือน */}
+                <select
+                  value={selectedMonth}
+                  onChange={(e) => setSelectedMonth(Number(e.target.value))}
+                  className="bg-transparent text-xs md:text-sm font-black text-gray-800 dark:text-gray-100 focus:outline-none cursor-pointer py-1"
+                >
+                  {FULL_MONTHS_TH.map((monthName, idx) => (
+                    <option key={idx + 1} value={idx + 1} className="bg-white dark:bg-[#0B1121] text-gray-800 dark:text-gray-100">
+                      {monthName}
+                    </option>
+                  ))}
+                </select>
+
+                <span className="text-pink-300 dark:text-pink-600 font-black">/</span>
+
+                {/* ดรอปดาวน์เลือกปี */}
+                <select
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(Number(e.target.value))}
+                  className="bg-transparent text-xs md:text-sm font-black text-gray-800 dark:text-gray-100 focus:outline-none cursor-pointer py-1"
+                >
+                  {availableYears.map(y => (
+                    <option key={y} value={y} className="bg-white dark:bg-[#0B1121] text-gray-800 dark:text-gray-100">
+                      {y + 543}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleNextMonth}
+                className="w-7 h-7 rounded-xl flex items-center justify-center text-gray-500 hover:text-pink-500 hover:bg-pink-100/70 dark:hover:bg-pink-500/20 transition-all cursor-pointer"
+                title="เดือนถัดไป"
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -156,7 +264,7 @@ export default function Overview({ transactions, categories = [], formatThaiDate
                 <span className="w-2 h-5 md:h-6 bg-gradient-to-b from-pink-400 to-rose-500 rounded-full"></span>
                 📊 แนวโน้มรายรับ-รายจ่าย 12 เดือนล่าสุด ✨
               </h3>
-              <p className="text-[10px] text-gray-500 ml-4 md:ml-5 mt-1 font-bold uppercase tracking-widest">Financial Trend (12 Months)</p>
+              <p className="text-[10px] text-gray-500 ml-4 md:ml-5 mt-1 font-bold uppercase tracking-widest">Financial Trend ({selectedYear + 543})</p>
             </div>
           </div>
           <div className="flex-1 w-full relative z-10 overflow-visible">
@@ -225,7 +333,7 @@ export default function Overview({ transactions, categories = [], formatThaiDate
                   <span className="w-2 h-5 md:h-6 bg-gradient-to-b from-emerald-400 to-emerald-600 rounded-full"></span>
                   🌸 สัดส่วนรายรับ (Income Ratio)
                 </h3>
-                <p className="text-[10px] text-gray-500 ml-4 md:ml-5 mt-1 font-bold uppercase tracking-widest">Top Income Current Month</p>
+                <p className="text-[10px] text-gray-500 ml-4 md:ml-5 mt-1 font-bold uppercase tracking-widest">Top Income ({MONTHS_TH[selectedMonth - 1]} {selectedYear + 543})</p>
               </div>
             </div>
             <div className="flex-1 flex flex-col sm:flex-row items-center relative z-10 gap-4 sm:gap-2 overflow-hidden pb-2 sm:pb-0">
@@ -278,7 +386,7 @@ export default function Overview({ transactions, categories = [], formatThaiDate
                   <span className="w-2 h-5 md:h-6 bg-gradient-to-b from-pink-400 to-rose-500 rounded-full"></span>
                   🌷 สัดส่วนรายจ่าย (Expense Ratio)
                 </h3>
-                <p className="text-[10px] text-gray-500 ml-4 md:ml-5 mt-1 font-bold uppercase tracking-widest">Top Expenses Current Month</p>
+                <p className="text-[10px] text-gray-500 ml-4 md:ml-5 mt-1 font-bold uppercase tracking-widest">Top Expenses ({MONTHS_TH[selectedMonth - 1]} {selectedYear + 543})</p>
               </div>
             </div>
             <div className="flex-1 flex flex-col sm:flex-row items-center relative z-10 gap-4 sm:gap-2 overflow-hidden pb-2 sm:pb-0">
