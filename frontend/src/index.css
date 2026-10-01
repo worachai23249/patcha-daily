@@ -1,7 +1,47 @@
+@font-face {
+  font-family: 'Itim';
+  src: url('./assets/fonts/itimDemo.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lmf_itim';
+  src: url('./assets/fonts/itimDemo.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'LMF Itim';
+  src: url('./assets/fonts/itimDemo.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @import "tailwindcss";
 @variant dark (&:is(.dark *));
 
+@theme {
+  --font-sans: 'Itim', 'Lmf_itim', 'LMF Itim', cursive, sans-serif;
+}
+
 @layer base {
+
+  *,
+  ::before,
+  ::after,
+  html,
+  body,
+  input,
+  button,
+  select,
+  textarea {
+    font-family: 'Itim', 'Lmf_itim', 'LMF Itim', cursive, sans-serif;
+  }
 
   /* โหมดสว่าง (ค่าเริ่มต้น) */
   body {
