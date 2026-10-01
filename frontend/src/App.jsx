@@ -15,7 +15,7 @@ import {
 
 import {
   LayoutDashboard, ArrowLeftRight, Tags, PieChart as PieChartIcon,
-  Sun, Moon, LogOut, X, Trash2, Upload, Lock, AlertTriangle, CheckCircle, Menu, Camera, Bell
+  Sun, Moon, LogOut, X, Trash2, Upload, Lock, AlertTriangle, CheckCircle, Menu, Camera
 } from 'lucide-react';
 
 import Overview from './pages/Overview';
@@ -24,8 +24,8 @@ import Categories from './pages/Categories';
 import Reports from './pages/Reports';
 import Login from './pages/Login';
 import NotificationToast from './components/NotificationToast';
-import NotificationSettingsModal from './components/NotificationSettingsModal';
-import { sendTransactionNotification, cleanTransactionNote } from './services/notificationService';
+
+import { cleanTransactionNote } from './services/notificationService';
 
 const CATEGORY_COLORS = ['#EF4444', '#F87171', '#F97316', '#EAB308', '#84CC16', '#10B981', '#059669', '#14B8A6', '#06B6D4', '#0EA5E9', '#3B82F6', '#6366F1', '#8B5CF6', '#A855F7', '#D946EF', '#EC4899', '#64748B'];
 
@@ -45,7 +45,7 @@ function App() {
   const [successModal, setSuccessModal] = useState({ isOpen: false, title: '', message: '' });
   const [toasts, setToasts] = useState([]);
   const notifCountRef = useRef(0);
-  const [isNotifModalOpen, setIsNotifModalOpen] = useState(false);
+
   const lastIdRef = useRef(null);
 
   const showSuccess = (title, message) => {
@@ -325,9 +325,6 @@ function App() {
         fetchTransactions();
         setIsFormOpen(false);
         showSuccess(isEdit ? 'แก้ไขสำเร็จ' : 'เพิ่มสำเร็จ', isEdit ? 'ข้อมูลรายการถูกอัปเดตเรียบร้อยแล้ว' : 'สร้างรายการใหม่เรียบร้อยแล้ว');
-        
-        // ส่งการแจ้งเตือนอัตโนมัติเข้า LINE (ทุกรายการพร้อมแนบรูปสลิป)
-        sendTransactionNotification(payload, isEdit ? 'UPDATE' : 'ADD');
 
         // ส่ง Web Notification เข้า notification bar มือถือ
         if (!isEdit) {
@@ -512,18 +509,6 @@ function App() {
             <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">{isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}</span>
           </button>
 
-          {isLoggedIn && (
-            <button
-              onClick={() => { setIsNotifModalOpen(true); setIsMobileMenuOpen(false); }}
-              className="group relative w-full flex items-center space-x-3 px-4 py-3 rounded-2xl bg-white/55 dark:bg-[#0A101D]/80 border border-white/80 dark:border-white/5 text-gray-600 dark:text-slate-400 font-black overflow-hidden transition-all duration-300 hover:border-emerald-300 hover:shadow-[0_4px_16px_rgba(16,185,129,0.2)] hover:bg-white/80 dark:hover:bg-[#0F172A]"
-            >
-              <div className="relative z-10 flex items-center justify-center p-1.5 rounded-xl bg-emerald-50/80 dark:bg-emerald-500/20 transition-all duration-300">
-                <Bell size={16} className="text-emerald-500 group-hover:scale-110 transition-transform duration-300" />
-              </div>
-              <span className="relative z-10 text-[11px] uppercase tracking-wider group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">💬 แจ้งเตือน LINE 🎀</span>
-            </button>
-          )}
-
           {!isLoggedIn ? (
             <button
               onClick={() => { setShowLoginScreen(true); setIsMobileMenuOpen(false); }}
@@ -562,11 +547,7 @@ function App() {
           <img src="/logo.png?v=8" alt="Logo" className="w-8 h-8 rounded-full object-contain ml-2 shrink-0 border border-pink-300 bg-white/50" />
           <span className="ml-2 text-xs uppercase font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-pink-500 dark:from-pink-300 dark:via-rose-300 dark:to-pink-400 whitespace-nowrap">🌸 Patcha Daily ✨</span>
         </div>
-        {isLoggedIn && (
-          <button onClick={() => setIsNotifModalOpen(true)} className="p-2 text-emerald-500 hover:scale-110 transition-transform">
-            <Bell size={20} />
-          </button>
-        )}
+
       </div>
 
       {/* Main Content */}
@@ -865,15 +846,6 @@ function App() {
           </div>
         </div>
       )}
-
-      {/* Modal ตั้งค่าการแจ้งเตือน LINE/Telegram */}
-      <NotificationSettingsModal
-        isOpen={isNotifModalOpen}
-        onClose={() => setIsNotifModalOpen(false)}
-        transactions={transactions}
-        fmt={fmt}
-        showSuccess={showSuccess}
-      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { sendMonthlySummaryNotification, isCashTransaction, isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
+import { isCashTransaction, isInKindTransaction, cleanTransactionNote } from '../services/notificationService';
 
-import { ChevronLeft, ChevronRight, TrendingUp, TrendingDown, Wallet, Activity, ArrowLeft, Edit, Trash2, Image as ImageIcon, PieChart as PieIcon, LineChart, Download, Calendar, CalendarDays, CheckCircle2, ChevronDown, ListFilter, ArrowRight, MessageSquare } from 'lucide-react';
+import { ChevronLeft, ChevronRight, TrendingUp, TrendingDown, Wallet, Activity, ArrowLeft, Edit, Trash2, Image as ImageIcon, PieChart as PieIcon, LineChart, Download, Calendar, CalendarDays, CheckCircle2, ChevronDown, ListFilter, ArrowRight } from 'lucide-react';
 import Papa from 'papaparse';
 import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, Cell, ReferenceLine } from 'recharts';
 
@@ -273,27 +273,6 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 >
                   <Download size={14} className="text-pink-400 shrink-0" />
                   <span className="whitespace-nowrap">ส่งออก CSV</span>
-                </button>
-
-                {/* Send Monthly Summary to LINE Button */}
-                <button
-                  onClick={async () => {
-                    try {
-                      const res = await sendMonthlySummaryNotification(selectedYear, selectedMonthDetail, transactions, fmt);
-                      if (res.line) {
-                        alert(`ส่งสรุปรายงานประจำเดือน ${FULL_MONTHS_TH[selectedMonthDetail - 1]} ${selectedYear} เข้า LINE เรียบร้อยแล้ว!`);
-                      } else {
-                        alert('กรุณาตั้งค่า LINE Webhook ในเมนู "แจ้งเตือน LINE" ก่อนส่งรายงาน');
-                      }
-                    } catch (e) {
-                      alert('เกิดข้อผิดพลาด: ' + e.message);
-                    }
-                  }}
-                  className="flex items-center justify-center space-x-1.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white px-3 py-2.5 rounded-2xl font-black text-[11px] sm:text-xs uppercase tracking-wider transition-all duration-200 active:scale-95 shadow-md shadow-emerald-500/20"
-                  title="ส่งสรุปรายงานประจำเดือนเข้า LINE"
-                >
-                  <MessageSquare size={14} className="text-white shrink-0" />
-                  <span className="whitespace-nowrap">ส่งสรุปเข้า LINE</span>
                 </button>
               </div>
             </div>
