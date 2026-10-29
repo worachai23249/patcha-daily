@@ -54,7 +54,7 @@ export async function sendPlatformMessage() {
 // ========== In-Kind (สิ่งของ/จ่ายให้) Helpers ==========
 export function isInKindTransaction(tx) {
   if (!tx || tx.type !== 'INCOME') return false;
-  const note = (tx.note || '').trim();
+  const note = String(tx.note || '').trim();
   return note.includes('[สิ่งของ/จ่ายให้]') || note.includes('[ถวายสิ่งของ]') || note.includes('[IN_KIND]');
 }
 
@@ -63,14 +63,14 @@ export function isCashTransaction(tx) {
 }
 
 export function getPaymentMethod(tx) {
-  const note = (tx && tx.note) || '';
+  const note = String((tx && tx.note) || '');
   if (note.includes('[เงินโอน]')) return 'TRANSFER';
   return 'CASH';
 }
 
 export function cleanTransactionNote(note) {
   if (!note) return '';
-  return note
+  return String(note)
     .replace(/\[เงินสด\]/g, '')
     .replace(/\[เงินโอน\]/g, '')
     .replace(/\[สิ่งของ\/จ่ายให้\]/g, '')

@@ -32,7 +32,9 @@ import { getSavedFont, applyFont } from './services/fontService';
 const CATEGORY_COLORS = ['#EF4444', '#F87171', '#F97316', '#EAB308', '#84CC16', '#10B981', '#059669', '#14B8A6', '#06B6D4', '#0EA5E9', '#3B82F6', '#6366F1', '#8B5CF6', '#A855F7', '#D946EF', '#EC4899', '#64748B'];
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => sessionStorage.getItem('isLoggedIn') === 'true');
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem('isLoggedIn') === 'true' || sessionStorage.getItem('isLoggedIn') === 'true';
+  });
   const [showLoginScreen, setShowLoginScreen] = useState(false);
   const [currentFont, setCurrentFont] = useState(getSavedFont);
   const [isFontModalOpen, setIsFontModalOpen] = useState(false);
@@ -434,6 +436,7 @@ function App() {
     </div>
   );
   if (!isLoggedIn && showLoginScreen) return <Login onLogin={() => { 
+    localStorage.setItem('isLoggedIn', 'true');
     sessionStorage.setItem('isLoggedIn', 'true'); 
     setIsLoggedIn(true); 
     setShowLoginScreen(false); 
@@ -558,6 +561,8 @@ function App() {
             <button
               onClick={async () => { 
                 await logout();
+                localStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('isLoggedIn');
                 setIsLoggedIn(false); 
                 setActiveMenu('overview'); 
                 setIsMobileMenuOpen(false); 
@@ -656,7 +661,7 @@ function App() {
                   value={formData.amount} 
                   onChange={(e) => setFormData({ ...formData, amount: e.target.value })} 
                   required 
-                  className="w-full py-4 md:py-5 text-3xl md:text-4xl font-black text-center bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-sans" 
+                  className="w-full py-4 md:py-5 text-3xl md:text-4xl font-black text-center bg-pink-50/70 dark:bg-[#0B1120] border border-pink-200/90 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-sans" 
                   placeholder="0.00" 
                 />
               </div>
@@ -664,20 +669,20 @@ function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">หมวดหมู่</label>
-                  <select value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} required className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base">
+                  <select value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} required className="w-full p-3.5 md:p-4 bg-pink-50/70 dark:bg-[#0B1120] border border-pink-200/90 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base">
                     <option value="">เลือก...</option>
                     {categories.filter(c => c.type === formData.type).map(c => (<option key={c.id} value={c.name}>{c.name}</option>))}
                   </select>
                 </div>
                 <div>
                   <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">วันที่</label>
-                  <input type="date" value={formData.transaction_date} onChange={(e) => setFormData({ ...formData, transaction_date: e.target.value })} required className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base [color-scheme:light_dark]" />
+                  <input type="date" value={formData.transaction_date} onChange={(e) => setFormData({ ...formData, transaction_date: e.target.value })} required className="w-full p-3.5 md:p-4 bg-pink-50/70 dark:bg-[#0B1120] border border-pink-200/90 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 transition-all shadow-sm font-bold text-sm md:text-base [color-scheme:light_dark]" />
                 </div>
               </div>
 
               <div>
                 <label className="block text-[10px] font-black text-gray-500 dark:text-[#64748B] mb-2 uppercase tracking-[0.2em] ml-1">หมายเหตุ</label>
-                <input type="text" value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })} placeholder="ระบุรายละเอียดเพิ่มเติม..." className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-bold text-sm md:text-base" />
+                <input type="text" value={formData.note} onChange={(e) => setFormData({ ...formData, note: e.target.value })} placeholder="ระบุรายละเอียดเพิ่มเติม..." className="w-full p-3.5 md:p-4 bg-pink-50/70 dark:bg-[#0B1120] border border-pink-200/90 dark:border-white/10 rounded-[16px] md:rounded-[20px] outline-none text-gray-800 dark:text-white focus:ring-2 focus:ring-pink-400/50 focus:border-pink-400 transition-all shadow-sm font-bold text-sm md:text-base" />
               </div>
 
               <div>
@@ -686,11 +691,11 @@ function App() {
                 <input type="file" accept="image/*" capture="environment" className="hidden" ref={cameraInputRef} onChange={handleImageChange} />
                 {!imagePreview && (
                   <div className="flex gap-2 w-full">
-                    <div onClick={() => fileInputRef.current.click()} className="flex-1 py-8 bg-white/95 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
+                    <div onClick={() => fileInputRef.current?.click()} className="flex-1 py-8 bg-white/95 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
                       <Upload size={28} className="text-gray-400 dark:text-[#334155] mb-2 group-hover:text-pink-400 group-hover:animate-bounce transition-colors" />
                       <span className="text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">อัปโหลดสลิป</span>
                     </div>
-                    <div onClick={() => cameraInputRef.current.click()} className="flex-1 py-8 bg-white/95 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
+                    <div onClick={() => cameraInputRef.current?.click()} className="flex-1 py-8 bg-white/95 dark:bg-[#060A13]/40 border-2 border-slate-300 dark:border-[#1E293B] border-dashed rounded-[20px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500 dark:hover:border-blue-500 transition-all group backdrop-blur-sm hover:shadow-[0_0_20px_rgba(244,114,182,0.1)]">
                       <Camera size={28} className="text-gray-400 dark:text-[#334155] mb-2 group-hover:text-pink-400 group-hover:animate-bounce transition-colors" />
                       <span className="text-[10px] font-black text-gray-500 dark:text-[#64748B] uppercase tracking-[0.1em] group-hover:text-pink-400 px-2 text-center">ถ่ายรูป</span>
                     </div>
@@ -734,7 +739,7 @@ function App() {
                   onChange={(e) => setCategoryFormData({ ...categoryFormData, name: e.target.value })}
                   placeholder="เช่น กล่องพัสดุ, แฟลชโฮม, ค่าไฟ"
                   required
-                  className="w-full p-3.5 md:p-4 bg-white/60 dark:bg-[#060A13]/60 backdrop-blur-md border border-pink-100 dark:border-white/10 rounded-[16px] md:rounded-[20px] text-gray-800 dark:text-white font-bold outline-none focus:ring-2 focus:ring-pink-400/50 transition-colors shadow-sm text-sm md:text-base"
+                  className="w-full p-3.5 md:p-4 bg-pink-50/70 dark:bg-[#0B1120] border border-pink-200/90 dark:border-white/10 rounded-[16px] md:rounded-[20px] text-gray-800 dark:text-white font-bold outline-none focus:ring-2 focus:ring-pink-400/50 transition-colors shadow-sm text-sm md:text-base"
                 />
               </div>
 

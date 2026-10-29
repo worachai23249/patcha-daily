@@ -238,18 +238,22 @@ export async function login(email, password) {
   if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
     sessionStorage.setItem('isLoggedIn', 'true');
     sessionStorage.setItem('admin_email', email);
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('admin_email', email);
     return { status: 'success', message: 'เข้าสู่ระบบสำเร็จ' };
   }
   return { status: 'error', message: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง' };
 }
 
 export async function checkAuth() {
-  const isLogged = sessionStorage.getItem('isLoggedIn') === 'true';
+  const isLogged = localStorage.getItem('isLoggedIn') === 'true' || sessionStorage.getItem('isLoggedIn') === 'true';
   return { is_logged_in: isLogged };
 }
 
 export async function logout() {
   sessionStorage.removeItem('isLoggedIn');
   sessionStorage.removeItem('admin_email');
+  localStorage.removeItem('isLoggedIn');
+  localStorage.removeItem('admin_email');
   return { status: 'success' };
 }

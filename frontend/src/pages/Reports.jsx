@@ -18,7 +18,7 @@ export default function Reports({ transactions, fmt, formatThaiDate, handleViewI
   const [detailFilterType, setDetailFilterType] = useState('ALL'); // 'ALL' | 'INCOME' | 'EXPENSE' | 'IN_KIND'
 
 
-  const reportTransactions = transactions.filter(t => t.transaction_date.startsWith(selectedYear.toString()));
+  const reportTransactions = transactions.filter(t => t?.transaction_date?.startsWith(selectedYear.toString()));
   const reportYearlyIncome = reportTransactions.filter(t => t.type === 'INCOME' && isCashTransaction(t)).reduce((sum, t) => sum + parseFloat(t.amount), 0);
   const reportYearlyExpense = reportTransactions.filter(t => t.type === 'EXPENSE').reduce((sum, t) => sum + parseFloat(t.amount), 0);
   const reportYearlyBalance = reportYearlyIncome - reportYearlyExpense;
@@ -26,7 +26,7 @@ export default function Reports({ transactions, fmt, formatThaiDate, handleViewI
 
   const reportMonthlyStats = MONTHS_TH.map((monthName, index) => {
     const monthIndexStr = (index + 1).toString().padStart(2, '0');
-    const monthTx = reportTransactions.filter(t => t.transaction_date.startsWith(`${selectedYear}-${monthIndexStr}`));
+    const monthTx = reportTransactions.filter(t => t?.transaction_date?.startsWith(`${selectedYear}-${monthIndexStr}`));
     let inc = 0, exp = 0;
     monthTx.forEach(t => { 
       if (t.type === 'INCOME') {
@@ -68,7 +68,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
 
     // All transactions in the selected month
     allMonthTransactions = reportTransactions
-      .filter(t => t.transaction_date.startsWith(`${selectedYear}-${monthIndexStr}`))
+      .filter(t => t?.transaction_date?.startsWith(`${selectedYear}-${monthIndexStr}`))
       .sort((a, b) => new Date(b.transaction_date) - new Date(a.transaction_date));
 
     // คำนวณสัปดาห์ตามปฏิทินจริงโดยตัดตามขอบเขตของเดือน (เริ่มวันที่ 1 จนถึงวันอาทิตย์แรก และจบที่วันสิ้นเดือน)
@@ -158,7 +158,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
       });
       activeBalance = activeIncome - activeExpense;
       activeLabel = `ทั้งเดือน${detailMonthName}`;
-      activeDateRangeSubtitle = `1 - ${totalDaysInMonth} ${detailMonthName} ${selectedYear}`;
+      activeDateRangeSubtitle = `1 - ${totalDaysInMonth} ${detailMonthName} ${selectedYear + 543}`;
     } else {
       const currentWeekObj = weeksData.find(w => w.weekNum === Number(selectedWeek)) || weeksData[0];
       activeTransactions = currentWeekObj ? currentWeekObj.transactions : [];
@@ -726,7 +726,7 @@ const FULL_DAY_NAMES_TH = ['วันอาทิตย์', 'วันจัน
                 <ChevronLeft size={24} className="md:w-5 md:h-5" />
               </button>
               <div className="px-4 md:px-8 font-black text-2xl md:text-2xl text-gray-800 dark:text-white tracking-widest text-glow">
-                {selectedYear}
+                {selectedYear + 543}
               </div>
               <button
                 onClick={() => setSelectedYear(y => y + 1)}

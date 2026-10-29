@@ -48,6 +48,7 @@ export default function Overview({ transactions, categories = [], formatThaiDate
   };
 
   const currentMonthTransactions = transactions.filter(t => {
+    if (!t?.transaction_date) return false;
     const [y, m] = t.transaction_date.split('-');
     return parseInt(m) === selectedMonth && parseInt(y) === selectedYear;
   });
@@ -60,8 +61,9 @@ export default function Overview({ transactions, categories = [], formatThaiDate
   const monthlyData = (() => {
     const md = {};
     MONTHS_TH.forEach(m => md[m] = { name: m, income: 0, expense: 0 });
-    transactions.filter(t => t.transaction_date.startsWith(selectedYear.toString())).forEach(t => {
-      const [, month] = t.transaction_date.split('-');
+    transactions.filter(t => t?.transaction_date?.startsWith(selectedYear.toString())).forEach(t => {
+      const parts = t.transaction_date.split('-');
+      const month = parts[1];
       const monthName = MONTHS_TH[parseInt(month) - 1];
       if (t.type === 'INCOME' && isCashTransaction(t)) md[monthName].income += parseFloat(t.amount);
       if (t.type === 'EXPENSE') md[monthName].expense += parseFloat(t.amount);
@@ -341,7 +343,7 @@ export default function Overview({ transactions, categories = [], formatThaiDate
                 {incomeCategoryData.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
-                      <Pie data={incomeCategoryData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={6} dataKey="value" stroke="none" cornerRadius={6} animationDuration={600} onClick={(data) => setSelectedIncomeCategory(data.name)} style={{ cursor: 'pointer' }}>
+                      <Pie data={incomeCategoryData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={6} dataKey="value" stroke="none" cornerRadius={6} animationDuration={600} onClick={(data) => data?.name && setSelectedIncomeCategory(data.name)} style={{ cursor: 'pointer' }}>
                         {incomeCategoryData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)}
                       </Pie>
                       <RechartsTooltip content={({ active, payload }) => {
@@ -394,7 +396,7 @@ export default function Overview({ transactions, categories = [], formatThaiDate
                 {categoryData.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
-                      <Pie data={categoryData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={6} dataKey="value" stroke="none" cornerRadius={6} animationDuration={600} onClick={(data) => setSelectedExpenseCategory(data.name)} style={{ cursor: 'pointer' }}>
+                      <Pie data={categoryData} cx="50%" cy="50%" innerRadius={40} outerRadius={70} paddingAngle={6} dataKey="value" stroke="none" cornerRadius={6} animationDuration={600} onClick={(data) => data?.name && setSelectedExpenseCategory(data.name)} style={{ cursor: 'pointer' }}>
                         {categoryData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)}
                       </Pie>
                       <RechartsTooltip content={({ active, payload }) => {
